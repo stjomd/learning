@@ -11,7 +11,7 @@
 /// This sorting algorithm is stable.
 /// - Complexity: O(*n*^2)
 struct BubbleSort: SortingAlgorithm {
-    func sort<T: Comparable>(_ array: inout Array<T>, by comparator: (T, T) -> Bool) {
+    func sort<T>(_ array: inout Array<T>, by comparator: (T, T) -> Bool) {
         for i in 0..<array.count {
             for j in 1..<array.count - i {
                 if comparator(array[j], array[j - 1]) { // self[j - 1] > self[j]

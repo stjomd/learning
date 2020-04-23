@@ -11,7 +11,7 @@
 /// This sorting algorithm is stable.
 /// - Complexity: O(*n*^2)
 struct InsertionSort: SortingAlgorithm {
-    func sort<T: Comparable>(_ array: inout Array<T>, by comparator: (T, T) -> Bool) {
+    func sort<T>(_ array: inout Array<T>, by comparator: (T, T) -> Bool) {
         var i = 1
         while i < array.count {
             let x = array[i]
