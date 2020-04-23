@@ -57,7 +57,7 @@ extension Array {
     ///
     /// If the objects in the array don't conform to `Comparable`, pass a closure to the second parameter that returns true when the first element should be ordered before the second.
     ///
-    ///     struct PersonalDocument {
+    ///     struct Document {
     ///         let idNumber: Int;
     ///         init(_ id: Int) { idNumber = id }
     ///     }
