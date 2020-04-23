@@ -38,6 +38,7 @@
 		669E0C342451DCF6003DD940 /* Sieve of Eratosthenes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sieve of Eratosthenes.swift"; sourceTree = "<group>"; };
 		669E0C362451EC5E003DD940 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		669E0C3A2452049F003DD940 /* Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sorting.swift; sourceTree = "<group>"; };
+		669E0C3C2452159A003DD940 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				669E0C3A2452049F003DD940 /* Sorting.swift */,
+				669E0C3C2452159A003DD940 /* README.md */,
 			);
 			path = Sorting;
 			sourceTree = "<group>";
