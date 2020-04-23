@@ -6,11 +6,10 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
-// MARK: - Main Extension
-//enum SortingAlgorithm {
-//    /// - Complexity: O(*n*^2)
-//    case bubbleSort, insertionSort
-//}
+protocol SortingAlgorithm {
+    func sort<T: Comparable>(_ array: inout Array<T>, by comparator: (T, T) -> Bool)
+}
+
 extension Array where Element: Comparable {
     
     typealias Comparator = (Element, Element) -> Bool
