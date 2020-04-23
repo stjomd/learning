@@ -20,20 +20,18 @@ extension Array where Element: Comparable {
     /// type).
     ///
     ///     var array = [3, 1, 8, 2]
-    ///     array.customSort(.bubbleSort)
+    ///     array.customSort(BubbleSort())
     ///     // array = [1, 2, 3, 8]
-    ///     array.customSort(.bubbleSort, >)
+    ///     array.customSort(InsertionSort(), >)
     ///     // array = [8, 3, 2, 1]
     ///
     /// If you wish to sort in descending order, pass `>` as the second parameter.
     ///
-    /// For available algorithms, see `SortingAlgorithm`.
-    /// - Complexity: See the documentation for the passed `algorithm` variable.
-    /// - Parameter algorithm: The algorithm to be used for sorting.
+    /// - Complexity: See the documentation for the respective type of `algorithm`.
+    /// - Parameter algorithm: The sorting algorithm object to be used for sorting.
     /// - Parameter comparator: A function or closure that returns a Boolean value. It should return `true` if the first element should come
     /// before the second in the sorted array.
-    mutating func customSort<T: SortingAlgorithm>(_ algorithm: T, by comparator: Comparator = {$0 < $1}) {
-        // Add a new case for every new sorting algorithm inside the switch statement.
+    mutating func customSort<SomeSort: SortingAlgorithm>(_ algorithm: SomeSort, by comparator: Comparator = {$0 < $1}) {
         algorithm.sort(&self, by: comparator)
     }
     
@@ -43,20 +41,20 @@ extension Array where Element: Comparable {
     /// type).
     ///
     ///     var array = [3, 1, 8, 2]
-    ///     array.customSorted(.bubbleSort)
+    ///     array.customSorted(BubbleSort())
     ///     // [1, 2, 3, 8]
-    ///     array.customSorted(.bubbleSort, >)
+    ///     array.customSorted(BubbleSort(), >)
     ///     // [8, 3, 2, 1]
     ///
     /// If you wish to sort in descending order, pass `>` as the second parameter.
     ///
-    /// For available algorithms, see `SortingAlgorithm`.
-    /// - Complexity: At least Ω(*n*), as the array has to be copied. For more details, see the documentation for the passed `algorithm` variable.
-    /// - Parameter algorithm: The algorithm to be used for sorting.
+    /// - Complexity: At least Ω(*n*), as the array has to be copied. For more details, see the documentation for the respective type of
+    /// `algorithm`.
+    /// - Parameter algorithm: The sorting algorithm object to be used for sorting.
     /// - Parameter comparator: A function or closure that returns a Boolean value. It should return `true` if the first element should come
     /// before the second in the sorted array.
     /// - Returns: The sorted array.
-    func customSorted<T: SortingAlgorithm>(_ algorithm: T, by comparator: Comparator = {$0 < $1}) -> Self {
+    func customSorted<SomeSort: SortingAlgorithm>(_ algorithm: SomeSort, by comparator: Comparator = {$0 < $1}) -> Self {
         var copy = self
         copy.customSort(algorithm, by: comparator)
         return copy
