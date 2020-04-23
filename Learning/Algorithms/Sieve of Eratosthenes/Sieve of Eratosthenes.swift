@@ -8,21 +8,38 @@
 
 /// Encapsulates functions that return an array of prime numbers using the Sieve of Eratosthenes.
 ///
-/// To call one of the functions, type the name of the enumeration, a dot, and the function.
+/// To call one of the methods, type the name of the enumeration, a dot, and the function.
 ///
 ///     let primes = SieveOfEratosthenes.primes(2...30)
 ///
-/// - Complexity: O(n log log n)
+/// All methods will return an empty array if the arguments define an invalid range.
+///
+///     SieveOfEratosthenes.primes(through: -5)
+///     // []
+///
+/// - Complexity: O(n log log n) for all methods.
 enum SieveOfEratosthenes {
     
+    /// Returns an array of prime numbers not greather than a given value.
+    /// - Complexity: O(n log log n)
+    /// - Parameter upperBound: The upper bound for a value in the resulting array. If `upperBound` is prime, it will be included in the array.
+    /// - Returns: An array of all prime numbers less than or equal to `upperBound`.
     public static func primes(through upperBound: Int) -> [Int] {
         return primes(from: 2, to: upperBound)
     }
     
+    /// Returns an array of prime numbers that are in the given range.
+    /// - Complexity: O(n log log n)
+    /// - Parameter range: The range from which prime numbers should be returned.
+    /// - Returns: An array of all prime numbers that are also in `range`.
     public static func primes(in range: ClosedRange<Int>) -> [Int] {
         return primes(from: range.lowerBound, to: range.upperBound)
     }
     
+    /// Returns an array of prime numbers that are in the given range.
+    /// - Complexity: O(n log log n)
+    /// - Parameter range: The range from which prime numbers should be returned.
+    /// - Returns: An array of all prime numbers that are also in `range`.
     public static func primes(in range: Range<Int>) -> [Int] {
         return primes(from: range.lowerBound, to: range.upperBound - 1)
     }
