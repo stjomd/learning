@@ -6,6 +6,13 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+/// Encapsulates functions that return an array of prime numbers using the Sieve of Eratosthenes.
+///
+/// To call one of the functions, type the name of the enumeration, a dot, and the function.
+///
+///     let primes = SieveOfEratosthenes.primes(2...30)
+///
+/// - Complexity: O(n log log n)
 enum SieveOfEratosthenes {
     
     public static func primes(through upperBound: Int) -> [Int] {
