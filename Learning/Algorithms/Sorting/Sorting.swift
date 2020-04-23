@@ -69,7 +69,6 @@ extension Array where Element: Comparable {
 
 // MARK: - Bubble Sort
 extension Array where Element: Comparable {
-        
     fileprivate mutating func bubbleSort(by comparator: Comparator = {$0 < $1}) {
         for i in 0..<count {
             for j in 1..<count - i {
@@ -79,11 +78,4 @@ extension Array where Element: Comparable {
             }
         }
     }
-    
-    fileprivate func bubbleSorted(by comparator: Comparator = {$0 < $1}) -> [Element] {
-        var copy = self
-        copy.bubbleSort(by: comparator)
-        return copy
-    }
-    
 }
