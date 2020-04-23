@@ -6,17 +6,17 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
-extension Array where Element: Comparable {
-    fileprivate mutating func insertionSort(by comparator: Comparator) {
+struct InsertionSort: SortingAlgorithm {
+    func sort<T: Comparable>(_ array: inout Array<T>, by comparator: (T, T) -> Bool) {
         var i = 1
-        while i < count {
-            let x = self[i]
+        while i < array.count {
+            let x = array[i]
             var j = i - 1
-            while j >= 0 && comparator(x, self[j]) {
-                self[j + 1] = self[j]
+            while j >= 0 && comparator(x, array[j]) {
+                array[j + 1] = array[j]
                 j -= 1
             }
-            self[j + 1] = x
+            array[j + 1] = x
             i += 1
         }
     }
