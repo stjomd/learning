@@ -76,9 +76,17 @@
 		669E0C282451C611003DD940 /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
-				669E0C292451C790003DD940 /* Linked List.swift */,
+				669E0C2B2451CB7E003DD940 /* Linked List */,
 			);
 			path = "Data Structures";
+			sourceTree = "<group>";
+		};
+		669E0C2B2451CB7E003DD940 /* Linked List */ = {
+			isa = PBXGroup;
+			children = (
+				669E0C292451C790003DD940 /* Linked List.swift */,
+			);
+			path = "Linked List";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
