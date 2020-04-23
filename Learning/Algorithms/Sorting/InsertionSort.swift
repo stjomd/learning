@@ -6,6 +6,10 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+/// Insertion sort is an algorithm that sorts an array by building the sorted version one item at a time.
+///
+/// This sorting algorithm is stable.
+/// - Complexity: O(*n*^2)
 struct InsertionSort: SortingAlgorithm {
     func sort<T: Comparable>(_ array: inout Array<T>, by comparator: (T, T) -> Bool) {
         var i = 1

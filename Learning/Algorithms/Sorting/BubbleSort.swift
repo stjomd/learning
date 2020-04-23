@@ -6,6 +6,10 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+/// Bubble sort is a classic algorithm that sorts an array by comparing adjacent elements and swapping them if they are in the wrong order.
+///
+/// This sorting algorithm is stable.
+/// - Complexity: O(*n*^2)
 struct BubbleSort: SortingAlgorithm {
     func sort<T: Comparable>(_ array: inout Array<T>, by comparator: (T, T) -> Bool) {
         for i in 0..<array.count {
