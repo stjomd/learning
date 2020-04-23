@@ -9,5 +9,3 @@
 import Foundation
 
 //  Test any algorithms or data structures here.
-
-print(SieveOfEratosthenes.primes(through: 28))

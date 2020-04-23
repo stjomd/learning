@@ -13,11 +13,17 @@ extension Array where Element: Comparable {
     mutating func bubbleSort(by comparator: Comparator = {$0 < $1}) {
         for i in 0..<count {
             for j in 1..<count - i {
-                if comparator(self[j], self[i]) { // self[i] > self[j]
-                    swapAt(j, i)
+                if comparator(self[j], self[j - 1]) { // self[j - 1] > self[j]
+                    swapAt(j, j - 1)
                 }
             }
         }
+    }
+    
+    func bubbleSorted(by comparator: Comparator = {$0 < $1}) -> [Element] {
+        var copy = self
+        copy.bubbleSort(by: comparator)
+        return copy
     }
     
 }
