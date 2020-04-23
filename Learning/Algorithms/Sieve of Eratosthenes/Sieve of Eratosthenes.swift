@@ -8,6 +8,10 @@
 
 enum SieveOfEratosthenes {
     
+    static func primes(in range: ClosedRange<Int>) -> [Int] {
+        return primes(from: range.lowerBound, to: range.upperBound)
+    }
+    
     static func primes(from lowerBound: Int, to upperBound: Int) -> [Int] {
         
         var isPrime = Array(repeating: true, count: max(2, upperBound + 1))
