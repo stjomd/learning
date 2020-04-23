@@ -11,6 +11,7 @@
 		669E0C2A2451C790003DD940 /* Linked List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669E0C292451C790003DD940 /* Linked List.swift */; };
 		669E0C312451DAEE003DD940 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669E0C302451DAEE003DD940 /* Stack.swift */; };
 		669E0C352451DCF6003DD940 /* Sieve of Eratosthenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669E0C342451DCF6003DD940 /* Sieve of Eratosthenes.swift */; };
+		669E0C392451FDBF003DD940 /* Bubble Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669E0C382451FDBF003DD940 /* Bubble Sort.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +37,7 @@
 		669E0C322451DB23003DD940 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		669E0C342451DCF6003DD940 /* Sieve of Eratosthenes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sieve of Eratosthenes.swift"; sourceTree = "<group>"; };
 		669E0C362451EC5E003DD940 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		669E0C382451FDBF003DD940 /* Bubble Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bubble Sort.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		669E0C272451C609003DD940 /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
+				669E0C372451FDA0003DD940 /* Sorting */,
 				669E0C332451DCDA003DD940 /* Sieve of Eratosthenes */,
 			);
 			path = Algorithms;
@@ -119,6 +122,14 @@
 				669E0C362451EC5E003DD940 /* README.md */,
 			);
 			path = "Sieve of Eratosthenes";
+			sourceTree = "<group>";
+		};
+		669E0C372451FDA0003DD940 /* Sorting */ = {
+			isa = PBXGroup;
+			children = (
+				669E0C382451FDBF003DD940 /* Bubble Sort.swift */,
+			);
+			path = Sorting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				669E0C392451FDBF003DD940 /* Bubble Sort.swift in Sources */,
 				669E0C352451DCF6003DD940 /* Sieve of Eratosthenes.swift in Sources */,
 				669E0C212451C5FF003DD940 /* main.swift in Sources */,
 				669E0C312451DAEE003DD940 /* Stack.swift in Sources */,
