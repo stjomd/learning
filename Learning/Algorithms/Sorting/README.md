@@ -1,23 +1,40 @@
 #  Sorting algorithms
 
-All sorting algorithms have to be located in the file `Sorting.swift`. Only one function with the following signature has to be implemented, for clarity in an extension:
+Every sorting algorithm is an object that conforms to protocol `SortingAlgorithm`. It requires that the following method be implemented:
 ```swift
-extension Array where Element: Comparable {
-    fileprivate mutating func algorithmName(by comparator: Comparator) {
-        ...
+func sort<T>(_ array: inout Array<T>, by comparator: (T, T) -> Bool)
+```
+where sorting is performed in-place on `array`, and `comparator` is a closure that returns `true` if the first element should be ordered before the second.
+
+## Usage
+
+Call `customSort(_:)`, `customSorted(_:)` on arrays with objects that conform to `Comparable`, and `customSort(_:by:)`, `customSorted(_:by:)` on all arrays. Pass the sorting algorithm object to the first parameter. The default sorting order is ascending:
+```swift
+var array = [1, 5, 2, 0, 3]
+array.customSort(BubbleSort())
+// array = [0, 1, 2, 3, 5]
+```
+If you wish to sort in descending order, pass the `>` operator to the second parameter on arrays with objects that conform to `Comparable`:
+```swift
+var array = [1, 5, 2, 0, 3]
+print(array.customSorted(BubbleSort(), by: >))
+// Prints "[5, 3, 2, 1, 0]"
+```
+If the objects in the array do not conform to `Comparable`, pass a closure to the second parameter that returns `true` if the first element should be ordered before the second.
+```swift
+struct Document {
+    var name: String
+    let id: Int
+    init(_ name: String, _ id: Int) {
+        self.name = name
+        self.id = id
     }
 }
-```
-This function will not be directly accessible. To try the sorting algorithm out, use `customSort` or `customSorted` methods. The first parameter defines the sorting algorithm to be used. The second parameter is optional (refer to the documentation for more details). By default, the array is sorted in ascending order:
-```swift
-var array = [1, 5, 2, 9, 4, 3]
-array.customSort(.bubbleSort)
-// array = [1, 2, 3, 4, 5, 9]
-```
-To sort it in descending order, pass `>` operator as the second parameter.
-```swift
-var array = [1, 5, 2, 9, 4, 3].customSorted(.insertionSort, >)
-// array = [9, 5, 4, 3, 2, 1]
+var array = [Document("John Appleseed", 183493),
+             Document("Max Müller", 182977),
+             Document("Ivan Ivanov", 190532)]
+print(array.customSorted(InsertionSort(), by: { $0.id < $1.id }))
+// Prints "[Document(name: "Max Müller", id: 182977), Document(name: "John Appleseed", id: 183493), Document(name: "Ivan Ivanov", id: 190532)]"
 ```
 
 ## Implemented algorithms
