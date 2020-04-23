@@ -40,7 +40,7 @@ enum SieveOfEratosthenes {
                 if i*i > upperBound {
                     break
                 }
-                for j in stride(from: 2*i, through: upperBound, by: i) {
+                for j in stride(from: i*i, through: upperBound, by: i) {
                     isPrime[j] = false
                 }
             }
