@@ -28,6 +28,8 @@
 		669E0C202451C5FF003DD940 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		669E0C292451C790003DD940 /* Linked List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Linked List.swift"; sourceTree = "<group>"; };
 		669E0C2C2451CC1D003DD940 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		669E0C2D2451CD8F003DD940 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		669E0C2E2451CD99003DD940 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +46,8 @@
 		669E0C142451C5FF003DD940 = {
 			isa = PBXGroup;
 			children = (
+				669E0C2D2451CD8F003DD940 /* README.md */,
+				669E0C2E2451CD99003DD940 /* LICENSE */,
 				669E0C1F2451C5FF003DD940 /* Learning */,
 				669E0C1E2451C5FF003DD940 /* Products */,
 			);
