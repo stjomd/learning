@@ -11,12 +11,12 @@
 /// This sorting algorithm is stable.
 /// - Complexity: O(*n*^2)
 struct InsertionSort: SortingAlgorithm {
-    func sort<T>(_ array: inout Array<T>, by comparator: (T, T) -> Bool) {
+    func sort<T>(_ array: inout Array<T>, by areInIncreasingOrder: (T, T) -> Bool) {
         var i = 1
         while i < array.count {
             let x = array[i]
             var j = i - 1
-            while j >= 0 && comparator(x, array[j]) {
+            while j >= 0 && areInIncreasingOrder(x, array[j]) {
                 array[j + 1] = array[j]
                 j -= 1
             }
