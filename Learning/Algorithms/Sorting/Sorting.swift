@@ -38,6 +38,7 @@ extension Array {
     ///
     ///     struct Document {
     ///         let idNumber: Int;
+    ///         init(_ id: Int) { idNumber = id }
     ///     }
     ///     var array = [Document(1664672), Document(1623511), Document(1892732)]
     ///     array.customSort(InsertionSort(), by: {
@@ -58,6 +59,7 @@ extension Array {
     ///
     ///     struct PersonalDocument {
     ///         let idNumber: Int;
+    ///         init(_ id: Int) { idNumber = id }
     ///     }
     ///     var array = [Document(1664672), Document(1623511), Document(1892732)]
     ///     array.customSorted(InsertionSort(), by: {
