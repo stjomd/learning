@@ -1,5 +1,6 @@
 #  Sieve of Eratosthenes
 
+Used to get an array of prime numbers.
 Example:
 ```
 SieveOfEratosthenes.primes(in: 0..<29)

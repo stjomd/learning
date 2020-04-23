@@ -1,4 +1,4 @@
-#  Linked List
+#  Stack
 
 `public struct Stack<T>: CustomStringConvertible`
 
