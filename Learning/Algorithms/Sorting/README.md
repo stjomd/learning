@@ -26,3 +26,4 @@ Algorithm | Average complexity
 :---------- | :---------------------:
 Bubble Sort | O(*n*^2)
 Insertion Sort | O(*n*^2)
+
