@@ -6,6 +6,21 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+/// A type that can sort an array of objects.
+///
+/// Any class that conforms to `SortingAlgorithm` can be used by `Array`'s methods `customSort(_:by:)` and `customSorted(_:by:)`.
+///
+///     var array = [3, 5, 1, 2, 0]
+///     array.customSort(BubbleSort())
+///     // array = [0, 1, 2, 3, 5]
+///     let newArray = array.customSorted(InsertionSort(), by: >)
+///     // newArray = [5, 3, 2, 1, 0]
+///
+/// To conform to `SortingAlgorithm`, implement the following method:
+///
+///     func sort<T: Comparable>(_ array: inout Array<T>, by comparator: (T, T) -> Bool)
+///
+/// `sort(_:by:)` sorts `array` in-place, without copying.
 protocol SortingAlgorithm {
     func sort<T: Comparable>(_ array: inout Array<T>, by comparator: (T, T) -> Bool)
 }
