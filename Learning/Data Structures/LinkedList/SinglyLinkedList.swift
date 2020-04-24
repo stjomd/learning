@@ -17,11 +17,11 @@ public struct SinglyLinkedList<T> {
     }
     typealias Node = LinkedListNode<T>
     
-    /// The first node in the list.
+    /// The first node in the linked list.
     /// - Complexity: O(1)
     var head: Node?
     
-    /// The last node in the list.
+    /// The last node in the linked list.
     /// - Complexity: O(1)
     var toe: Node?
     
@@ -44,7 +44,7 @@ public struct SinglyLinkedList<T> {
     
     /// Creates a new linked list with the elements of an array.
     /// - Parameter array: The array to be converted into a linked list.
-    /// - Complexity: O(n)
+    /// - Complexity: O(*n*)
     init(_ array: [T]) {
         for element in array {
             append(element)
@@ -53,7 +53,7 @@ public struct SinglyLinkedList<T> {
     
     /// Creates a new linked list with the parameters passed to the initializer.
     /// - Parameter items: Zero or more items to be added to the new linked list.
-    /// - Complexity: O(n)
+    /// - Complexity: O(*n*)
     init(_ items: T...) {
         self.init(items)
     }
@@ -62,8 +62,8 @@ public struct SinglyLinkedList<T> {
     
     /// Allows access to the value of a node at a specific index.
     /// Crashes if index is invalid.
-    /// - Returns: the item at position `index` in the list.
-    /// - Complexity: O(n)
+    /// - Returns: the item at position `index` in the linked list.
+    /// - Complexity: O(*n*)
     public subscript(index: Int) -> T {
         assert(index >= 0 && index < count, "Index out of bounds")
         assert(!isEmpty, "The list is empty")
@@ -74,7 +74,7 @@ public struct SinglyLinkedList<T> {
     /// Returns nil if index is invalid. (Safe lookup)
     /// - Parameter index: The index of the required node.
     /// - Returns: The node at a given index, or `nil` if `index` is invalid.
-    /// - Complexity: O(n)
+    /// - Complexity: O(*n*)
     func node(at index: Int) -> Node? {
         assert(index >= 0, "Index out of bounds")
         var currentNode = head
@@ -87,7 +87,7 @@ public struct SinglyLinkedList<T> {
         return currentNode
     }
     
-    /// Appends a node to the end of the list.
+    /// Appends a node to the end of the linked list.
     /// - Parameter node: The node to be appended.
     /// - Complexity: O(1)
     mutating func append(_ node: Node) {
@@ -100,7 +100,7 @@ public struct SinglyLinkedList<T> {
         count += 1
     }
     
-    /// Appends a node with a specific item to the end of the list.
+    /// Appends a node with a specific item to the end of the linked list.
     /// - Parameter value: The item to be appended.
     /// - Complexity: O(1)
     mutating func append(_ item: T) {
@@ -111,7 +111,7 @@ public struct SinglyLinkedList<T> {
     /// Inserts a new node to the specified position.
     /// - Parameter node: The node to be inserted.
     /// - Parameter index: The position where `node` should be inserted at.
-    /// - Complexity: O(n) on average and in worst case, O(1) in best case (inserting at the beginning or the end of the list).
+    /// - Complexity: O(*n*) on average and in worst case, O(1) in best case (inserting at the beginning or the end of the linked list).
     mutating func insert(_ node: Node, at index: Int) {
         if index == 0 {
             node.next = head
@@ -133,13 +133,13 @@ public struct SinglyLinkedList<T> {
     /// Inserts a new item to the specified position.
     /// - Parameter item: The item to be inserted.
     /// - Parameter index: The position where `item` should be inserted at.
-    /// - Complexity: O(n) on average and in worst case, O(1) in best case (inserting at the beginning or the end of the list).
+    /// - Complexity: O(*n*) on average and in worst case, O(1) in best case (inserting at the beginning or the end of the linked list).
     mutating func insert(_ item: T, at index: Int) {
         let node = Node(item)
         insert(node, at: index)
     }
     
-    /// Returns and removes the first element in the list.
+    /// Returns and removes the first element in the linked list.
     /// - Returns: The element that has been removed.
     /// - Complexity: O(1)
     @discardableResult mutating func removeFirst() -> T {
@@ -150,7 +150,7 @@ public struct SinglyLinkedList<T> {
         return value
     }
     
-    /// Returns and removes the last element in the list.
+    /// Returns and removes the last element in the linked list.
     /// - Returns: The element that has been removed.
     /// - Complexity: O(*n*)
     @discardableResult mutating func removeLast() -> T {
@@ -163,7 +163,7 @@ public struct SinglyLinkedList<T> {
         return value
     }
     
-    /// Returns and removes the element in the list at a given position.
+    /// Returns and removes the element in the linked list at a given position.
     /// - Returns: The element that has been removed.
     /// - Complexity: O(*n*) on average and in worst case, O(1) in best case (removing the first element).
     @discardableResult mutating func remove(at index: Int) -> T {
@@ -183,7 +183,7 @@ public struct SinglyLinkedList<T> {
         }
     }
     
-    /// Removes all elements in the list.
+    /// Removes all elements in the linked list.
     /// - Complexity: O(1)
     mutating func removeAll() {
         head = nil
