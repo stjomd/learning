@@ -120,9 +120,7 @@ extension Array where Element: Comparable {
     /// - Parameter algorithm: The sorting algorithm object to be used for sorting.
     /// - Returns: The sorted array.
     func customSorted<SomeSort: SortingAlgorithm>(_ algorithm: SomeSort) -> Self {
-        var copy = self
-        copy.customSort(algorithm, by: <)
-        return copy
+        customSorted(algorithm, by: <)
     }
     
 }
