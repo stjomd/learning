@@ -8,15 +8,15 @@
 
 public struct DoublyLinkedList<T> {
     
+    typealias Node = LinkedListNode<T>
     class LinkedListNode<T> {
         var value: T
-        var next: LinkedListNode?
-        weak var previous: LinkedListNode?
+        var next: Node?
+        weak var previous: Node?
         init(_ value: T) {
             self.value = value
         }
     }
-    typealias Node = LinkedListNode<T>
     
     /// The first node in the list.
     /// - Complexity: O(1)

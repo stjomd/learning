@@ -8,14 +8,14 @@
 
 public struct SinglyLinkedList<T> {
     
+    typealias Node = LinkedListNode<T>
     class LinkedListNode<T> {
         var value: T
-        var next: LinkedListNode?
+        var next: Node?
         init(_ value: T) {
             self.value = value
         }
     }
-    typealias Node = LinkedListNode<T>
     
     /// The first node in the linked list.
     /// - Complexity: O(1)
