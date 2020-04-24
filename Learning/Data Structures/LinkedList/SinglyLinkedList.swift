@@ -65,9 +65,23 @@ public struct SinglyLinkedList<T> {
     /// - Returns: the item at position `index` in the linked list.
     /// - Complexity: O(*n*)
     public subscript(index: Int) -> T {
-        assert(index >= 0 && index < count, "Index out of bounds")
-        assert(!isEmpty, "The list is empty")
-        return node(at: index)!.value
+        get {
+            assert(index >= 0 && index < count, "Index out of bounds")
+            assert(!isEmpty, "The list is empty")
+            return node(at: index)!.value
+        }
+        set {
+            assert(index >= 0 && index < count, "Index out of bounds")
+            assert(!isEmpty, "The list is empty")
+            if index == 0 {
+                head!.value = newValue
+            } else if index == count - 1 {
+                toe!.value = newValue
+            } else {
+                let node = self.node(at: index)!
+                node.value = newValue
+            }
+        }
     }
     
     /// Returns the node at a specific index.
