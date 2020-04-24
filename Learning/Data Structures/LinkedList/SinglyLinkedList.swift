@@ -19,11 +19,11 @@ public struct SinglyLinkedList<T>: LinkedList {
     
     /// The first node in the linked list.
     /// - Complexity: O(1)
-    var head: Node?
+    private(set) var head: Node?
     
     /// The last node in the linked list.
     /// - Complexity: O(1)
-    var toe: Node?
+    private(set) var toe: Node?
     
     /// Returns true if the linked list is empty.
     /// - Complexity: O(1)
