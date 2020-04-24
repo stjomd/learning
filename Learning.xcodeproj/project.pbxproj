@@ -16,7 +16,6 @@
 		66EAB846245263E700593625 /* SelectionSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB845245263E700593625 /* SelectionSort.swift */; };
 		66EAB849245320AB00593625 /* DoublyLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB848245320AB00593625 /* DoublyLinkedList.swift */; };
 		66EAB8502453313B00593625 /* SinglyLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB84F2453313B00593625 /* SinglyLinkedList.swift */; };
-		66EAB85224533A4000593625 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB85124533A4000593625 /* LinkedList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,7 +48,6 @@
 		66EAB848245320AB00593625 /* DoublyLinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoublyLinkedList.swift; sourceTree = "<group>"; };
 		66EAB84A245320B400593625 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		66EAB84F2453313B00593625 /* SinglyLinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglyLinkedList.swift; sourceTree = "<group>"; };
-		66EAB85124533A4000593625 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +142,6 @@
 		66EAB8472453209E00593625 /* LinkedList */ = {
 			isa = PBXGroup;
 			children = (
-				66EAB85124533A4000593625 /* LinkedList.swift */,
 				66EAB848245320AB00593625 /* DoublyLinkedList.swift */,
 				66EAB84F2453313B00593625 /* SinglyLinkedList.swift */,
 				66EAB84A245320B400593625 /* README.md */,
@@ -219,7 +216,6 @@
 			files = (
 				66EAB8502453313B00593625 /* SinglyLinkedList.swift in Sources */,
 				66EAB849245320AB00593625 /* DoublyLinkedList.swift in Sources */,
-				66EAB85224533A4000593625 /* LinkedList.swift in Sources */,
 				669E0C3B2452049F003DD940 /* Sorting.swift in Sources */,
 				669E0C352451DCF6003DD940 /* Sieve of Eratosthenes.swift in Sources */,
 				669E0C212451C5FF003DD940 /* main.swift in Sources */,

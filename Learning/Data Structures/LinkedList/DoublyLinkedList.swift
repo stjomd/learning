@@ -6,7 +6,7 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
-public struct DoublyLinkedList<T>: LinkedList {
+public struct DoublyLinkedList<T> {
     
     typealias Node = LinkedListNode<T>
     class LinkedListNode<T> {
