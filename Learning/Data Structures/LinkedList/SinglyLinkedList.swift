@@ -207,6 +207,23 @@ public struct SinglyLinkedList<T>: LinkedList {
     
 }
 
+extension SinglyLinkedList: CustomStringConvertible {
+    public var description: String {
+        var string = "["
+        var currentNode = head
+        for _ in 0..<self.count {
+            string += "\(currentNode!.value)"
+            currentNode = currentNode?.next
+            if currentNode == nil {
+                break
+            }
+            string += ", "
+        }
+        string += "]"
+        return string
+    }
+}
+
 extension SinglyLinkedList: ExpressibleByArrayLiteral {
     public init(arrayLiteral: T...) {
         self.init(arrayLiteral)
