@@ -6,7 +6,7 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
-public struct SinglyLinkedList<T> {
+public struct SinglyLinkedList<T>: LinkedList {
     
     typealias Node = LinkedListNode<T>
     class LinkedListNode<T> {
