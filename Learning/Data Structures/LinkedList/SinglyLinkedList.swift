@@ -229,3 +229,41 @@ extension SinglyLinkedList: ExpressibleByArrayLiteral {
         self.init(arrayLiteral)
     }
 }
+
+/// Custom index type that keeps an index (Int) and a reference to the node with that index in the list.
+/// Required for conformance to Collection.
+public struct SinglyLinkedListIndex<T>: Comparable {
+    let node: SinglyLinkedList<T>.LinkedListNode<T>?
+    let index: Int
+    public static func == <T>(lhs: SinglyLinkedListIndex<T>, rhs: SinglyLinkedListIndex<T>) -> Bool {
+        return (lhs.index == rhs.index)
+    }
+    public static func < <T>(lhs: SinglyLinkedListIndex<T>, rhs: SinglyLinkedListIndex<T>) -> Bool {
+        return (lhs.index < rhs.index)
+    }
+}
+extension SinglyLinkedList: Collection {
+    public typealias Index = SinglyLinkedListIndex<T>
+    public var startIndex: Index {
+        get {
+            SinglyLinkedListIndex<T>(node: head, index: 0)
+        }
+    }
+    public var endIndex: Index {
+        get {
+            if isEmpty {
+                return startIndex
+            } else {
+                return SinglyLinkedListIndex<T>(node: toe?.next, index: count)
+            }
+        }
+    }
+    public func index(after i: SinglyLinkedListIndex<T>) -> SinglyLinkedListIndex<T> {
+        SinglyLinkedListIndex<T>(node: i.node?.next, index: i.index + 1)
+    }
+    public subscript(position: Index) -> T {
+        get {
+            return position.node!.value
+        }
+    }
+}
