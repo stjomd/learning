@@ -1,7 +1,7 @@
 #  Linked List
 
 ```swift
-public struct LinkedList<T>: Collection, ExpressibleByArrayLiteral, CustomStringConvertible
+public struct DoublyLinkedList<T>: Collection, ExpressibleByArrayLiteral, CustomStringConvertible
 ```
 
 This particular implementation is of a doubly linked list (every node keeps a reference to the previous and to the next node).
@@ -9,13 +9,13 @@ This particular implementation is of a doubly linked list (every node keeps a re
 ## Usage
 
 ```swift
-let emptyList = LinkedList<Int>()
-let listFromInit = LinkedList<Int>(1, 2, 3, 4, 5)
-let listFromArray = LinkedList<Int>([1, 2, 3, 4, 5])
+let emptyList = DoublyLinkedList<Int>()
+let listFromInit = DoublyLinkedList<Int>(1, 2, 3, 4, 5)
+let listFromArray = DoublyLinkedList<Int>([1, 2, 3, 4, 5])
 ```
 Since `LinkedList` conforms to `ExpressibleByArrayLiteral`, it can also be initialized as follows:
 ```swift
-let listFromArrayLiteral: LinkedList<Int> = [1, 2, 3, 4, 5]
+let listFromArrayLiteral: DoublyLinkedList<Int> = [1, 2, 3, 4, 5]
 ```
 This requires an explicit type annotation.
 
