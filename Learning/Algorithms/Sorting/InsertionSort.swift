@@ -6,7 +6,7 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
-/// Insertion sort is an algorithm that sorts an array by building the sorted version one item at a time.
+/// Insertion sort is an algorithm that sorts an array by taking an element from the unsorted section of the array, finding its position in the sorted one, and placing it there.
 ///
 /// This sorting algorithm is stable.
 /// - Complexity: O(*n*^2)
