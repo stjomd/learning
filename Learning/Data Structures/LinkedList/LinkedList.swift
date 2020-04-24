@@ -27,3 +27,13 @@ protocol LinkedList {
     @discardableResult mutating func remove(at index: Int) -> ElementType
     mutating func removeAll()
 }
+
+protocol ListNode {
+    associatedtype ElementType
+    associatedtype NodeType
+    
+    var value: ElementType { get set }
+    var next: NodeType? { get set }
+    
+    init(_ value: ElementType)
+}
