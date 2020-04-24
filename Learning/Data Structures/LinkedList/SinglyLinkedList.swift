@@ -206,3 +206,9 @@ public struct SinglyLinkedList<T>: LinkedList {
     }
     
 }
+
+extension SinglyLinkedList: ExpressibleByArrayLiteral {
+    public init(arrayLiteral: T...) {
+        self.init(arrayLiteral)
+    }
+}
