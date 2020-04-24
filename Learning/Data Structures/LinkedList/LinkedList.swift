@@ -10,7 +10,7 @@ protocol LinkedList {
     associatedtype ElementType
     associatedtype NodeType
     
-    var head: NodeType? { get }
+    var head: NodeType? { get set }
     var toe: NodeType? { get }
     var isEmpty: Bool { get }
     var count: Int { get }
@@ -28,12 +28,3 @@ protocol LinkedList {
     mutating func removeAll()
 }
 
-protocol ListNode {
-    associatedtype ElementType
-    associatedtype NodeType
-    
-    var value: ElementType { get set }
-    var next: NodeType? { get set }
-    
-    init(_ value: ElementType)
-}
