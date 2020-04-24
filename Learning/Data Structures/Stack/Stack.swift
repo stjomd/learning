@@ -28,6 +28,11 @@ public struct Stack<T> {
         stack.last
     }
     
+    /// Creates a new, empty stack.
+    /// - Complexity: O(1)
+    init() {
+    }
+    
     /// Adds a new element to the top of the stack.
     /// - Parameter newElement: The element to add to the stack.
     /// - Complexity: O(1) on average, over many calls to push(_:) on the same stack, O(n) in worst case.
@@ -40,11 +45,6 @@ public struct Stack<T> {
     /// - Complexity: O(1)
     @discardableResult mutating func pop() -> T? {
         return stack.popLast()
-    }
-    
-    /// Creates a new, empty stack.
-    /// - Complexity: O(1)
-    init() {
     }
     
 }
