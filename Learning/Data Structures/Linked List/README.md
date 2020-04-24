@@ -27,7 +27,7 @@ for element in list {
 // Prints "1 2 3 4 5 "
 ```
 
-Elements can be accessed with a subscript. This, however, is not recommended, as it's a O(*n*) operation on average (as opposed to O(1) for arrays). If accessing the first or the last element, it's an O(1) operation as well.
+Elements can be accessed with a subscript. This, however, is not recommended, as it's an O(*n*) operation on average (as opposed to O(1) for arrays). If accessing the first or the last element, it's an O(1) operation as well.
 ```swift
 list[0]
 /// 1
