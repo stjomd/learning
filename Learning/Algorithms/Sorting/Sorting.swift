@@ -20,11 +20,11 @@
 ///
 /// To conform to `SortingAlgorithm`, implement the following method:
 ///
-///     func sort<T>(_ array: inout Array<T>, by comparator: (T, T) -> Bool)
+///     func sort<T>(_ array: inout Array<T>, by areInIncreasingOrder: (T, T) -> Bool)
 ///
 /// `sort(_:by:)` sorts `array` in-place, without copying.
 protocol SortingAlgorithm {
-    func sort<T>(_ array: inout Array<T>, by comparator: (T, T) -> Bool)
+    func sort<T>(_ array: inout Array<T>, by areInIncreasingOrder: (T, T) -> Bool)
 }
 
 //  MARK: - Extension for all types
