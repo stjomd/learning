@@ -12,8 +12,7 @@
 /// - Complexity: O(*n*^2)
 struct InsertionSort: SortingAlgorithm {
     func sort<T>(_ array: inout Array<T>, by areInIncreasingOrder: (T, T) -> Bool) {
-        var i = 1
-        while i < array.count {
+        for i in 1..<array.count {
             let x = array[i]
             var j = i - 1
             while j >= 0 && areInIncreasingOrder(x, array[j]) {
@@ -21,7 +20,6 @@ struct InsertionSort: SortingAlgorithm {
                 j -= 1
             }
             array[j + 1] = x
-            i += 1
         }
     }
 }
