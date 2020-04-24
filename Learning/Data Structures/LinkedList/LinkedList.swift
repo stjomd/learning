@@ -10,7 +10,7 @@ protocol LinkedList {
     associatedtype ElementType
     associatedtype NodeType
     
-    var head: NodeType? { get set }
+    var head: NodeType? { get }
     var toe: NodeType? { get }
     var isEmpty: Bool { get }
     var count: Int { get }
