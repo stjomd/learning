@@ -20,7 +20,7 @@
 ///
 /// To conform to `SortingAlgorithm`, implement the following method:
 ///
-///     func sort<T: Comparable>(_ array: inout Array<T>, by comparator: (T, T) -> Bool)
+///     func sort<T>(_ array: inout Array<T>, by comparator: (T, T) -> Bool)
 ///
 /// `sort(_:by:)` sorts `array` in-place, without copying.
 protocol SortingAlgorithm {
