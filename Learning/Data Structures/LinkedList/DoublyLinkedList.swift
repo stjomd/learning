@@ -240,21 +240,21 @@ extension DoublyLinkedList: ExpressibleByArrayLiteral {
 
 /// Custom index type that keeps an index (Int) and a reference to the node with that index in the list.
 /// Required for conformance to Collection.
-public struct LinkedListIndex<T>: Comparable {
+public struct DoublyLinkedListIndex<T>: Comparable {
     let node: DoublyLinkedList<T>.LinkedListNode<T>?
     let index: Int
-    public static func == <T>(lhs: LinkedListIndex<T>, rhs: LinkedListIndex<T>) -> Bool {
+    public static func == <T>(lhs: DoublyLinkedListIndex<T>, rhs: DoublyLinkedListIndex<T>) -> Bool {
         return (lhs.index == rhs.index)
     }
-    public static func < <T>(lhs: LinkedListIndex<T>, rhs: LinkedListIndex<T>) -> Bool {
+    public static func < <T>(lhs: DoublyLinkedListIndex<T>, rhs: DoublyLinkedListIndex<T>) -> Bool {
         return (lhs.index < rhs.index)
     }
 }
 extension DoublyLinkedList: Collection {
-    public typealias Index = LinkedListIndex<T>
+    public typealias Index = DoublyLinkedListIndex<T>
     public var startIndex: Index {
         get {
-            LinkedListIndex<T>(node: head, index: 0)
+            DoublyLinkedListIndex<T>(node: head, index: 0)
         }
     }
     public var endIndex: Index {
@@ -262,12 +262,12 @@ extension DoublyLinkedList: Collection {
             if isEmpty {
                 return startIndex
             } else {
-                return LinkedListIndex<T>(node: toe?.next, index: count)
+                return DoublyLinkedListIndex<T>(node: toe?.next, index: count)
             }
         }
     }
-    public func index(after i: LinkedListIndex<T>) -> LinkedListIndex<T> {
-        LinkedListIndex<T>(node: i.node?.next, index: i.index + 1)
+    public func index(after i: DoublyLinkedListIndex<T>) -> DoublyLinkedListIndex<T> {
+        DoublyLinkedListIndex<T>(node: i.node?.next, index: i.index + 1)
     }
     public subscript(position: Index) -> T {
         get {
