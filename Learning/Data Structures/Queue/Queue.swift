@@ -8,7 +8,7 @@
 
 struct Queue<T> {
     
-    var queue: SinglyLinkedList<T>
+    private var queue: SinglyLinkedList<T>
     
     var count: Int {
         queue.count
@@ -18,8 +18,24 @@ struct Queue<T> {
         queue.isEmpty
     }
     
-    var first: T? {
+    var front: T? {
         queue.head?.value
+    }
+    
+    var back: T? {
+        queue.toe?.value
+    }
+    
+    init() {
+        queue = SinglyLinkedList<T>()
+    }
+    
+    mutating func enqueue(_ item: T) {
+        queue.append(item)
+    }
+    
+    @discardableResult mutating func dequeue() -> T {
+        return queue.removeFirst()
     }
     
 }
