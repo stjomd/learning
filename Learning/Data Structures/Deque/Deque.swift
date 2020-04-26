@@ -59,3 +59,9 @@ extension Deque: CustomStringConvertible {
         return "⇄\(deque.description)⇄"
     }
 }
+
+extension Deque: Equatable where T: Equatable {
+    static func == (lhs: Deque<T>, rhs: Deque<T>) -> Bool {
+        return lhs.deque == rhs.deque
+    }
+}
