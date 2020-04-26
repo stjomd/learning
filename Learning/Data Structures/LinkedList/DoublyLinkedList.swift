@@ -247,7 +247,10 @@ extension DoublyLinkedList: Equatable where T: Equatable {
         for _ in 0..<lhs.count {
             l = l?.next
             r = r?.next
-            if l == nil || l?.value != r?.value {
+            if l == nil {
+                break
+            }
+            if l?.value != r?.value {
                 return false
             }
         }
