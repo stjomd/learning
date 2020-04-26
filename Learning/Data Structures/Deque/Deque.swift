@@ -53,3 +53,9 @@ struct Deque<T> {
     }
     
 }
+
+extension Deque: CustomStringConvertible {
+    var description: String {
+        return "⇄\(deque.description)⇄"
+    }
+}
