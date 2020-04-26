@@ -130,7 +130,9 @@ public struct DoublyLinkedList<T> {
     /// - Parameter index: The position where `node` should be inserted at.
     /// - Complexity: O(n) on average and in worst case, O(1) in best case (inserting at the beginning or the end of the list).
     mutating func insert(_ node: Node, at index: Int) {
-        if index == 0 {
+        if index == 0 && isEmpty {
+            append(node)
+        } else if index == 0 {
             node.next = head
             head?.previous = node
             head = node
