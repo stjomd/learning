@@ -52,6 +52,7 @@
 		66EAB84F2453313B00593625 /* SinglyLinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglyLinkedList.swift; sourceTree = "<group>"; };
 		66EAB85324538FD900593625 /* MergeSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeSort.swift; sourceTree = "<group>"; };
 		66EAB8582455B63100593625 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		66EAB85A2455BDD400593625 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				66EAB8582455B63100593625 /* Queue.swift */,
+				66EAB85A2455BDD400593625 /* README.md */,
 			);
 			path = Queue;
 			sourceTree = "<group>";
