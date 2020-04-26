@@ -45,3 +45,9 @@ extension Queue: CustomStringConvertible {
         return "<\(queue.description)<"
     }
 }
+
+extension Queue: Equatable where T: Equatable {
+    static func == (lhs: Queue<T>, rhs: Queue<T>) -> Bool {
+        return lhs.queue == rhs.queue
+    }
+}
