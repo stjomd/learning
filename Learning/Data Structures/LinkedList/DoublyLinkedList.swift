@@ -238,6 +238,23 @@ extension DoublyLinkedList: ExpressibleByArrayLiteral {
     }
 }
 
+extension DoublyLinkedList: Equatable where T: Equatable {
+    public static func == (lhs: DoublyLinkedList<T>, rhs: DoublyLinkedList<T>) -> Bool {
+        if lhs.count != rhs.count {
+            return false
+        }
+        var l = lhs.head, r = rhs.head
+        for _ in 0..<lhs.count {
+            l = l?.next
+            r = r?.next
+            if l == nil || l?.value != r?.value {
+                return false
+            }
+        }
+        return true
+    }
+}
+
 /// Custom index type that keeps an index (Int) and a reference to the node with that index in the list.
 /// Required for conformance to Collection.
 public struct DoublyLinkedListIndex<T>: Comparable {
