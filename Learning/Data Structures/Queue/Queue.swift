@@ -39,3 +39,9 @@ struct Queue<T> {
     }
     
 }
+
+extension Queue: CustomStringConvertible {
+    var description: String {
+        return "<\(queue.description)<"
+    }
+}
