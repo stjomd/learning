@@ -51,7 +51,7 @@ public struct Stack<T> {
 
 extension Stack: CustomStringConvertible {
     public var description: String {
-        return stack.description
+        return "\(stack.description)⇄"
     }
 }
 
