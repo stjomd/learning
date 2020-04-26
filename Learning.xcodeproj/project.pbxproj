@@ -18,6 +18,7 @@
 		66EAB8502453313B00593625 /* SinglyLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB84F2453313B00593625 /* SinglyLinkedList.swift */; };
 		66EAB85424538FD900593625 /* MergeSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB85324538FD900593625 /* MergeSort.swift */; };
 		66EAB8592455B63100593625 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB8582455B63100593625 /* Queue.swift */; };
+		66EAB85D2455E2F100593625 /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB85C2455E2F100593625 /* Deque.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +54,8 @@
 		66EAB85324538FD900593625 /* MergeSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeSort.swift; sourceTree = "<group>"; };
 		66EAB8582455B63100593625 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		66EAB85A2455BDD400593625 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		66EAB85C2455E2F100593625 /* Deque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
+		66EAB85E2455E30D00593625 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,7 @@
 		669E0C282451C611003DD940 /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
+				66EAB85B2455E28F00593625 /* Deque */,
 				66EAB84C24532E3000593625 /* Queue */,
 				669E0C2F2451DADA003DD940 /* Stack */,
 				66EAB8472453209E00593625 /* LinkedList */,
@@ -162,6 +166,15 @@
 				66EAB85A2455BDD400593625 /* README.md */,
 			);
 			path = Queue;
+			sourceTree = "<group>";
+		};
+		66EAB85B2455E28F00593625 /* Deque */ = {
+			isa = PBXGroup;
+			children = (
+				66EAB85C2455E2F100593625 /* Deque.swift */,
+				66EAB85E2455E30D00593625 /* README.md */,
+			);
+			path = Deque;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +237,7 @@
 			files = (
 				66EAB8502453313B00593625 /* SinglyLinkedList.swift in Sources */,
 				66EAB849245320AB00593625 /* DoublyLinkedList.swift in Sources */,
+				66EAB85D2455E2F100593625 /* Deque.swift in Sources */,
 				669E0C3B2452049F003DD940 /* Sorting.swift in Sources */,
 				66EAB8592455B63100593625 /* Queue.swift in Sources */,
 				669E0C352451DCF6003DD940 /* Sieve of Eratosthenes.swift in Sources */,
