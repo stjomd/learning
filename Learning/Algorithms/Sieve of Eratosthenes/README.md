@@ -14,4 +14,4 @@ SieveOfEratosthenes.primes(through: 0)
 SieveOfEratosthenes.primes(through: -5)
 // []
 ```
-The complexity is O(n log log n).
+The complexity is O(*n* log log *n*).
