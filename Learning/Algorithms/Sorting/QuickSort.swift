@@ -6,7 +6,7 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
-/// Quicksort sort is an algorithm that sorts an array by selecting a pivot element, partitioning the other elements into two sub-arrays, one of which only contains elements that are less or greater than the pivot, and the other the rest of the elements; these sub-arrays are then sorted recursively.
+/// Quicksort is an algorithm that sorts an array by selecting a pivot element, partitioning the other elements into two sub-arrays, one of which only contains elements that are less or greater than the pivot, and the other the rest of the elements; these sub-arrays are then sorted recursively.
 ///
 /// This sorting algorithm is **not** stable.
 ///
