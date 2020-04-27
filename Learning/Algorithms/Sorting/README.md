@@ -2,9 +2,9 @@
 
 Every sorting algorithm is an object that conforms to protocol `SortingAlgorithm`. It requires that the following method be implemented:
 ```swift
-func sort<T>(_ array: inout Array<T>, by comparator: (T, T) -> Bool)
+func sort<T>(_ array: inout Array<T>, by areInIncreasingOrder: (T, T) -> Bool)
 ```
-where sorting is performed in-place on `array`, and `comparator` is a closure that returns `true` if the first element should be ordered before the second.
+where sorting is performed in-place on `array`, and `areInIncreasingOrder` is a closure that returns `true` if the first element should be ordered before the second.
 
 ## Usage
 
