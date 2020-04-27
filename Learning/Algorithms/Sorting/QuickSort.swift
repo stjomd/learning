@@ -13,6 +13,7 @@
 struct QuickSort: SortingAlgorithm {
     enum PivotStrategy {
         case first
+        case middle
         case last
         case random
         case median
@@ -39,12 +40,14 @@ struct QuickSort: SortingAlgorithm {
         switch strategy {
             case .first:
                 pivot = array[left]
+            case .middle:
+                pivot = array[left + (right - left)/2]
             case .last:
                 pivot = array[right - 1]
             case .random:
                 pivot = array[Int.random(in: left..<right)]
             case .median:
-                let middle = left + (right - left) / 2
+                let middle = left + (right - left)/2
                 if areInIncreasingOrder(array[middle], array[left]) {
                     array.swapAt(middle, left)
                 }
