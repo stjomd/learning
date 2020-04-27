@@ -41,7 +41,7 @@ print(array.customSorted(InsertionSort(), by: { $0.id < $1.id }))
 
 Algorithm | Average performance | Worst-case performance
 :---------- | :-----------------------: | :----------------------------:
-Bubble Sort | O(*n*^2) | O(*n*^2)
+[Bubble Sort](/BubbleSort.swift) | O(*n*^2) | O(*n*^2)
 Insertion Sort | O(*n*^2) | O(*n*^2)
 Selection Sort | O(*n*^2) | O(*n*^2)
 Merge Sort | O(*n* log *n*) | O(*n* log *n*)
