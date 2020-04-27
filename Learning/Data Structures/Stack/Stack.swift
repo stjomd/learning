@@ -35,7 +35,7 @@ public struct Stack<T> {
     
     /// Adds a new element to the top of the stack.
     /// - Parameter newElement: The element to add to the stack.
-    /// - Complexity: O(1) on average, over many calls to push(_:) on the same stack, O(n) in worst case.
+    /// - Complexity: O(1) on average, over many calls to push(_:) on the same stack, O(*n*) in worst case.
     mutating func push(_ newElement: T) {
         stack.append(newElement)
     }

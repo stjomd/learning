@@ -17,11 +17,11 @@
 ///     SieveOfEratosthenes.primes(through: -5)
 ///     // []
 ///
-/// - Complexity: O(n log log n) for all methods.
+/// - Complexity: O(*n* log log *n*) for all methods.
 enum SieveOfEratosthenes {
     
     /// Returns an array of prime numbers not greather than a given value.
-    /// - Complexity: O(n log log n)
+    /// - Complexity: O(*n* log log *n*)
     /// - Parameter upperBound: The upper bound for a value in the resulting array. If `upperBound` is prime, it will be included in the array.
     /// - Returns: An array of all prime numbers less than or equal to `upperBound`.
     public static func primes(through upperBound: Int) -> [Int] {
@@ -29,7 +29,7 @@ enum SieveOfEratosthenes {
     }
     
     /// Returns an array of prime numbers that are in the given range.
-    /// - Complexity: O(n log log n)
+    /// - Complexity: O(*n* log log *n*)
     /// - Parameter range: The range from which prime numbers should be returned.
     /// - Returns: An array of all prime numbers that are also in `range`.
     public static func primes(in range: ClosedRange<Int>) -> [Int] {
@@ -37,7 +37,7 @@ enum SieveOfEratosthenes {
     }
     
     /// Returns an array of prime numbers that are in the given range.
-    /// - Complexity: O(n log log n)
+    /// - Complexity: O(*n* log log *n*)
     /// - Parameter range: The range from which prime numbers should be returned.
     /// - Returns: An array of all prime numbers that are also in `range`.
     public static func primes(in range: Range<Int>) -> [Int] {
