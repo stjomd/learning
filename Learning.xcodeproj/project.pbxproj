@@ -21,6 +21,7 @@
 		66EAB85D2455E2F100593625 /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB85C2455E2F100593625 /* Deque.swift */; };
 		66EAB8602456559C00593625 /* QuickSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB85F2456559C00593625 /* QuickSort.swift */; };
 		66EAB86524566BBE00593625 /* BinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB86424566BBE00593625 /* BinaryTree.swift */; };
+		66EAB8672456706000593625 /* CountSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB8662456706000593625 /* CountSort.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,6 +61,7 @@
 		66EAB85E2455E30D00593625 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		66EAB85F2456559C00593625 /* QuickSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickSort.swift; sourceTree = "<group>"; };
 		66EAB86424566BBE00593625 /* BinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTree.swift; sourceTree = "<group>"; };
+		66EAB8662456706000593625 /* CountSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountSort.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				66EAB845245263E700593625 /* SelectionSort.swift */,
 				66EAB85324538FD900593625 /* MergeSort.swift */,
 				66EAB85F2456559C00593625 /* QuickSort.swift */,
+				66EAB8662456706000593625 /* CountSort.swift */,
 				669E0C3C2452159A003DD940 /* README.md */,
 			);
 			path = Sorting;
@@ -259,6 +262,7 @@
 				66EAB85424538FD900593625 /* MergeSort.swift in Sources */,
 				66EAB86524566BBE00593625 /* BinaryTree.swift in Sources */,
 				669E0C212451C5FF003DD940 /* main.swift in Sources */,
+				66EAB8672456706000593625 /* CountSort.swift in Sources */,
 				66EAB843245220D400593625 /* InsertionSort.swift in Sources */,
 				66EAB846245263E700593625 /* SelectionSort.swift in Sources */,
 				669E0C312451DAEE003DD940 /* Stack.swift in Sources */,
