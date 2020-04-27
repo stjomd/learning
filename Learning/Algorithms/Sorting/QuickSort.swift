@@ -30,14 +30,14 @@ struct QuickSort: SortingAlgorithm {
     }
     private func quickSort<T>(_ array: inout Array<T>, left: Int, right: Int, by areInIncreasingOrder: (T, T) -> Bool) {
         if left < right {
-            let partitionAt = divide(&array, left: left, right: right, by: areInIncreasingOrder)
-            quickSort(&array, left: left, right: partitionAt, by: areInIncreasingOrder)
-            quickSort(&array, left: partitionAt + 1, right: right, by: areInIncreasingOrder)
+            let partitionAt = divide(&array, left: left, right: right, by: areInIncreasingOrder) // divide into two sub-arrays at this index
+            quickSort(&array, left: left, right: partitionAt, by: areInIncreasingOrder)          // sort the left sub-array
+            quickSort(&array, left: partitionAt + 1, right: right, by: areInIncreasingOrder)     // sort the right sub-array
         }
     }
     private func divide<T>(_ array: inout Array<T>, left: Int, right: Int, by areInIncreasingOrder: (T, T) -> Bool) -> Int {
         let pivot: T
-        switch strategy {
+        switch strategy { // choose a pivot element
             case .first:
                 pivot = array[left]
             case .middle:
@@ -46,7 +46,7 @@ struct QuickSort: SortingAlgorithm {
                 pivot = array[right - 1]
             case .random:
                 pivot = array[Int.random(in: left..<right)]
-            case .median:
+            case .median: // choose the median as pivot, and also sort the three elements in the array
                 let middle = left + (right - left)/2
                 if areInIncreasingOrder(array[middle], array[left]) {
                     array.swapAt(middle, left)
@@ -59,18 +59,18 @@ struct QuickSort: SortingAlgorithm {
                 }
                 pivot = array[right]
         }
-        var i = left - 1, j = right + 1
-        while true {
-            repeat {
+        var i = left - 1, j = right + 1     // Hoare partition scheme
+        while true {                        // Two indices (i & j) move towards each other, until an inversion is detected:
+            repeat {                        // e.g. i < pivot but array[i] > array[pivot], etc.
                 i += 1
             } while areInIncreasingOrder(array[i], pivot)
             repeat {
                 j -= 1
             } while areInIncreasingOrder(pivot, array[j])
-            if i >= j {
-                return j
+            if i >= j {                     // When the indices meet, stop and
+                return j                    // return the final index.
             }
-            array.swapAt(i, j)
+            array.swapAt(i, j)              // The inverted elements are swapped.
         }
     }
 }
