@@ -1,5 +1,11 @@
 #  Sieve of Eratosthenes
-
+```swift
+enum SieveOfEratosthenes {
+    public static func primes(through upperBound: Int) -> [Int]
+    public static func primes(in range: ClosedRange<Int>) -> [Int]
+    public static func primes(in range: Range<Int>) -> [Int]
+}
+```
 Used to get an array of prime numbers.
 Example:
 ```swift
