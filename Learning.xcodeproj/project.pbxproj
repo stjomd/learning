@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		668C35B5245DE44F008E2D2C /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C35B4245DE44F008E2D2C /* BinarySearch.swift */; };
 		669E0C212451C5FF003DD940 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669E0C202451C5FF003DD940 /* main.swift */; };
 		669E0C312451DAEE003DD940 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669E0C302451DAEE003DD940 /* Stack.swift */; };
 		669E0C352451DCF6003DD940 /* Sieve of Eratosthenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669E0C342451DCF6003DD940 /* Sieve of Eratosthenes.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		668C35B4245DE44F008E2D2C /* BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
 		669E0C1D2451C5FF003DD940 /* Learning */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Learning; sourceTree = BUILT_PRODUCTS_DIR; };
 		669E0C202451C5FF003DD940 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		669E0C2D2451CD8F003DD940 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -75,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		668C35B3245DE43C008E2D2C /* BinarySearch */ = {
+			isa = PBXGroup;
+			children = (
+				668C35B4245DE44F008E2D2C /* BinarySearch.swift */,
+			);
+			path = BinarySearch;
+			sourceTree = "<group>";
+		};
 		669E0C142451C5FF003DD940 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 		669E0C272451C609003DD940 /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
+				668C35B3245DE43C008E2D2C /* BinarySearch */,
 				669E0C372451FDA0003DD940 /* Sorting */,
 				669E0C332451DCDA003DD940 /* Sieve of Eratosthenes */,
 			);
@@ -260,6 +271,7 @@
 				66EAB8592455B63100593625 /* Queue.swift in Sources */,
 				669E0C352451DCF6003DD940 /* Sieve of Eratosthenes.swift in Sources */,
 				66EAB85424538FD900593625 /* MergeSort.swift in Sources */,
+				668C35B5245DE44F008E2D2C /* BinarySearch.swift in Sources */,
 				669E0C212451C5FF003DD940 /* main.swift in Sources */,
 				66EAB8672456706000593625 /* CountSort.swift in Sources */,
 				66EAB843245220D400593625 /* InsertionSort.swift in Sources */,
