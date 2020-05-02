@@ -41,6 +41,7 @@
 /* Begin PBXFileReference section */
 		668C35B4245DE44F008E2D2C /* BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
 		668C35B7245DF060008E2D2C /* MaximumSubarray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaximumSubarray.swift; sourceTree = "<group>"; };
+		668C35B9245E0285008E2D2C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		669E0C1D2451C5FF003DD940 /* Learning */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Learning; sourceTree = BUILT_PRODUCTS_DIR; };
 		669E0C202451C5FF003DD940 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		669E0C2D2451CD8F003DD940 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				668C35B7245DF060008E2D2C /* MaximumSubarray.swift */,
+				668C35B9245E0285008E2D2C /* README.md */,
 			);
 			path = MaximumSubarray;
 			sourceTree = "<group>";
