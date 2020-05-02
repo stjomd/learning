@@ -1,5 +1,10 @@
 #  Maximum Subarray Problem
-
+```swift
+extension Array where Element: AdditiveArithmetic & Comparable {
+    func maximumSubarrayDC() -> ArraySlice<Element>
+    func maximumSubarray() -> ArraySlice<Element>
+}
+```
 Given an array, find the contiguous subarray with the largest possible sum.
 
 Call the method on an array to get an `ArraySlice` object that represents this subarray.
