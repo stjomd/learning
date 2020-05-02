@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		668C35B5245DE44F008E2D2C /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C35B4245DE44F008E2D2C /* BinarySearch.swift */; };
 		668C35B8245DF060008E2D2C /* MaximumSubarrayDivideAndConquer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C35B7245DF060008E2D2C /* MaximumSubarrayDivideAndConquer.swift */; };
+		668C35BB245E066C008E2D2C /* MaximumSubarrayKadane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C35BA245E066C008E2D2C /* MaximumSubarrayKadane.swift */; };
 		669E0C212451C5FF003DD940 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669E0C202451C5FF003DD940 /* main.swift */; };
 		669E0C312451DAEE003DD940 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669E0C302451DAEE003DD940 /* Stack.swift */; };
 		669E0C352451DCF6003DD940 /* Sieve of Eratosthenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669E0C342451DCF6003DD940 /* Sieve of Eratosthenes.swift */; };
@@ -42,6 +43,7 @@
 		668C35B4245DE44F008E2D2C /* BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
 		668C35B7245DF060008E2D2C /* MaximumSubarrayDivideAndConquer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaximumSubarrayDivideAndConquer.swift; sourceTree = "<group>"; };
 		668C35B9245E0285008E2D2C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		668C35BA245E066C008E2D2C /* MaximumSubarrayKadane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaximumSubarrayKadane.swift; sourceTree = "<group>"; };
 		669E0C1D2451C5FF003DD940 /* Learning */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Learning; sourceTree = BUILT_PRODUCTS_DIR; };
 		669E0C202451C5FF003DD940 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		669E0C2D2451CD8F003DD940 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				668C35B7245DF060008E2D2C /* MaximumSubarrayDivideAndConquer.swift */,
+				668C35BA245E066C008E2D2C /* MaximumSubarrayKadane.swift */,
 				668C35B9245E0285008E2D2C /* README.md */,
 			);
 			path = MaximumSubarray;
@@ -291,6 +294,7 @@
 				66EAB843245220D400593625 /* InsertionSort.swift in Sources */,
 				66EAB846245263E700593625 /* SelectionSort.swift in Sources */,
 				669E0C312451DAEE003DD940 /* Stack.swift in Sources */,
+				668C35BB245E066C008E2D2C /* MaximumSubarrayKadane.swift in Sources */,
 				66EAB841245220B900593625 /* BubbleSort.swift in Sources */,
 				66EAB8692459A85E00593625 /* BinarySearchTree.swift in Sources */,
 			);
