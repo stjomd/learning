@@ -151,4 +151,10 @@ class BinarySearchTree<T: Comparable> {
         }
     }
     
+    func remove(_ key: T) {
+        let node = search(key)
+        assert(node != nil, "The key to be removed is not present in the tree")
+        remove(node!)
+    }
+    
 }
