@@ -187,6 +187,7 @@ class BinarySearchTree<T: Comparable> {
     
 }
 
+// MARK: - Traversals
 extension BinarySearchTree {
     enum TraversalOrder {
         case preOrder
@@ -195,12 +196,12 @@ extension BinarySearchTree {
     }
     func traverse(_ order: TraversalOrder = .inOrder, action: (T) -> ()) {
         switch order {
-        case .preOrder:
-            traversePreOrder(startingWith: root, action: action)
-        case .inOrder:
-            traverseInOrder(startingWith: root, action: action)
-        case .postOrder:
-            traversePostOrder(startingWith: root, action: action)
+            case .preOrder:
+                traversePreOrder(startingWith: root, action: action)
+            case .inOrder:
+                traverseInOrder(startingWith: root, action: action)
+            case .postOrder:
+                traversePostOrder(startingWith: root, action: action)
         }
     }
     private func traverseInOrder(startingWith node: Node?, action: (T) -> ()) {
