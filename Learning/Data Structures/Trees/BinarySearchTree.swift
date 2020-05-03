@@ -119,6 +119,10 @@ class BinarySearchTree<T: Comparable> {
         add(node)
     }
     
+    func search(_ key: T) -> Node? {
+        root?.search(for: key)
+    }
+    
     func remove(_ node: Node) {
         var r: Node?
         if node.leftChild == nil || node.rightChild == nil {
