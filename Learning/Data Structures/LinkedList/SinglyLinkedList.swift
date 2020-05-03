@@ -6,7 +6,7 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
-public struct SinglyLinkedList<T> {
+class SinglyLinkedList<T>: ExpressibleByArrayLiteral {
     
     typealias Node = LinkedListNode<T>
     class LinkedListNode<T> {
@@ -50,11 +50,14 @@ public struct SinglyLinkedList<T> {
             append(element)
         }
     }
+    required convenience init(arrayLiteral: T...) {
+        self.init(arrayLiteral)
+    }
     
     /// Creates a new linked list with the parameters passed to the initializer.
     /// - Parameter items: Zero or more items to be added to the new linked list.
     /// - Complexity: O(*n*)
-    init(_ items: T...) {
+    convenience init(_ items: T...) {
         self.init(items)
     }
     
@@ -104,7 +107,7 @@ public struct SinglyLinkedList<T> {
     /// Appends a node to the end of the linked list.
     /// - Parameter node: The node to be appended.
     /// - Complexity: O(1)
-    mutating func append(_ node: Node) {
+    func append(_ node: Node) {
         if isEmpty {
             head = node
         } else {
@@ -117,7 +120,7 @@ public struct SinglyLinkedList<T> {
     /// Appends a node with a specific item to the end of the linked list.
     /// - Parameter value: The item to be appended.
     /// - Complexity: O(1)
-    mutating func append(_ item: T) {
+    func append(_ item: T) {
         let node = Node(item)
         append(node)
     }
@@ -126,7 +129,7 @@ public struct SinglyLinkedList<T> {
     /// - Parameter node: The node to be inserted.
     /// - Parameter index: The position where `node` should be inserted at.
     /// - Complexity: O(*n*) on average and in worst case, O(1) in best case (inserting at the beginning or the end of the linked list).
-    mutating func insert(_ node: Node, at index: Int) {
+    func insert(_ node: Node, at index: Int) {
         if index == 0 && isEmpty {
             append(node)
         } else if index == 0 {
@@ -150,7 +153,7 @@ public struct SinglyLinkedList<T> {
     /// - Parameter item: The item to be inserted.
     /// - Parameter index: The position where `item` should be inserted at.
     /// - Complexity: O(*n*) on average and in worst case, O(1) in best case (inserting at the beginning or the end of the linked list).
-    mutating func insert(_ item: T, at index: Int) {
+    func insert(_ item: T, at index: Int) {
         let node = Node(item)
         insert(node, at: index)
     }
@@ -158,7 +161,7 @@ public struct SinglyLinkedList<T> {
     /// Returns and removes the first element in the linked list.
     /// - Returns: The element that has been removed.
     /// - Complexity: O(1)
-    @discardableResult mutating func removeFirst() -> T {
+    @discardableResult func removeFirst() -> T {
         assert(!isEmpty, "The list is empty")
         let value = head!.value
         head = head!.next
@@ -169,7 +172,7 @@ public struct SinglyLinkedList<T> {
     /// Returns and removes the last element in the linked list.
     /// - Returns: The element that has been removed.
     /// - Complexity: O(*n*)
-    @discardableResult mutating func removeLast() -> T {
+    @discardableResult func removeLast() -> T {
         assert(!isEmpty, "The list is empty")
         let value = toe!.value
         let newToe = node(at: count - 2)
@@ -182,7 +185,7 @@ public struct SinglyLinkedList<T> {
     /// Returns and removes the element in the linked list at a given position.
     /// - Returns: The element that has been removed.
     /// - Complexity: O(*n*) on average and in worst case, O(1) in best case (removing the first element).
-    @discardableResult mutating func remove(at index: Int) -> T {
+    @discardableResult func remove(at index: Int) -> T {
         assert(index >= 0 && index < count, "Index out of bounds")
         assert(!isEmpty, "The list is empty")
         if index == 0 {
@@ -201,7 +204,7 @@ public struct SinglyLinkedList<T> {
     
     /// Removes all elements in the linked list.
     /// - Complexity: O(1)
-    mutating func removeAll() {
+    func removeAll() {
         head = nil
         toe = head
         count = 0
@@ -226,14 +229,8 @@ extension SinglyLinkedList: CustomStringConvertible {
     }
 }
 
-extension SinglyLinkedList: ExpressibleByArrayLiteral {
-    public init(arrayLiteral: T...) {
-        self.init(arrayLiteral)
-    }
-}
-
 extension SinglyLinkedList: Equatable where T: Equatable {
-    public static func == (lhs: SinglyLinkedList<T>, rhs: SinglyLinkedList<T>) -> Bool {
+    static func == (lhs: SinglyLinkedList<T>, rhs: SinglyLinkedList<T>) -> Bool {
         if lhs.count != rhs.count {
             return false
         }
