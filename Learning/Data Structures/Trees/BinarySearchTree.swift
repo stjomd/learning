@@ -98,6 +98,12 @@ class BinarySearchTree<T: Comparable> {
         root?.maximum?.key
     }
     
+    var inOrderTraversal: [T] {
+        var array: [T] = []
+        traverseInOrder(startingWith: root, action: { array.append($0) })
+        return array
+    }
+    
     func add(_ node: Node) {
         var r: Node? = nil, p = root
         while let pp = p {
@@ -165,6 +171,17 @@ class BinarySearchTree<T: Comparable> {
         let node = search(key)
         assert(node != nil, "The key to be removed is not present in the tree")
         remove(node!)
+    }
+    
+    func traverseInOrder(action: (T) -> ()) {
+        traverseInOrder(startingWith: root, action: action)
+    }
+    private func traverseInOrder(startingWith node: Node?, action: (T) -> ()) {
+        if let node = node {
+            traverseInOrder(startingWith: node.leftChild, action: action)
+            action(node.key)
+            traverseInOrder(startingWith: node.rightChild, action: action)
+        }
     }
     
 }
