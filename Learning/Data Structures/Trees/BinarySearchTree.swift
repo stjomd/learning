@@ -67,7 +67,7 @@ class BinarySearchTreeNode<T: Comparable> {
     func search(for key: T) -> Node? {
         var currentNode: Node? = self
         while let current = currentNode, current.key != key {
-            if current.key >= key {
+            if current.key > key {
                 currentNode = currentNode?.leftChild
             } else {
                 currentNode = currentNode?.rightChild
@@ -120,7 +120,7 @@ class BinarySearchTree<T: Comparable> {
         var r: Node? = nil, p = root
         while let pp = p {
             r = p
-            if node.key <= pp.key {
+            if node.key < pp.key {
                 p = pp.leftChild
             } else {
                 p = pp.rightChild
@@ -130,7 +130,7 @@ class BinarySearchTree<T: Comparable> {
         node.leftChild = nil
         node.rightChild = nil
         if let rr = r {
-            if node.key <= rr.key {
+            if node.key < rr.key {
                 rr.leftChild = node
             } else {
                 rr.rightChild = node
