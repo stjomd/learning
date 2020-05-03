@@ -67,7 +67,7 @@ class BinarySearchTreeNode<T: Comparable> {
     func search(for key: T) -> Node? {
         var currentNode: Node? = self
         while let current = currentNode, current.key != key {
-            if current.key > key {
+            if current.key >= key {
                 currentNode = currentNode?.leftChild
             } else {
                 currentNode = currentNode?.rightChild
@@ -104,11 +104,23 @@ class BinarySearchTree<T: Comparable> {
         return array
     }
     
+    var preOrderTraversal: [T] {
+        var array: [T] = []
+        traversePreOrder(startingWith: root, action: { array.append($0) })
+        return array
+    }
+    
+    var postOrderTraversal: [T] {
+        var array: [T] = []
+        traversePostOrder(startingWith: root, action: { array.append($0) })
+        return array
+    }
+    
     func add(_ node: Node) {
         var r: Node? = nil, p = root
         while let pp = p {
             r = p
-            if node.key < pp.key {
+            if node.key <= pp.key {
                 p = pp.leftChild
             } else {
                 p = pp.rightChild
@@ -118,7 +130,7 @@ class BinarySearchTree<T: Comparable> {
         node.leftChild = nil
         node.rightChild = nil
         if let rr = r {
-            if node.key < rr.key {
+            if node.key <= rr.key {
                 rr.leftChild = node
             } else {
                 rr.rightChild = node
@@ -181,6 +193,28 @@ class BinarySearchTree<T: Comparable> {
             traverseInOrder(startingWith: node.leftChild, action: action)
             action(node.key)
             traverseInOrder(startingWith: node.rightChild, action: action)
+        }
+    }
+    
+    func traversePreOrder(action: (T) -> ()) {
+        traversePreOrder(startingWith: root, action: action)
+    }
+    private func traversePreOrder(startingWith node: Node?, action: (T) -> ()) {
+        if let node = node {
+            action(node.key)
+            traversePreOrder(startingWith: node.leftChild, action: action)
+            traversePreOrder(startingWith: node.rightChild, action: action)
+        }
+    }
+    
+    func traversePostOrder(action: (T) -> ()) {
+        traverseInOrder(startingWith: root, action: action)
+    }
+    private func traversePostOrder(startingWith node: Node?, action: (T) -> ()) {
+        if let node = node {
+            traversePostOrder(startingWith: node.leftChild, action: action)
+            traversePostOrder(startingWith: node.rightChild, action: action)
+            action(node.key)
         }
     }
     
