@@ -12,6 +12,22 @@ class BinaryTreeNode<T: Comparable> {
     var leftChild: BinaryTreeNode<T>?
     var rightChild: BinaryTreeNode<T>?
     
+    var minimum: BinaryTreeNode<T>? {
+        var currentNode: BinaryTreeNode<T>? = self
+        while let _ = currentNode?.leftChild {
+            currentNode = currentNode?.leftChild
+        }
+        return currentNode
+    }
+    
+    var maximum: BinaryTreeNode<T>? {
+        var currentNode: BinaryTreeNode<T>? = self
+        while let _ = currentNode?.rightChild {
+            currentNode = currentNode?.rightChild
+        }
+        return currentNode
+    }
+    
     init(_ key: T) {
         self.key = key
     }
