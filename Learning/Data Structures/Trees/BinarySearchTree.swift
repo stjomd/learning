@@ -82,9 +82,9 @@ class BinarySearchTree<T: Comparable> {
     
     typealias Node = BinarySearchTreeNode<T>
     
-    var root: Node?
+    private(set) var root: Node?
     
-    var count = 0
+    private(set) var count = 0
     
     var isEmpty: Bool {
         return count == 0
@@ -112,6 +112,7 @@ class BinarySearchTree<T: Comparable> {
         } else {
             root = node
         }
+        count += 1
     }
     
     func add(_ key: T) {
@@ -149,6 +150,7 @@ class BinarySearchTree<T: Comparable> {
                 r?.parent?.rightChild = p
             }
         }
+        count -= 1
     }
     
     func remove(_ key: T) {
