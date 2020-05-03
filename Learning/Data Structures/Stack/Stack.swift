@@ -6,6 +6,23 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+/// A LIFO (last in, first out) collection.
+///
+/// A stack is a basic data structure that only allows insertion and deletion of elements from one end. An easy real-life example would be a stack of plates on a table – a plate can only be removed from or added to the top, doing so from the bottom is not possible.
+///
+/// You can only create an empty stack. From then on, you can add – `push` – or remove – `pop` – an element.
+///
+///     var stack = Stack<Int>()
+///     stack.push(1)
+///     stack.push(2)
+///     print(stack.pop())
+///     // Prints "2"
+///
+/// You can also peek at the top element without removing it.
+///
+///     print(stack.top)
+///     // Prints "Optional(1)"
+///
 public struct Stack<T> {
     
     private var stack: [T] = []
