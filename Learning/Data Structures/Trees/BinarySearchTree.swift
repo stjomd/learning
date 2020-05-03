@@ -62,12 +62,6 @@ class BinaryTreeNode<T: Comparable> {
         self.key = key
     }
     
-    func add(_ node: BinaryTreeNode<T>) {
-        if node.key <= self.key {
-            
-        }
-    }
-    
     func search(for key: T) -> BinaryTreeNode<T>? {
         var currentNode: BinaryTreeNode<T>? = self
         while let current = currentNode, current.key != key {
@@ -95,12 +89,27 @@ class BinarySearchTree<T: Comparable> {
     }
     
     func add(_ node: Node) {
-        guard let root = root else {
-            self.root = node
-            return
+        var r: BinaryTreeNode<T>? = nil, p = root
+        while let pp = p {
+            r = p
+            if node.key < pp.key {
+                p = pp.leftChild
+            } else {
+                p = pp.rightChild
+            }
         }
-        root.add(node)
-        count += 1
+        node.parent = r
+        node.leftChild = nil
+        node.rightChild = nil
+        if let rr = r {
+            if node.key < rr.key {
+                rr.leftChild = node
+            } else {
+                rr.rightChild = node
+            }
+        } else {
+            root = node
+        }
     }
     
     func add(_ key: T) {
