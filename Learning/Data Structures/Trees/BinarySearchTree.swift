@@ -6,36 +6,38 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
-class BinaryTreeNode<T: Comparable> {
+class BinarySearchTreeNode<T: Comparable> {
+    
+    typealias Node = BinarySearchTreeNode<T>
     
     var key: T
-    var leftChild: BinaryTreeNode<T>?
-    var rightChild: BinaryTreeNode<T>?
+    var leftChild: Node?
+    var rightChild: Node?
     
-    weak var parent: BinaryTreeNode<T>?
+    weak var parent: Node?
     
-    var minimum: BinaryTreeNode<T>? {
-        var currentNode: BinaryTreeNode<T>? = self
+    var minimum: Node? {
+        var currentNode: Node? = self
         while let _ = currentNode?.leftChild {
             currentNode = currentNode?.leftChild
         }
         return currentNode
     }
     
-    var maximum: BinaryTreeNode<T>? {
-        var currentNode: BinaryTreeNode<T>? = self
+    var maximum: Node? {
+        var currentNode: Node? = self
         while let _ = currentNode?.rightChild {
             currentNode = currentNode?.rightChild
         }
         return currentNode
     }
     
-    var predecessor: BinaryTreeNode<T>? {
+    var predecessor: Node? {
         if let subtree = self.leftChild {
             return subtree.maximum
         } else {
             var p = self
-            var q: BinaryTreeNode<T>? = p.parent
+            var q: Node? = p.parent
             while let current = q, p === current.leftChild {
                 p = current
                 q = q?.parent
@@ -44,12 +46,12 @@ class BinaryTreeNode<T: Comparable> {
         }
     }
     
-    var successor: BinaryTreeNode<T>? {
+    var successor: Node? {
         if let subtree = self.rightChild {
             return subtree.minimum
         } else {
             var p = self
-            var q: BinaryTreeNode<T>? = p.parent
+            var q: Node? = p.parent
             while let current = q, p === current.rightChild {
                 p = current
                 q = q?.parent
@@ -62,8 +64,8 @@ class BinaryTreeNode<T: Comparable> {
         self.key = key
     }
     
-    func search(for key: T) -> BinaryTreeNode<T>? {
-        var currentNode: BinaryTreeNode<T>? = self
+    func search(for key: T) -> Node? {
+        var currentNode: Node? = self
         while let current = currentNode, current.key != key {
             if current.key <= key {
                 currentNode = currentNode?.leftChild
@@ -78,7 +80,7 @@ class BinaryTreeNode<T: Comparable> {
 
 class BinarySearchTree<T: Comparable> {
     
-    typealias Node = BinaryTreeNode<T>
+    typealias Node = BinarySearchTreeNode<T>
     
     var root: Node?
     
@@ -89,7 +91,7 @@ class BinarySearchTree<T: Comparable> {
     }
     
     func add(_ node: Node) {
-        var r: BinaryTreeNode<T>? = nil, p = root
+        var r: Node? = nil, p = root
         while let pp = p {
             r = p
             if node.key < pp.key {
