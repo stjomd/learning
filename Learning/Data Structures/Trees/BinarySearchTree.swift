@@ -185,8 +185,23 @@ class BinarySearchTree<T: Comparable> {
         remove(node!)
     }
     
-    func traverseInOrder(action: (T) -> ()) {
-        traverseInOrder(startingWith: root, action: action)
+}
+
+extension BinarySearchTree {
+    enum TraversalOrder {
+        case preOrder
+        case inOrder
+        case postOrder
+    }
+    func traverse(_ order: TraversalOrder = .inOrder, action: (T) -> ()) {
+        switch order {
+        case .preOrder:
+            traversePreOrder(startingWith: root, action: action)
+        case .inOrder:
+            traverseInOrder(startingWith: root, action: action)
+        case .postOrder:
+            traversePostOrder(startingWith: root, action: action)
+        }
     }
     private func traverseInOrder(startingWith node: Node?, action: (T) -> ()) {
         if let node = node {
@@ -195,20 +210,12 @@ class BinarySearchTree<T: Comparable> {
             traverseInOrder(startingWith: node.rightChild, action: action)
         }
     }
-    
-    func traversePreOrder(action: (T) -> ()) {
-        traversePreOrder(startingWith: root, action: action)
-    }
     private func traversePreOrder(startingWith node: Node?, action: (T) -> ()) {
         if let node = node {
             action(node.key)
             traversePreOrder(startingWith: node.leftChild, action: action)
             traversePreOrder(startingWith: node.rightChild, action: action)
         }
-    }
-    
-    func traversePostOrder(action: (T) -> ()) {
-        traverseInOrder(startingWith: root, action: action)
     }
     private func traversePostOrder(startingWith node: Node?, action: (T) -> ()) {
         if let node = node {
@@ -217,5 +224,4 @@ class BinarySearchTree<T: Comparable> {
             action(node.key)
         }
     }
-    
 }
