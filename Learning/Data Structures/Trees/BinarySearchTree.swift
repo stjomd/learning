@@ -119,4 +119,32 @@ class BinarySearchTree<T: Comparable> {
         add(node)
     }
     
+    func remove(_ node: Node) {
+        var r: Node?
+        if node.leftChild == nil || node.rightChild == nil {
+            r = node
+        } else {
+            r = node.successor
+            node.key = r!.key
+        }
+        var p: Node?
+        if r?.leftChild != nil {
+            p = r?.leftChild
+        } else {
+            p = r?.rightChild
+        }
+        if let pp = p {
+            pp.parent = r?.parent
+        }
+        if r?.parent == nil {
+            root = p
+        } else {
+            if r === r?.parent?.leftChild {
+                r?.parent?.leftChild = p
+            } else {
+                r?.parent?.rightChild = p
+            }
+        }
+    }
+    
 }
