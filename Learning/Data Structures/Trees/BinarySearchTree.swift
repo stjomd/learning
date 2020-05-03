@@ -90,6 +90,14 @@ class BinarySearchTree<T: Comparable> {
         return count == 0
     }
     
+    var minimum: T? {
+        root?.minimum?.key
+    }
+    
+    var maximum: T? {
+        root?.maximum?.key
+    }
+    
     func add(_ node: Node) {
         var r: Node? = nil, p = root
         while let pp = p {
