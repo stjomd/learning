@@ -6,26 +6,39 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+class BinaryTreeNode<T: Comparable> {
+    
+    var key: T
+    var leftChild: BinaryTreeNode<T>?
+    var rightChild: BinaryTreeNode<T>?
+    
+    init(_ key: T) {
+        self.key = key
+    }
+    
+    func add(_ node: BinaryTreeNode<T>) {
+        if node.key <= self.key {
+            
+        }
+    }
+    
+    func search(for key: T) -> BinaryTreeNode<T>? {
+        var currentNode: BinaryTreeNode<T>? = self
+        while let current = currentNode, current.key != key {
+            if current.key <= key {
+                currentNode = currentNode?.leftChild
+            } else {
+                currentNode = currentNode?.rightChild
+            }
+        }
+        return currentNode
+    }
+    
+}
+
 class BinarySearchTree<T: Comparable> {
     
-    class TreeNode<T> {
-        
-        var key: T
-        var leftChild: TreeNode<T>?
-        var rightChild: TreeNode<T>?
-        
-        init(_ key: T) {
-            self.key = key
-        }
-        
-        func add(_ node: Node) {
-//            if node.key < self.key {
-//
-//            }
-        }
-        
-    }
-    typealias Node = TreeNode<T>
+    typealias Node = BinaryTreeNode<T>
     
     var root: Node?
     
