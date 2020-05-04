@@ -172,6 +172,11 @@ class BinarySearchTree<T: Comparable> {
         return array
     }
     
+    /// Creates a new, empty binary search tree.
+    /// - Complexity: O(1)
+    init() {
+    }
+    
     /// Inserts a node to the tree in the appropriate location.
     ///
     /// - Parameter node: The node to be inserted.
