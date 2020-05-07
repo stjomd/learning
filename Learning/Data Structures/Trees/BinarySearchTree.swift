@@ -361,6 +361,6 @@ extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringCon
 }
 extension BinarySearchTree: CustomStringConvertible where T: CustomStringConvertible {
     var description: String {
-        return root?.description ?? ""
+        return root?.description ?? "──── nil"
     }
 }
