@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		662377DB2464829100EF35C0 /* SubsetSum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662377DA2464829100EF35C0 /* SubsetSum.swift */; };
 		668C35B5245DE44F008E2D2C /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C35B4245DE44F008E2D2C /* BinarySearch.swift */; };
 		668C35B8245DF060008E2D2C /* MaximumSubarrayDivideAndConquer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C35B7245DF060008E2D2C /* MaximumSubarrayDivideAndConquer.swift */; };
 		668C35BB245E066C008E2D2C /* MaximumSubarrayKadane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C35BA245E066C008E2D2C /* MaximumSubarrayKadane.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		662377DA2464829100EF35C0 /* SubsetSum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsetSum.swift; sourceTree = "<group>"; };
 		668C35B4245DE44F008E2D2C /* BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
 		668C35B7245DF060008E2D2C /* MaximumSubarrayDivideAndConquer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaximumSubarrayDivideAndConquer.swift; sourceTree = "<group>"; };
 		668C35B9245E0285008E2D2C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		662377D924647EDB00EF35C0 /* SubsetSum */ = {
+			isa = PBXGroup;
+			children = (
+				662377DA2464829100EF35C0 /* SubsetSum.swift */,
+			);
+			path = SubsetSum;
+			sourceTree = "<group>";
+		};
 		668C35B3245DE43C008E2D2C /* BinarySearch */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +155,7 @@
 		669E0C272451C609003DD940 /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
+				662377D924647EDB00EF35C0 /* SubsetSum */,
 				668C35C024606A1E008E2D2C /* BinarySearchTreeReconstruction */,
 				668C35B6245DF04C008E2D2C /* MaximumSubarray */,
 				668C35B3245DE43C008E2D2C /* BinarySearch */,
@@ -311,6 +322,7 @@
 				669E0C312451DAEE003DD940 /* Stack.swift in Sources */,
 				668C35BB245E066C008E2D2C /* MaximumSubarrayKadane.swift in Sources */,
 				66EAB841245220B900593625 /* BubbleSort.swift in Sources */,
+				662377DB2464829100EF35C0 /* SubsetSum.swift in Sources */,
 				668C35C224606A4B008E2D2C /* BinarySearchTreeReconstruction.swift in Sources */,
 				66EAB8692459A85E00593625 /* BinarySearchTree.swift in Sources */,
 			);
