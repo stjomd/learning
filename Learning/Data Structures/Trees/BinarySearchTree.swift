@@ -312,3 +312,29 @@ extension BinarySearchTree {
         }
     }
 }
+
+// MARK: - Miscellaneous
+extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringConvertible {
+    var description: String {
+        var str = ""
+        printTree(&str, 0)
+        let x = str.split(separator: "\n")
+        for l in x { print(l) }
+        return ""
+    }
+    func printTree(_ str: inout String, _ k: Int, _ indent: String = "") {
+        rightChild?.printTree(&str, k+1,
+                              /*(k != 0 ? "│" : "") +*/ ((k != 0) ? String(repeating: "│\t", count: k) : "") + "┌─── ")
+        
+        str += indent + self.key.description + "\n"
+        
+        leftChild?.printTree(&str, k+1,
+                             /*(k != 0 ? "│" : "") +*/ ((k != 0) ? String(repeating: "│\t", count: k) : "") + "└─── ")
+    }
+
+}
+extension BinarySearchTree: CustomStringConvertible where T: CustomStringConvertible {
+    var description: String {
+        return root?.description ?? ""
+    }
+}
