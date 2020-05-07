@@ -319,7 +319,14 @@ extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringCon
         var str = ""
         printTree(&str, 0)
         let x = str.split(separator: "\n")
-        for l in x { print(l) }
+        for l in x {
+            let first = l.prefix(1)
+            if first != "│" && first != "┌" && first != "└" {
+                print("─── " + l)
+            } else {
+                print("\t" + l)
+            }
+        }
         return ""
     }
     func printTree(_ str: inout String, _ k: Int, _ indent: String = "") {
