@@ -321,9 +321,9 @@ extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringCon
         for line in 0..<str.count {
             let first = str[line][0]
             if first != "│" && first != "┌" && first != "└" {
-                str[line] = "" + str[line]
+                str[line] = "──── " + str[line]
             } else {
-                str[line] = "" + str[line]
+                str[line] = "     " + str[line]
             }
         }
         for col in stride(from: 0, to: 100, by: 5) {
@@ -338,6 +338,8 @@ extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringCon
                 }
                 if removing && str[row][col] == "│" {
                     str[row][col] = " "
+                } else if removing {
+                    removing = false
                 }
                 if str[row][col] == "└" {
                     removing = true
