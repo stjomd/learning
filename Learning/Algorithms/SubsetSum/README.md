@@ -10,4 +10,4 @@ extension Array where Element: AdditiveArithmetic {
 
 Given an array of numbers, find such a subset of this array that its elements sum to a given value.
 
-The methods can be called on any array with elements that support addition (i.e. elements that conform to `AdditiveArithmetic`).
+The methods can be called on any array with elements that support addition (i.e., conform to `AdditiveArithmetic`).
