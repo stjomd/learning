@@ -316,27 +316,44 @@ extension BinarySearchTree {
 // MARK: - Miscellaneous
 extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringConvertible {
     var description: String {
-        var str = ""
+        var str: [[Character]] = []
         printTree(&str, 0)
-        let x = str.split(separator: "\n")
-        for l in x {
-            let first = l.prefix(1)
+        for line in 0..<str.count {
+            let first = str[line][0]
             if first != "│" && first != "┌" && first != "└" {
-                print("─── " + l)
+                str[line] = "" + str[line]
             } else {
-                print("\t" + l)
+                str[line] = "" + str[line]
             }
         }
-        return ""
+        for col in stride(from: 0, to: 100, by: 5) {
+            var removing = true
+            for row in 0..<str.count {
+                if col >= str[row].count {
+                    removing = true
+                    continue
+                }
+                if str[row][col] == "┌" {
+                    removing = false
+                }
+                if removing && str[row][col] == "│" {
+                    str[row][col] = " "
+                }
+                if str[row][col] == "└" {
+                    removing = true
+                }
+            }
+        }
+        return String(str.joined(separator: ""))
     }
-    func printTree(_ str: inout String, _ k: Int, _ indent: String = "") {
+    func printTree(_ str: inout [[Character]], _ k: Int, _ indent: String = "") {
         rightChild?.printTree(&str, k+1,
-                              /*(k != 0 ? "│" : "") +*/ ((k != 0) ? String(repeating: "│\t", count: k) : "") + "┌─── ")
+                              /*(k != 0 ? "│" : "") +*/ ((k != 0) ? String(repeating: "│    ", count: k) : "") + "┌─── ")
         
-        str += indent + self.key.description + "\n"
+        str += [Array<Character>(indent + self.key.description + "\n")]
         
         leftChild?.printTree(&str, k+1,
-                             /*(k != 0 ? "│" : "") +*/ ((k != 0) ? String(repeating: "│\t", count: k) : "") + "└─── ")
+                             /*(k != 0 ? "│" : "") +*/ ((k != 0) ? String(repeating: "│    ", count: k) : "") + "└─── ")
     }
 
 }
