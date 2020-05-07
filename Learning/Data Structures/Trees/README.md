@@ -24,6 +24,7 @@ tree.add("k")
      └─── h
           └─── g
 ```
+The right child is always above, and the left always below, its parent in this diagram.
 
 ## Implemented binary trees
 
