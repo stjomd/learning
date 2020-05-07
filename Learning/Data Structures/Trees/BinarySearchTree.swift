@@ -316,46 +316,45 @@ extension BinarySearchTree {
 // MARK: - Miscellaneous
 extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringConvertible {
     var description: String {
-        var str: [[Character]] = []
-        printTree(&str, 0)
-        for line in 0..<str.count {
-            let first = str[line][0]
+        var string: [[Character]] = []
+        constructString(&string, 0) // O(nlogn)
+        var maxLineLength = 0
+        for line in 0..<string.count {  // indent all lines (for a e s t h e t i c s) O(n^2)
+            let first = string[line][0]
             if first != "│" && first != "┌" && first != "└" {
-                str[line] = "──── " + str[line]
+                string[line] = "──── " + string[line] // O(n)
             } else {
-                str[line] = "     " + str[line]
+                string[line] = "     " + string[line] // O(n)
             }
+            maxLineLength = max(maxLineLength, string[line].count)
         }
-        for col in stride(from: 0, to: 100, by: 5) {
+        for col in stride(from: 0, to: maxLineLength, by: 5) { // O(n^2)
             var removing = true
-            for row in 0..<str.count {
-                if col >= str[row].count {
+            for row in 0..<string.count {
+                if col >= string[row].count {
                     removing = true
                     continue
                 }
-                if str[row][col] == "┌" {
+                if string[row][col] == "┌" {
                     removing = false
                 }
-                if removing && str[row][col] == "│" {
-                    str[row][col] = " "
+                if removing && string[row][col] == "│" {
+                    string[row][col] = " "
                 } else if removing {
                     removing = false
                 }
-                if str[row][col] == "└" {
+                if string[row][col] == "└" {
                     removing = true
                 }
             }
         }
-        return String(str.joined(separator: ""))
+        return String(string.joined(separator: "\n"))
+        // O(nlogn + n^2) = O(n^2)
     }
-    func printTree(_ str: inout [[Character]], _ k: Int, _ indent: String = "") {
-        rightChild?.printTree(&str, k+1,
-                              /*(k != 0 ? "│" : "") +*/ ((k != 0) ? String(repeating: "│    ", count: k) : "") + "┌─── ")
-        
-        str += [Array<Character>(indent + self.key.description + "\n")]
-        
-        leftChild?.printTree(&str, k+1,
-                             /*(k != 0 ? "│" : "") +*/ ((k != 0) ? String(repeating: "│    ", count: k) : "") + "└─── ")
+    private func constructString(_ str: inout [[Character]], _ indentDepth: Int, _ indent: String = "") { // O(nlogn)
+        rightChild?.constructString(&str, indentDepth+1, ((indentDepth != 0) ? String(repeating: "│    ", count: indentDepth) : "") + "┌─── ")
+        str += [Array<Character>(indent + self.key.description)] // O(log n)
+        leftChild?.constructString(&str,  indentDepth+1, ((indentDepth != 0) ? String(repeating: "│    ", count: indentDepth) : "") + "└─── ")
     }
 
 }
