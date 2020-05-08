@@ -44,9 +44,85 @@ class BinaryTree<T: Comparable> {
         return count == 0
     }
     
+    /// An array of objects traversed in-order.
+    ///
+    /// In-order traversal first traverses the left subtree, then the root, and then the right subtree.
+    /// - Complexity: O(*n*)
+    var inOrderTraversal: [T] {
+        var array: [T] = []
+        traverseInOrder(startingWith: root, action: { array.append($0) })
+        return array
+    }
+    /// An array of objects traversed pre-order.
+    ///
+    /// Pre-order traversal first traverses the root, then the left subtree, and then the right subtree.
+    /// - Complexity: O(*n*)
+    var preOrderTraversal: [T] {
+        var array: [T] = []
+        traversePreOrder(startingWith: root, action: { array.append($0) })
+        return array
+    }
+    /// An array of objects traversed post-order.
+    ///
+    /// Post-order traversal first traverses the left subtree, then the right subtree, and then the root.
+    /// - Complexity: O(*n*)
+    var postOrderTraversal: [T] {
+        var array: [T] = []
+        traversePostOrder(startingWith: root, action: { array.append($0) })
+        return array
+    }
+    
     /// Creates a new, empty binary search tree.
     /// - Complexity: O(1)
     init() {
     }
     
+}
+
+extension BinaryTree {
+    /// The order in which the tree is traversed.
+    enum TraversalOrder {
+        /// Pre-order traversal first traverses the root, then the left subtree, and then the right subtree.
+        case preOrder
+        /// In-order traversal first traverses the left subtree, then the root, and then the right subtree.
+        case inOrder
+        /// Post-order traversal first traverses the left subtree, then the right subtree, and then the root.
+        case postOrder
+    }
+    /// Traverses the tree in the specified order and performs an action on its elements. By default, the tree is traversed in-order.
+    ///
+    /// - Parameter order: The order in which the tree is traversed. In-order by default.
+    /// - Parameter action: A closure that accepts an element of the tree and is called on every element during traversal.
+    /// - Complexity: O(*n*)
+    func traverse(_ order: TraversalOrder = .inOrder, action: (T) -> ()) {
+        switch order {
+            case .preOrder:
+                traversePreOrder(startingWith: root, action: action)
+            case .inOrder:
+                traverseInOrder(startingWith: root, action: action)
+            case .postOrder:
+                traversePostOrder(startingWith: root, action: action)
+        }
+    }
+    private func traverseInOrder(startingWith node: Node?, action: (T) -> ()) {
+        if let node = node {
+            traverseInOrder(startingWith: node.leftChild, action: action)
+            action(node.value)
+            traverseInOrder(startingWith: node.rightChild, action: action)
+        }
+    }
+    private func traversePreOrder(startingWith node: Node?, action: (T) -> ()) {
+        if let node = node {
+            action(node.value)
+            traversePreOrder(startingWith: node.leftChild, action: action)
+            traversePreOrder(startingWith: node.rightChild, action: action)
+        }
+    }
+    private func traversePostOrder(startingWith node: Node?, action: (T) -> ()) {
+        if let node = node {
+            traversePostOrder(startingWith: node.leftChild, action: action)
+            traversePostOrder(startingWith: node.rightChild, action: action)
+            action(node.value)
+        }
+    }
 }
