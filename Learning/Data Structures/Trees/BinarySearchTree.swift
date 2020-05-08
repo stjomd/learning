@@ -117,6 +117,8 @@ class BinarySearchTree<T: Comparable> {
     
     typealias Node = BinarySearchTreeNode<T>
     
+    // MARK: Properties
+    
     /// The root of the binary search tree.
     private(set) var root: Node?
     
@@ -172,10 +174,28 @@ class BinarySearchTree<T: Comparable> {
         return array
     }
     
+    // MARK: Initializers
+    
     /// Creates a new, empty binary search tree.
     /// - Complexity: O(1)
     init() {
     }
+    
+    /// Creates a new binary search tree and inserts elements from the array (in the respective order) into it.
+    /// - Complexity: O(*n* log *n*) on average, O(*n*^2) in worst case.
+    init(_ array: [T]) {
+        for element in array {
+            add(element)
+        }
+    }
+    
+    /// Creates a new binary search tree and inserts elements that are passed to the initializer in the same order into the tree.
+    /// - Complexity: O(*n* log *n*) on average, O(*n*^2) in worst case.
+    convenience init(_ items: T...) {
+        self.init(items)
+    }
+    
+    // MARK: Methods
     
     /// Inserts a node to the tree in the appropriate location.
     ///
