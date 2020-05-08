@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		662377DB2464829100EF35C0 /* SubsetSum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662377DA2464829100EF35C0 /* SubsetSum.swift */; };
+		662377DE2465FA0100EF35C0 /* Heap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662377DD2465FA0100EF35C0 /* Heap.swift */; };
 		668C35B5245DE44F008E2D2C /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C35B4245DE44F008E2D2C /* BinarySearch.swift */; };
 		668C35B8245DF060008E2D2C /* MaximumSubarrayDivideAndConquer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C35B7245DF060008E2D2C /* MaximumSubarrayDivideAndConquer.swift */; };
 		668C35BB245E066C008E2D2C /* MaximumSubarrayKadane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C35BA245E066C008E2D2C /* MaximumSubarrayKadane.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		662377DA2464829100EF35C0 /* SubsetSum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsetSum.swift; sourceTree = "<group>"; };
 		662377DC2464965300EF35C0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		662377DD2465FA0100EF35C0 /* Heap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heap.swift; sourceTree = "<group>"; };
 		668C35B4245DE44F008E2D2C /* BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
 		668C35B7245DF060008E2D2C /* MaximumSubarrayDivideAndConquer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaximumSubarrayDivideAndConquer.swift; sourceTree = "<group>"; };
 		668C35B9245E0285008E2D2C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				66EAB8682459A85E00593625 /* BinarySearchTree.swift */,
+				662377DD2465FA0100EF35C0 /* Heap.swift */,
 				668C35BF245F8248008E2D2C /* README.md */,
 			);
 			path = Trees;
@@ -315,6 +318,7 @@
 				66EAB8592455B63100593625 /* Queue.swift in Sources */,
 				668C35B8245DF060008E2D2C /* MaximumSubarrayDivideAndConquer.swift in Sources */,
 				669E0C352451DCF6003DD940 /* SieveOfEratosthenes.swift in Sources */,
+				662377DE2465FA0100EF35C0 /* Heap.swift in Sources */,
 				66EAB85424538FD900593625 /* MergeSort.swift in Sources */,
 				668C35B5245DE44F008E2D2C /* BinarySearch.swift in Sources */,
 				669E0C212451C5FF003DD940 /* main.swift in Sources */,
