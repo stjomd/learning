@@ -335,15 +335,20 @@ extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringCon
                     removing = true
                     continue
                 }
-                if string[row][col] == "┌" {
+                let character = string[row][col]
+                if col > 0 && character != "│" && character != "┌" && character != "└" && string[row][col-1] != " " {
+                    removing = true
+                    continue
+                }
+                if character == "┌" {
                     removing = false
                 }
-                if removing && string[row][col] == "│" {
+                if removing && character == "│" {
                     string[row][col] = " "
                 } else if removing {
                     removing = false
                 }
-                if string[row][col] == "└" {
+                if character == "└" {
                     removing = true
                 }
             }
