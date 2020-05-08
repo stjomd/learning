@@ -6,6 +6,7 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+// MARK: - Node
 class BinaryTreeNode<T: Comparable> {
     
     typealias Node = BinaryTreeNode<T>
@@ -28,9 +29,12 @@ class BinaryTreeNode<T: Comparable> {
     
 }
 
+// MARK: - Tree
 class BinaryTree<T: Comparable> {
     
     typealias Node = BinaryTreeNode<T>
+    
+    // MARK: Properties
     
     /// The root of the binary tree.
     private(set) var root: Node?
@@ -72,6 +76,8 @@ class BinaryTree<T: Comparable> {
         return array
     }
     
+    // MARK: - Initializers
+    
     /// Creates a new binary tree with the specified root.
     ///
     /// You will need a root, a `BinaryTreeNode` object, first. Then you can create a binary tree with it.
@@ -87,6 +93,7 @@ class BinaryTree<T: Comparable> {
     
 }
 
+// MARK: - Traversals
 extension BinaryTree {
     /// The order in which the tree is traversed.
     enum TraversalOrder {
