@@ -335,6 +335,23 @@ extension BinarySearchTree {
 
 // MARK: - Miscellaneous
 extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringConvertible {
+    /// A horizontal textual representation of the binary search tree.
+    ///
+    /// Accessing the property directly is not advised. Apple recommends to use the `String(describing:)` initializer instead. You can also pass the tree object to the `print` function.
+    ///
+    ///     let tree = BinarySearchTree<Character>("p", "h", "g", "j", "r", "v", "q", "k")
+    ///     print(tree)
+    ///     // Prints:
+    ///     //           ┌─── v
+    ///     //      ┌─── r
+    ///     //      │    └─── q
+    ///     // ──── p
+    ///     //      │         ┌─── k
+    ///     //      │    ┌─── j
+    ///     //      └─── h
+    ///     //           └─── g
+    ///
+    /// - Complexity: O(*n*^2)
     var description: String {
         var string: [[Character]] = []
         constructString(&string, 0) // O(nlogn)
