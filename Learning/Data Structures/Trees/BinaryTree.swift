@@ -134,3 +134,78 @@ extension BinaryTree {
         }
     }
 }
+
+// MARK: - Miscellaneous
+extension BinaryTreeNode: CustomStringConvertible where T: CustomStringConvertible {
+    /// A horizontal textual representation of the binary search tree.
+    ///
+    /// Accessing the property directly is not advised. Apple recommends to use the `String(describing:)` initializer instead. You can also pass the tree object to the `print` function.
+    ///
+    ///     let tree = BinarySearchTree<Character>("p", "h", "g", "j", "r", "v", "q", "k")
+    ///     print(tree)
+    ///     // Prints:
+    ///     //           ┌─── v
+    ///     //      ┌─── r
+    ///     //      │    └─── q
+    ///     // ──── p
+    ///     //      │         ┌─── k
+    ///     //      │    ┌─── j
+    ///     //      └─── h
+    ///     //           └─── g
+    ///
+    /// The right child in this diagram is always above its parent, and the left child is always below.
+    ///
+    /// - Complexity: O(*n*^2)
+    var description: String {
+        var string: [[Character]] = []
+        constructString(&string, 0) // O(nlogn)
+        var maxLineLength = 0
+        for line in 0..<string.count {  // indent all lines (for a e s t h e t i c s) O(n^2)
+            let first = string[line][0]
+            if first != "│" && first != "┌" && first != "└" {
+                string[line] = "──── " + string[line] // O(n)
+            } else {
+                string[line] = "     " + string[line] // O(n)
+            }
+            maxLineLength = max(maxLineLength, string[line].count)
+        }
+        for col in stride(from: 0, to: maxLineLength, by: 5) { // O(n^2)
+            var removing = true
+            for row in 0..<string.count {
+                if col >= string[row].count {
+                    removing = true
+                    continue
+                }
+                let character = string[row][col]
+                if col > 0 && character != "│" && character != "┌" && character != "└" && string[row][col-1] != " " {
+                    removing = true
+                    continue
+                }
+                if character == "┌" {
+                    removing = false
+                }
+                if removing && character == "│" {
+                    string[row][col] = " "
+                } else if removing {
+                    removing = false
+                }
+                if character == "└" {
+                    removing = true
+                }
+            }
+        }
+        return String(string.joined(separator: "\n"))
+        // O(nlogn + n^2) = O(n^2)
+    }
+    private func constructString(_ str: inout [[Character]], _ indentDepth: Int, _ indent: String = "") { // O(nlogn)
+        rightChild?.constructString(&str, indentDepth+1, ((indentDepth != 0) ? String(repeating: "│    ", count: indentDepth) : "") + "┌─── ")
+        str += [Array<Character>(indent + self.value.description)] // O(log n)
+        leftChild?.constructString(&str,  indentDepth+1, ((indentDepth != 0) ? String(repeating: "│    ", count: indentDepth) : "") + "└─── ")
+    }
+
+}
+extension BinaryTree: CustomStringConvertible where T: CustomStringConvertible {
+    var description: String {
+        return root?.description ?? "──── nil"
+    }
+}
