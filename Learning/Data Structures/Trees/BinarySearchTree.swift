@@ -351,6 +351,8 @@ extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringCon
     ///     //      └─── h
     ///     //           └─── g
     ///
+    /// The right child in this diagram is always above its parent, and the left child is always below.
+    ///
     /// - Complexity: O(*n*^2)
     var description: String {
         var string: [[Character]] = []
