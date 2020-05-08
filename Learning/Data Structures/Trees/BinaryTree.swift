@@ -72,9 +72,17 @@ class BinaryTree<T: Comparable> {
         return array
     }
     
-    /// Creates a new, empty binary search tree.
+    /// Creates a new binary tree with the specified root.
+    ///
+    /// You will need a root, a `BinaryTreeNode` object, first. Then you can create a binary tree with it.
+    ///
+    ///     let root = BinaryTreeNode<Int>(15)
+    ///     let tree = BinaryTree(root)
+    ///
     /// - Complexity: O(1)
-    init() {
+    /// - Parameter root: The root node of the binary tree.
+    init(_ root: Node) {
+        self.root = root
     }
     
 }
