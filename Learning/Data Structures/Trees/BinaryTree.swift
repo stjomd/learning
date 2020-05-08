@@ -30,4 +30,23 @@ class BinaryTreeNode<T: Comparable> {
 
 class BinaryTree<T: Comparable> {
     
+    typealias Node = BinaryTreeNode<T>
+    
+    /// The root of the binary tree.
+    private(set) var root: Node?
+    
+    /// The amount of elements (nodes) in the binary tree.
+    /// - Complexity: O(1)
+    private(set) var count = 0
+    /// A Boolean value indicating whether the binary tree is empty.
+    /// - Complexity: O(1)
+    var isEmpty: Bool {
+        return count == 0
+    }
+    
+    /// Creates a new, empty binary search tree.
+    /// - Complexity: O(1)
+    init() {
+    }
+    
 }
