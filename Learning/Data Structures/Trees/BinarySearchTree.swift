@@ -12,7 +12,7 @@
 /// A node in a binary search tree contains a key – a special value according to which the elements are sorted. Therefore the type of the key should conform to `Comparable`. Apart from that, a node keeps links to its left and right child, as well as the parent node.
 ///
 /// You can create a tree yourself just using objects of this class, however you'll have to manage addition and deletion yourself. To avoid that, create a `BinarySearchTree` object. That class is a wrapper for this class and manages addition and deletion.
-class BinarySearchTreeNode<T: Comparable>: BinaryTreeNodePr {
+class BinarySearchTreeNode<T: Comparable>: AnyBinaryTreeNode {
     
     typealias Node = BinarySearchTreeNode<T>
     
@@ -113,7 +113,7 @@ class BinarySearchTreeNode<T: Comparable>: BinaryTreeNodePr {
 /// A binary tree that stores its elements in such a way that all elements smaller than the root are stored in the left subtree, and all elements larger or equal to the root in the right subtree.
 ///
 /// This tree does not rebalance itself, therefore the order in which elements are added is important. If elements are inserted in sorted order, the tree degrades to a doubly linked list.
-class BinarySearchTree<T: Comparable>: BinaryTreePr {
+class BinarySearchTree<T: Comparable>: AnyBinaryTree {
     
     typealias Node = BinarySearchTreeNode<T>
     

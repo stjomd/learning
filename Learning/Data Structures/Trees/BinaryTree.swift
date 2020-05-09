@@ -7,7 +7,7 @@
 //
 
 // MARK: - Node
-class BinaryTreeNode<T>: BinaryTreeNodePr {
+class BinaryTreeNode<T>: AnyBinaryTreeNode {
         
     /// The value of the node.
     var value: T
@@ -28,7 +28,7 @@ class BinaryTreeNode<T>: BinaryTreeNodePr {
 }
 
 // MARK: - Tree
-class BinaryTree<T>: BinaryTreePr {
+class BinaryTree<T>: AnyBinaryTree {
     
     typealias Node = BinaryTreeNode<T>
     

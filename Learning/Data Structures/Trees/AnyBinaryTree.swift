@@ -7,28 +7,19 @@
 //
 
 // MARK: - Node
-protocol BinaryTreeNodePr {
+protocol AnyBinaryTreeNode {
     associatedtype T
     associatedtype Node = Self
     var value: T { get set }
     var leftChild: Node? { get set }
     var rightChild: Node? { get set }
     var parent: Node? { get set }
-    //init(_ value: T)
 }
 
 // MARK: - Tree
-enum TraversalOrder {
-    /// Pre-order traversal first traverses the root, then the left subtree, and then the right subtree.
-    case preOrder
-    /// In-order traversal first traverses the left subtree, then the root, and then the right subtree.
-    case inOrder
-    /// Post-order traversal first traverses the left subtree, then the right subtree, and then the root.
-    case postOrder
-}
-protocol BinaryTreePr {
+protocol AnyBinaryTree {
     associatedtype T
-    associatedtype Node where Node: BinaryTreeNodePr
+    associatedtype Node where Node: AnyBinaryTreeNode
     //associatedtype TraversalOrder
     var root: Node? { get }
     var count: Int { get }
@@ -38,7 +29,7 @@ protocol BinaryTreePr {
     var postOrderTraversal: [T] { get }
     func traverse(_ order: TraversalOrder, action: (T) -> ())
 }
-extension BinaryTreePr {
+extension AnyBinaryTree {
     var isEmpty: Bool {
         return count == 0
     }
@@ -58,7 +49,7 @@ extension BinaryTreePr {
         return array
     }
 }
-extension BinaryTreePr {
+extension AnyBinaryTree {
     func traverse(_ order: TraversalOrder, action: (T) -> ()) {
         switch order {
             case .preOrder:
@@ -90,6 +81,14 @@ extension BinaryTreePr {
             action(node.value as! T)
         }
     }
+}
+enum TraversalOrder {
+    /// Pre-order traversal first traverses the root, then the left subtree, and then the right subtree.
+    case preOrder
+    /// In-order traversal first traverses the left subtree, then the root, and then the right subtree.
+    case inOrder
+    /// Post-order traversal first traverses the left subtree, then the right subtree, and then the root.
+    case postOrder
 }
 
 // MARK: - Miscellaneous
@@ -131,7 +130,7 @@ func clean(string: inout [[Character]]) {
     }
 }
 
-protocol StringConvertibleBinaryTree: CustomStringConvertible where Self: BinaryTreeNodePr, Self.T: CustomStringConvertible {
+protocol StringConvertibleBinaryTree: CustomStringConvertible where Self: AnyBinaryTreeNode, Self.T: CustomStringConvertible {
 }
 extension StringConvertibleBinaryTree {
     /// A horizontal textual representation of the binary search tree.
