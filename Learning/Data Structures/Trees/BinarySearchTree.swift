@@ -125,11 +125,6 @@ class BinarySearchTree<T: Comparable>: BinaryTreePr {
     /// The amount of elements (nodes) in the tree.
     /// - Complexity: O(1)
     private(set) var count = 0
-    /// A Boolean value indicating whether the tree is empty.
-    /// - Complexity: O(1)
-//    var isEmpty: Bool {
-//        return count == 0
-//    }
     
     /// The smallest element in the tree.
     ///
@@ -257,46 +252,6 @@ class BinarySearchTree<T: Comparable>: BinaryTreePr {
 }
 
 // MARK: - Miscellaneous
-//extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringConvertible {
-//    /// A horizontal textual representation of the binary search tree.
-//    ///
-//    /// Accessing the property directly is not advised. Apple recommends to use the `String(describing:)` initializer instead. You can also pass the tree object to the `print` function.
-//    ///
-//    ///     let tree = BinarySearchTree<Character>("p", "h", "g", "j", "r", "v", "q", "k")
-//    ///     print(tree)
-//    ///     // Prints:
-//    ///     //           ┌─── v
-//    ///     //      ┌─── r
-//    ///     //      │    └─── q
-//    ///     // ──── p
-//    ///     //      │         ┌─── k
-//    ///     //      │    ┌─── j
-//    ///     //      └─── h
-//    ///     //           └─── g
-//    ///
-//    /// The right child in this diagram is always above its parent, and the left child is always below.
-//    ///
-//    /// - Complexity: O(*n*^2)
-//    var description: String {
-//        var string: [[Character]] = []
-//        constructString(&string, 0) // O(nlogn)
-//        clean(string: &string)
-//        return String(string.joined(separator: "\n"))
-//        // O(nlogn + n^2) = O(n^2)
-//    }
-//    private func constructString(_ str: inout [[Character]], _ indentDepth: Int, _ indent: String = "") { // O(nlogn)
-//        rightChild?.constructString(&str, indentDepth+1, ((indentDepth != 0) ? String(repeating: "│    ", count: indentDepth) : "") + "┌─── ")
-//        str += [Array<Character>(indent + self.value.description)] // O(log n)
-//        leftChild?.constructString(&str,  indentDepth+1, ((indentDepth != 0) ? String(repeating: "│    ", count: indentDepth) : "") + "└─── ")
-//    }
-//
-//}
-//extension BinarySearchTree: CustomStringConvertible where T: CustomStringConvertible {
-//    var description: String {
-//        return root?.description ?? "──── nil"
-//    }
-//}
-
 extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringConvertible {
 }
 extension BinarySearchTreeNode: StringConvertibleBinaryTree where T: CustomStringConvertible {
