@@ -8,9 +8,7 @@
 
 // MARK: - Node
 class BinaryTreeNode<T>: BinaryTreeNodePr {
-    
-    //typealias Node = BinaryTreeNode<T>
-    
+        
     /// The value of the node.
     var value: T
     /// The left child of the node.
@@ -45,7 +43,7 @@ class BinaryTree<T>: BinaryTreePr {
         return inOrderTraversal.count
     }
     
-    // MARK: - Initializers
+    // MARK: Initializers
     
     /// Creates a new binary tree with the specified root.
     ///
