@@ -8,9 +8,9 @@
 
 // MARK: - Node
 protocol AnyBinaryTreeNode {
-    associatedtype T
+    associatedtype Element
     associatedtype Node = Self
-    var value: T { get set }
+    var value: Element { get set }
     var leftChild: Node? { get set }
     var rightChild: Node? { get set }
     var parent: Node? { get set }
@@ -18,40 +18,40 @@ protocol AnyBinaryTreeNode {
 
 // MARK: - Tree
 protocol AnyBinaryTree {
-    associatedtype T
+    associatedtype Element
     associatedtype Node where Node: AnyBinaryTreeNode
     var root: Node? { get }
     var count: Int { get }
     var isEmpty: Bool { get }
-    var inOrderTraversal: [T] { get }
-    var preOrderTraversal: [T] { get }
-    var postOrderTraversal: [T] { get }
-    func traverse(_ order: TraversalOrder, action: (T) -> ())
+    var inOrderTraversal: [Element] { get }
+    var preOrderTraversal: [Element] { get }
+    var postOrderTraversal: [Element] { get }
+    func traverse(_ order: TraversalOrder, action: (Element) -> ())
 }
 // MARK: Property implementations
 extension AnyBinaryTree {
     var isEmpty: Bool {
         return count == 0
     }
-    var inOrderTraversal: [T] {
-        var array: [T] = []
+    var inOrderTraversal: [Element] {
+        var array: [Element] = []
         traverseInOrder(startingWith: root, action: { array.append($0) })
         return array
     }
-    var preOrderTraversal: [T] {
-        var array: [T] = []
+    var preOrderTraversal: [Element] {
+        var array: [Element] = []
         traversePreOrder(startingWith: root, action: { array.append($0) })
         return array
     }
-    var postOrderTraversal: [T] {
-        var array: [T] = []
+    var postOrderTraversal: [Element] {
+        var array: [Element] = []
         traversePostOrder(startingWith: root, action: { array.append($0) })
         return array
     }
 }
 // MARK: Method implementations
 extension AnyBinaryTree {
-    func traverse(_ order: TraversalOrder, action: (T) -> ()) {
+    func traverse(_ order: TraversalOrder, action: (Element) -> ()) {
         switch order {
             case .preOrder:
                 traversePreOrder(startingWith: root, action: action)
@@ -61,25 +61,25 @@ extension AnyBinaryTree {
                 traversePostOrder(startingWith: root, action: action)
         }
     }
-    private func traverseInOrder(startingWith node: Node?, action: (T) -> ()) {
+    private func traverseInOrder(startingWith node: Node?, action: (Element) -> ()) {
         if let node = node {
             traverseInOrder(startingWith: node.leftChild as? Node, action: action)
-            action(node.value as! T)
+            action(node.value as! Element)
             traverseInOrder(startingWith: node.rightChild as? Node, action: action)
         }
     }
-    private func traversePreOrder(startingWith node: Node?, action: (T) -> ()) {
+    private func traversePreOrder(startingWith node: Node?, action: (Element) -> ()) {
         if let node = node {
-            action(node.value as! T)
+            action(node.value as! Element)
             traversePreOrder(startingWith: node.leftChild as? Node, action: action)
             traversePreOrder(startingWith: node.rightChild as? Node, action: action)
         }
     }
-    private func traversePostOrder(startingWith node: Node?, action: (T) -> ()) {
+    private func traversePostOrder(startingWith node: Node?, action: (Element) -> ()) {
         if let node = node {
             traversePostOrder(startingWith: node.leftChild as? Node, action: action)
             traversePostOrder(startingWith: node.rightChild as? Node, action: action)
-            action(node.value as! T)
+            action(node.value as! Element)
         }
     }
 }
@@ -93,7 +93,7 @@ enum TraversalOrder {
 }
 
 // MARK: - Printability
-protocol StringConvertibleBinarySubtree: CustomStringConvertible where Self: AnyBinaryTreeNode, Self.T: CustomStringConvertible {
+protocol StringConvertibleBinarySubtree: CustomStringConvertible where Self: AnyBinaryTreeNode, Self.Element: CustomStringConvertible {
 }
 extension StringConvertibleBinarySubtree {
     /// A horizontal textual representation of the binary search tree.

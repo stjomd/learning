@@ -7,30 +7,32 @@
 //
 
 // MARK: - Node
-class BinaryTreeNode<T>: AnyBinaryTreeNode {
+class BinaryTreeNode<Element>: AnyBinaryTreeNode {
+    
+    typealias Node = BinaryTreeNode<Element>
         
     /// The value of the node.
-    var value: T
+    var value: Element
     /// The left child of the node.
-    var leftChild: BinaryTreeNode<T>?
+    var leftChild: Node?
     /// The right child of the node.
-    var rightChild: BinaryTreeNode<T>?
+    var rightChild: Node?
     /// The parent node of the node.
-    weak var parent: BinaryTreeNode<T>?
+    weak var parent: Node?
     
     /// Creates a node with the given value.
     /// - Parameter key: The value of the node.
     /// - Complexity: O(1)
-    init(_ value: T) {
+    init(_ value: Element) {
         self.value = value
     }
     
 }
 
 // MARK: - Tree
-class BinaryTree<T>: AnyBinaryTree {
+class BinaryTree<Element>: AnyBinaryTree {
     
-    typealias Node = BinaryTreeNode<T>
+    typealias Node = BinaryTreeNode<Element>
     
     // MARK: Properties
     
@@ -60,10 +62,10 @@ class BinaryTree<T>: AnyBinaryTree {
     
 }
 
-extension BinaryTreeNode: StringConvertibleBinarySubtree where T: CustomStringConvertible {}
-extension BinaryTreeNode: CustomStringConvertible where T: CustomStringConvertible {}
+extension BinaryTreeNode: StringConvertibleBinarySubtree where Element: CustomStringConvertible {}
+extension BinaryTreeNode: CustomStringConvertible where Element: CustomStringConvertible {}
 
-extension BinaryTree: CustomStringConvertible where T: CustomStringConvertible {
+extension BinaryTree: CustomStringConvertible where Element: CustomStringConvertible {
     var description: String {
         return root?.description ?? "──── nil"
     }

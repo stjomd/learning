@@ -12,14 +12,14 @@
 /// A node in a binary search tree contains a key – a special value according to which the elements are sorted. Therefore the type of the key should conform to `Comparable`. Apart from that, a node keeps links to its left and right child, as well as the parent node.
 ///
 /// You can create a tree yourself just using objects of this class, however you'll have to manage addition and deletion yourself. To avoid that, create a `BinarySearchTree` object. That class is a wrapper for this class and manages addition and deletion.
-class BinarySearchTreeNode<T: Comparable>: AnyBinaryTreeNode {
+class BinarySearchTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     
-    typealias Node = BinarySearchTreeNode<T>
+    typealias Node = BinarySearchTreeNode<Element>
     
     /// The value according to which the items in the binary search tree are sorted.
     ///
     /// If your type groups several attributes, make it conform to `Comparable` and implement the `<` operator by comparing against the appropriate attribute. This `key` will then contain your entire object, but sorting will be performed by the attribute of your choice.
-    var value: T
+    var value: Element
     /// The left child of this node.
     var leftChild: Node?
     /// The right child of this node.
@@ -87,7 +87,7 @@ class BinarySearchTreeNode<T: Comparable>: AnyBinaryTreeNode {
     /// Creates a binary search tree node with the given key.
     /// - Parameter key: The key of the node.
     /// - Complexity: O(1)
-    init(_ value: T) {
+    init(_ value: Element) {
         self.value = value
     }
     
@@ -95,7 +95,7 @@ class BinarySearchTreeNode<T: Comparable>: AnyBinaryTreeNode {
     /// - Parameter key: The key to be found.
     /// - Returns: The node with the specified key or `nil` if it's not present.
     /// - Complexity: O(log *n*) on average, O(*n*) in worst case.
-    func search(for key: T) -> Node? {
+    func search(for key: Element) -> Node? {
         var currentNode: Node? = self
         while let current = currentNode, current.value != value {
             if current.value > value {
@@ -113,9 +113,9 @@ class BinarySearchTreeNode<T: Comparable>: AnyBinaryTreeNode {
 /// A binary tree that stores its elements in such a way that all elements smaller than the root are stored in the left subtree, and all elements larger or equal to the root in the right subtree.
 ///
 /// This tree does not rebalance itself, therefore the order in which elements are added is important. If elements are inserted in sorted order, the tree degrades to a doubly linked list.
-class BinarySearchTree<T: Comparable>: AnyBinaryTree {
+class BinarySearchTree<Element: Comparable>: AnyBinaryTree {
     
-    typealias Node = BinarySearchTreeNode<T>
+    typealias Node = BinarySearchTreeNode<Element>
     
     // MARK: Properties
     
@@ -130,14 +130,14 @@ class BinarySearchTree<T: Comparable>: AnyBinaryTree {
     ///
     /// This element is the leftmost node in the tree.
     /// - Complexity: O(log *n*)
-    var minimum: T? {
+    var minimum: Element? {
         root?.minimum?.value
     }
     /// The largest element in the tree.
     ///
     /// This element is the rightmost node in the tree.
     /// - Complexity: O(log *n*)
-    var maximum: T? {
+    var maximum: Element? {
         root?.maximum?.value
     }
     
@@ -150,7 +150,7 @@ class BinarySearchTree<T: Comparable>: AnyBinaryTree {
     
     /// Creates a new binary search tree and inserts elements from the array (in the respective order) into it.
     /// - Complexity: O(*n* log *n*) on average, O(*n*^2) in worst case.
-    init(_ array: [T]) {
+    init(_ array: [Element]) {
         for element in array {
             add(element)
         }
@@ -158,7 +158,7 @@ class BinarySearchTree<T: Comparable>: AnyBinaryTree {
     
     /// Creates a new binary search tree and inserts elements that are passed to the initializer in the same order into the tree.
     /// - Complexity: O(*n* log *n*) on average, O(*n*^2) in worst case.
-    convenience init(_ items: T...) {
+    convenience init(_ items: Element...) {
         self.init(items)
     }
     
@@ -196,7 +196,7 @@ class BinarySearchTree<T: Comparable>: AnyBinaryTree {
     ///
     /// - Parameter key: The element to be inserted.
     /// - Complexity: O(log *n*) on average, O(*n*) in worst case.
-    func add(_ key: T) {
+    func add(_ key: Element) {
         let node = Node(key)
         add(node)
     }
@@ -205,7 +205,7 @@ class BinarySearchTree<T: Comparable>: AnyBinaryTree {
     /// - Parameter key: The key to be found.
     /// - Returns: The node with the specified key or `nil` if it's not present.
     /// - Complexity: O(log *n*) on average, O(*n*) in worst case.
-    func search(_ key: T) -> Node? {
+    func search(_ key: Element) -> Node? {
         root?.search(for: key)
     }
     
@@ -243,7 +243,7 @@ class BinarySearchTree<T: Comparable>: AnyBinaryTree {
     /// Removes an element from the tree.
     /// - Parameter node: The element to be removed from the tree.
     /// - Complexity: O(log *n*) on average, O(*n*) in worst case.
-    func remove(_ key: T) {
+    func remove(_ key: Element) {
         let node = search(key)
         assert(node != nil, "The key to be removed is not present in the tree")
         remove(node!)
@@ -252,12 +252,12 @@ class BinarySearchTree<T: Comparable>: AnyBinaryTree {
 }
 
 // MARK: - Miscellaneous
-extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringConvertible {
+extension BinarySearchTreeNode: CustomStringConvertible where Element: CustomStringConvertible {
 }
-extension BinarySearchTreeNode: StringConvertibleBinarySubtree where T: CustomStringConvertible {
+extension BinarySearchTreeNode: StringConvertibleBinarySubtree where Element: CustomStringConvertible {
 }
 
-extension BinarySearchTree: CustomStringConvertible where T: CustomStringConvertible {
+extension BinarySearchTree: CustomStringConvertible where Element: CustomStringConvertible {
     var description: String {
         return root?.description ?? "──── nil"
     }

@@ -7,7 +7,7 @@
 //
 
 extension BinarySearchTree {
-    convenience init(inOrderTraversal: [T], preOrderTraversal: [T]) {
+    convenience init(inOrderTraversal: [Element], preOrderTraversal: [Element]) {
         self.init()
         
     }
