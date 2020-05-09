@@ -6,19 +6,29 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+protocol BinaryTreeNodePr {
+    associatedtype T
+    associatedtype Node = Self
+    var value: T { get set }
+    var leftChild: Node? { get set }
+    var rightChild: Node? { get set }
+    var parent: Node? { get set }
+    //init(_ value: T)
+}
+
 // MARK: - Node
-class BinaryTreeNode<T: Comparable> {
+class BinaryTreeNode<T>: BinaryTreeNodePr {
     
-    typealias Node = BinaryTreeNode<T>
+    //typealias Node = BinaryTreeNode<T>
     
     /// The value of the node.
     var value: T
     /// The left child of the node.
-    var leftChild: Node?
+    var leftChild: BinaryTreeNode<T>?
     /// The right child of the node.
-    var rightChild: Node?
+    var rightChild: BinaryTreeNode<T>?
     /// The parent node of the node.
-    weak var parent: Node?
+    weak var parent: BinaryTreeNode<T>?
     
     /// Creates a node with the given value.
     /// - Parameter key: The value of the node.
