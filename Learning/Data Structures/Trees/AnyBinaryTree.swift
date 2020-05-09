@@ -6,15 +6,15 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
-//protocol BinaryTreeNodePr {
-//    associatedtype T
-//    associatedtype Node = Self
-//    var value: T { get set }
-//    var leftChild: Node? { get set }
-//    var rightChild: Node? { get set }
-//    var parent: Node? { get set }
-//    //init(_ value: T)
-//}
+protocol BinaryTreeNodePr {
+    associatedtype T
+    associatedtype Node = Self
+    var value: T { get set }
+    var leftChild: Node? { get set }
+    var rightChild: Node? { get set }
+    var parent: Node? { get set }
+    //init(_ value: T)
+}
 //
 //enum TraversalOrder {
 //    /// Pre-order traversal first traverses the root, then the left subtree, and then the right subtree.
