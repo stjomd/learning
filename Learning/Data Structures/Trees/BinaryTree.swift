@@ -39,6 +39,65 @@ class BinaryTreeNode<T>: BinaryTreeNodePr {
     
 }
 
+enum TraversalOrder {
+    /// Pre-order traversal first traverses the root, then the left subtree, and then the right subtree.
+    case preOrder
+    /// In-order traversal first traverses the left subtree, then the root, and then the right subtree.
+    case inOrder
+    /// Post-order traversal first traverses the left subtree, then the right subtree, and then the root.
+    case postOrder
+}
+protocol BinaryTreePr {
+    associatedtype T
+    associatedtype Node where Node: BinaryTreeNodePr
+    //associatedtype TraversalOrder
+    var root: Node? { get }
+    var count: Int { get }
+    var isEmpty: Bool { get }
+    var inOrderTraversal: [T] { get }
+    var preOrderTraversal: [T] { get }
+    var postOrderTraversal: [T] { get }
+    func traverse(_ order: TraversalOrder, action: (T) -> ())
+}
+extension BinaryTreePr {
+    var isEmpty: Bool {
+        return count == 0
+    }
+}
+extension BinaryTreePr {
+    func traverse(_ order: TraversalOrder, action: (T) -> ()) {
+        switch order {
+            case .preOrder:
+                traversePreOrder(startingWith: root, action: action)
+            case .inOrder:
+                traverseInOrder(startingWith: root, action: action)
+            case .postOrder:
+                traversePostOrder(startingWith: root, action: action)
+        }
+    }
+    private func traverseInOrder(startingWith node: Node?, action: (T) -> ()) {
+        if let node = node {
+            traverseInOrder(startingWith: node.leftChild as? Node, action: action)
+            action(node.value as! T)
+            traverseInOrder(startingWith: node.rightChild as? Node, action: action)
+        }
+    }
+    private func traversePreOrder(startingWith node: Node?, action: (T) -> ()) {
+        if let node = node {
+            action(node.value as! T)
+            traversePreOrder(startingWith: node.leftChild as? Node, action: action)
+            traversePreOrder(startingWith: node.rightChild as? Node, action: action)
+        }
+    }
+    private func traversePostOrder(startingWith node: Node?, action: (T) -> ()) {
+        if let node = node {
+            traversePostOrder(startingWith: node.leftChild as? Node, action: action)
+            traversePostOrder(startingWith: node.rightChild as? Node, action: action)
+            action(node.value as! T)
+        }
+    }
+}
+
 // MARK: - Tree
 class BinaryTree<T: Comparable> {
     
