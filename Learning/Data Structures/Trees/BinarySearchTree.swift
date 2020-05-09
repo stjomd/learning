@@ -280,41 +280,7 @@ extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringCon
     var description: String {
         var string: [[Character]] = []
         constructString(&string, 0) // O(nlogn)
-        var maxLineLength = 0
-        for line in 0..<string.count {  // indent all lines (for a e s t h e t i c s) O(n^2)
-            let first = string[line][0]
-            if first != "│" && first != "┌" && first != "└" {
-                string[line] = "──── " + string[line] // O(n)
-            } else {
-                string[line] = "     " + string[line] // O(n)
-            }
-            maxLineLength = max(maxLineLength, string[line].count)
-        }
-        for col in stride(from: 0, to: maxLineLength, by: 5) { // O(n^2)
-            var removing = true
-            for row in 0..<string.count {
-                if col >= string[row].count {
-                    removing = true
-                    continue
-                }
-                let character = string[row][col]
-                if col > 0 && character != "│" && character != "┌" && character != "└" && string[row][col-1] != " " {
-                    removing = true
-                    continue
-                }
-                if character == "┌" {
-                    removing = false
-                }
-                if removing && character == "│" {
-                    string[row][col] = " "
-                } else if removing {
-                    removing = false
-                }
-                if character == "└" {
-                    removing = true
-                }
-            }
-        }
+        clean(string: &string)
         return String(string.joined(separator: "\n"))
         // O(nlogn + n^2) = O(n^2)
     }
