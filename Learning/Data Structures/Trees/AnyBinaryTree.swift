@@ -92,44 +92,6 @@ enum TraversalOrder {
 }
 
 // MARK: - Miscellaneous
-func clean(string: inout [[Character]]) {
-    var maxLineLength = 0
-    for line in 0..<string.count {  // indent all lines (for a e s t h e t i c s) O(n^2)
-        let first = string[line][0]
-        if first != "│" && first != "┌" && first != "└" {
-            string[line] = "──── " + string[line] // O(n)
-        } else {
-            string[line] = "     " + string[line] // O(n)
-        }
-        maxLineLength = max(maxLineLength, string[line].count)
-    }
-    for col in stride(from: 0, to: maxLineLength, by: 5) { // O(n^2)
-        var removing = true
-        for row in 0..<string.count {
-            if col >= string[row].count {
-                removing = true
-                continue
-            }
-            let character = string[row][col]
-            if col > 0 && character != "│" && character != "┌" && character != "└" && string[row][col-1] != " " {
-                removing = true
-                continue
-            }
-            if character == "┌" {
-                removing = false
-            }
-            if removing && character == "│" {
-                string[row][col] = " "
-            } else if removing {
-                removing = false
-            }
-            if character == "└" {
-                removing = true
-            }
-        }
-    }
-}
-
 protocol StringConvertibleBinaryTree: CustomStringConvertible where Self: AnyBinaryTreeNode, Self.T: CustomStringConvertible {
 }
 extension StringConvertibleBinaryTree {
@@ -155,7 +117,41 @@ extension StringConvertibleBinaryTree {
     var description: String {
         var string: [[Character]] = []
         constructString(self, &string, 0) // O(nlogn)
-        clean(string: &string)
+        var maxLineLength = 0
+        for line in 0..<string.count {  // indent all lines (for a e s t h e t i c s) O(n^2)
+            let first = string[line][0]
+            if first != "│" && first != "┌" && first != "└" {
+                string[line] = "──── " + string[line] // O(n)
+            } else {
+                string[line] = "     " + string[line] // O(n)
+            }
+            maxLineLength = max(maxLineLength, string[line].count)
+        }
+        for col in stride(from: 0, to: maxLineLength, by: 5) { // O(n^2)
+            var removing = true
+            for row in 0..<string.count {
+                if col >= string[row].count {
+                    removing = true
+                    continue
+                }
+                let character = string[row][col]
+                if col > 0 && character != "│" && character != "┌" && character != "└" && string[row][col-1] != " " {
+                    removing = true
+                    continue
+                }
+                if character == "┌" {
+                    removing = false
+                }
+                if removing && character == "│" {
+                    string[row][col] = " "
+                } else if removing {
+                    removing = false
+                }
+                if character == "└" {
+                    removing = true
+                }
+            }
+        }
         return String(string.joined(separator: "\n"))
         // O(nlogn + n^2) = O(n^2)
     }
