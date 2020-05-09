@@ -254,7 +254,7 @@ class BinarySearchTree<T: Comparable>: AnyBinaryTree {
 // MARK: - Miscellaneous
 extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringConvertible {
 }
-extension BinarySearchTreeNode: StringConvertibleBinaryTree where T: CustomStringConvertible {
+extension BinarySearchTreeNode: StringConvertibleBinarySubtree where T: CustomStringConvertible {
 }
 
 extension BinarySearchTree: CustomStringConvertible where T: CustomStringConvertible {

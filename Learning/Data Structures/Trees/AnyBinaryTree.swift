@@ -20,7 +20,6 @@ protocol AnyBinaryTreeNode {
 protocol AnyBinaryTree {
     associatedtype T
     associatedtype Node where Node: AnyBinaryTreeNode
-    //associatedtype TraversalOrder
     var root: Node? { get }
     var count: Int { get }
     var isEmpty: Bool { get }
@@ -29,6 +28,7 @@ protocol AnyBinaryTree {
     var postOrderTraversal: [T] { get }
     func traverse(_ order: TraversalOrder, action: (T) -> ())
 }
+// MARK: Property implementations
 extension AnyBinaryTree {
     var isEmpty: Bool {
         return count == 0
@@ -49,6 +49,7 @@ extension AnyBinaryTree {
         return array
     }
 }
+// MARK: Method implementations
 extension AnyBinaryTree {
     func traverse(_ order: TraversalOrder, action: (T) -> ()) {
         switch order {
@@ -91,10 +92,10 @@ enum TraversalOrder {
     case postOrder
 }
 
-// MARK: - Miscellaneous
-protocol StringConvertibleBinaryTree: CustomStringConvertible where Self: AnyBinaryTreeNode, Self.T: CustomStringConvertible {
+// MARK: - Printability
+protocol StringConvertibleBinarySubtree: CustomStringConvertible where Self: AnyBinaryTreeNode, Self.T: CustomStringConvertible {
 }
-extension StringConvertibleBinaryTree {
+extension StringConvertibleBinarySubtree {
     /// A horizontal textual representation of the binary search tree.
     //    ///
     //    /// Accessing the property directly is not advised. Apple recommends to use the `String(describing:)` initializer instead. You can also pass the tree object to the `print` function.

@@ -60,7 +60,7 @@ class BinaryTree<T>: AnyBinaryTree {
     
 }
 
-extension BinaryTreeNode: StringConvertibleBinaryTree where T: CustomStringConvertible {}
+extension BinaryTreeNode: StringConvertibleBinarySubtree where T: CustomStringConvertible {}
 extension BinaryTreeNode: CustomStringConvertible where T: CustomStringConvertible {}
 
 extension BinaryTree: CustomStringConvertible where T: CustomStringConvertible {
