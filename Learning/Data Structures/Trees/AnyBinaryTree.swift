@@ -6,6 +6,7 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+// MARK: - Node
 protocol BinaryTreeNodePr {
     associatedtype T
     associatedtype Node = Self
@@ -16,6 +17,7 @@ protocol BinaryTreeNodePr {
     //init(_ value: T)
 }
 
+// MARK: - Tree
 enum TraversalOrder {
     /// Pre-order traversal first traverses the root, then the left subtree, and then the right subtree.
     case preOrder
@@ -90,6 +92,7 @@ extension BinaryTreePr {
     }
 }
 
+// MARK: - Miscellaneous
 func clean(string: inout [[Character]]) {
     var maxLineLength = 0
     for line in 0..<string.count {  // indent all lines (for a e s t h e t i c s) O(n^2)
@@ -124,6 +127,44 @@ func clean(string: inout [[Character]]) {
             if character == "└" {
                 removing = true
             }
+        }
+    }
+}
+
+protocol StringConvertibleBinaryTree: CustomStringConvertible where Self: BinaryTreeNodePr, Self.T: CustomStringConvertible {
+}
+extension StringConvertibleBinaryTree {
+    /// A horizontal textual representation of the binary search tree.
+    //    ///
+    //    /// Accessing the property directly is not advised. Apple recommends to use the `String(describing:)` initializer instead. You can also pass the tree object to the `print` function.
+    //    ///
+    //    ///     let tree = BinarySearchTree<Character>("p", "h", "g", "j", "r", "v", "q", "k")
+    //    ///     print(tree)
+    //    ///     // Prints:
+    //    ///     //           ┌─── v
+    //    ///     //      ┌─── r
+    //    ///     //      │    └─── q
+    //    ///     // ──── p
+    //    ///     //      │         ┌─── k
+    //    ///     //      │    ┌─── j
+    //    ///     //      └─── h
+    //    ///     //           └─── g
+    //    ///
+    //    /// The right child in this diagram is always above its parent, and the left child is always below.
+    //    ///
+    //    /// - Complexity: O(*n*^2)
+    var description: String {
+        var string: [[Character]] = []
+        constructString(self, &string, 0) // O(nlogn)
+        clean(string: &string)
+        return String(string.joined(separator: "\n"))
+        // O(nlogn + n^2) = O(n^2)
+    }
+    private func constructString(_ node: Self?, _ str: inout [[Character]], _ indentDepth: Int, _ indent: String = "") { // O(nlogn)
+        if let node = node {
+            constructString(node.rightChild as? Self, &str, indentDepth+1, ((indentDepth != 0) ? String(repeating: "│    ", count: indentDepth) : "") + "┌─── ")
+            str += [Array<Character>(indent + node.value.description)] // O(log n)
+            constructString(node.leftChild as? Self, &str,  indentDepth+1, ((indentDepth != 0) ? String(repeating: "│    ", count: indentDepth) : "") + "└─── ")
         }
     }
 }
