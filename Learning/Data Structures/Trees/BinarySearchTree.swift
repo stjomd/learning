@@ -12,14 +12,14 @@
 /// A node in a binary search tree contains a key – a special value according to which the elements are sorted. Therefore the type of the key should conform to `Comparable`. Apart from that, a node keeps links to its left and right child, as well as the parent node.
 ///
 /// You can create a tree yourself just using objects of this class, however you'll have to manage addition and deletion yourself. To avoid that, create a `BinarySearchTree` object. That class is a wrapper for this class and manages addition and deletion.
-class BinarySearchTreeNode<T: Comparable> {
+class BinarySearchTreeNode<T: Comparable>: BinaryTreeNodePr {
     
     typealias Node = BinarySearchTreeNode<T>
     
     /// The value according to which the items in the binary search tree are sorted.
     ///
     /// If your type groups several attributes, make it conform to `Comparable` and implement the `<` operator by comparing against the appropriate attribute. This `key` will then contain your entire object, but sorting will be performed by the attribute of your choice.
-    var key: T
+    var value: T
     /// The left child of this node.
     var leftChild: Node?
     /// The right child of this node.
@@ -87,8 +87,8 @@ class BinarySearchTreeNode<T: Comparable> {
     /// Creates a binary search tree node with the given key.
     /// - Parameter key: The key of the node.
     /// - Complexity: O(1)
-    init(_ key: T) {
-        self.key = key
+    init(_ value: T) {
+        self.value = value
     }
     
     /// Looks up and returns the node with the given key in the subtree for which this node is the root.
@@ -97,8 +97,8 @@ class BinarySearchTreeNode<T: Comparable> {
     /// - Complexity: O(log *n*) on average, O(*n*) in worst case.
     func search(for key: T) -> Node? {
         var currentNode: Node? = self
-        while let current = currentNode, current.key != key {
-            if current.key > key {
+        while let current = currentNode, current.value != value {
+            if current.value > value {
                 currentNode = currentNode?.leftChild
             } else {
                 currentNode = currentNode?.rightChild
@@ -113,7 +113,7 @@ class BinarySearchTreeNode<T: Comparable> {
 /// A binary tree that stores its elements in such a way that all elements smaller than the root are stored in the left subtree, and all elements larger or equal to the root in the right subtree.
 ///
 /// This tree does not rebalance itself, therefore the order in which elements are added is important. If elements are inserted in sorted order, the tree degrades to a doubly linked list.
-class BinarySearchTree<T: Comparable> {
+class BinarySearchTree<T: Comparable>: BinaryTreePr {
     
     typealias Node = BinarySearchTreeNode<T>
     
@@ -127,52 +127,52 @@ class BinarySearchTree<T: Comparable> {
     private(set) var count = 0
     /// A Boolean value indicating whether the tree is empty.
     /// - Complexity: O(1)
-    var isEmpty: Bool {
-        return count == 0
-    }
+//    var isEmpty: Bool {
+//        return count == 0
+//    }
     
     /// The smallest element in the tree.
     ///
     /// This element is the leftmost node in the tree.
     /// - Complexity: O(log *n*)
     var minimum: T? {
-        root?.minimum?.key
+        root?.minimum?.value
     }
     /// The largest element in the tree.
     ///
     /// This element is the rightmost node in the tree.
     /// - Complexity: O(log *n*)
     var maximum: T? {
-        root?.maximum?.key
+        root?.maximum?.value
     }
     
     /// An array of objects traversed in-order. For a binary search tree this is also a sorted array of all objects in the tree.
     ///
     /// In-order traversal first traverses the left subtree, then the root, and then the right subtree.
     /// - Complexity: O(*n*)
-    var inOrderTraversal: [T] {
-        var array: [T] = []
-        traverseInOrder(startingWith: root, action: { array.append($0) })
-        return array
-    }
+//    var inOrderTraversal: [T] {
+//        var array: [T] = []
+//        traverseInOrder(startingWith: root, action: { array.append($0) })
+//        return array
+//    }
     /// An array of objects traversed pre-order.
     ///
     /// Pre-order traversal first traverses the root, then the left subtree, and then the right subtree.
     /// - Complexity: O(*n*)
-    var preOrderTraversal: [T] {
-        var array: [T] = []
-        traversePreOrder(startingWith: root, action: { array.append($0) })
-        return array
-    }
+//    var preOrderTraversal: [T] {
+//        var array: [T] = []
+//        traversePreOrder(startingWith: root, action: { array.append($0) })
+//        return array
+//    }
     /// An array of objects traversed post-order.
     ///
     /// Post-order traversal first traverses the left subtree, then the right subtree, and then the root.
     /// - Complexity: O(*n*)
-    var postOrderTraversal: [T] {
-        var array: [T] = []
-        traversePostOrder(startingWith: root, action: { array.append($0) })
-        return array
-    }
+//    var postOrderTraversal: [T] {
+//        var array: [T] = []
+//        traversePostOrder(startingWith: root, action: { array.append($0) })
+//        return array
+//    }
     
     // MARK: Initializers
     
@@ -205,7 +205,7 @@ class BinarySearchTree<T: Comparable> {
         var r: Node? = nil, p = root
         while let pp = p {
             r = p
-            if node.key < pp.key {
+            if node.value < pp.value {
                 p = pp.leftChild
             } else {
                 p = pp.rightChild
@@ -215,7 +215,7 @@ class BinarySearchTree<T: Comparable> {
         node.leftChild = nil
         node.rightChild = nil
         if let rr = r {
-            if node.key < rr.key {
+            if node.value < rr.value {
                 rr.leftChild = node
             } else {
                 rr.rightChild = node
@@ -251,7 +251,7 @@ class BinarySearchTree<T: Comparable> {
             r = node
         } else {
             r = node.successor
-            node.key = r!.key
+            node.value = r!.value
         }
         var p: Node?
         if r?.leftChild != nil {
@@ -285,53 +285,53 @@ class BinarySearchTree<T: Comparable> {
 }
 
 // MARK: - Traversals
-extension BinarySearchTree {
-    /// The order in which the tree is traversed.
-    enum TraversalOrder {
-        /// Pre-order traversal first traverses the root, then the left subtree, and then the right subtree.
-        case preOrder
-        /// In-order traversal first traverses the left subtree, then the root, and then the right subtree.
-        case inOrder
-        /// Post-order traversal first traverses the left subtree, then the right subtree, and then the root.
-        case postOrder
-    }
-    /// Traverses the tree in the specified order and performs an action on its elements. By default, the tree is traversed in-order.
-    ///
-    /// - Parameter order: The order in which the tree is traversed. In-order by default.
-    /// - Parameter action: A closure that accepts an element of the tree and is called on every element during traversal.
-    /// - Complexity: O(*n*)
-    func traverse(_ order: TraversalOrder = .inOrder, action: (T) -> ()) {
-        switch order {
-            case .preOrder:
-                traversePreOrder(startingWith: root, action: action)
-            case .inOrder:
-                traverseInOrder(startingWith: root, action: action)
-            case .postOrder:
-                traversePostOrder(startingWith: root, action: action)
-        }
-    }
-    private func traverseInOrder(startingWith node: Node?, action: (T) -> ()) {
-        if let node = node {
-            traverseInOrder(startingWith: node.leftChild, action: action)
-            action(node.key)
-            traverseInOrder(startingWith: node.rightChild, action: action)
-        }
-    }
-    private func traversePreOrder(startingWith node: Node?, action: (T) -> ()) {
-        if let node = node {
-            action(node.key)
-            traversePreOrder(startingWith: node.leftChild, action: action)
-            traversePreOrder(startingWith: node.rightChild, action: action)
-        }
-    }
-    private func traversePostOrder(startingWith node: Node?, action: (T) -> ()) {
-        if let node = node {
-            traversePostOrder(startingWith: node.leftChild, action: action)
-            traversePostOrder(startingWith: node.rightChild, action: action)
-            action(node.key)
-        }
-    }
-}
+//extension BinarySearchTree {
+//    /// The order in which the tree is traversed.
+//    enum TraversalOrder {
+//        /// Pre-order traversal first traverses the root, then the left subtree, and then the right subtree.
+//        case preOrder
+//        /// In-order traversal first traverses the left subtree, then the root, and then the right subtree.
+//        case inOrder
+//        /// Post-order traversal first traverses the left subtree, then the right subtree, and then the root.
+//        case postOrder
+//    }
+//    /// Traverses the tree in the specified order and performs an action on its elements. By default, the tree is traversed in-order.
+//    ///
+//    /// - Parameter order: The order in which the tree is traversed. In-order by default.
+//    /// - Parameter action: A closure that accepts an element of the tree and is called on every element during traversal.
+//    /// - Complexity: O(*n*)
+//    func traverse(_ order: TraversalOrder = .inOrder, action: (T) -> ()) {
+//        switch order {
+//            case .preOrder:
+//                traversePreOrder(startingWith: root, action: action)
+//            case .inOrder:
+//                traverseInOrder(startingWith: root, action: action)
+//            case .postOrder:
+//                traversePostOrder(startingWith: root, action: action)
+//        }
+//    }
+//    private func traverseInOrder(startingWith node: Node?, action: (T) -> ()) {
+//        if let node = node {
+//            traverseInOrder(startingWith: node.leftChild, action: action)
+//            action(node.value)
+//            traverseInOrder(startingWith: node.rightChild, action: action)
+//        }
+//    }
+//    private func traversePreOrder(startingWith node: Node?, action: (T) -> ()) {
+//        if let node = node {
+//            action(node.value)
+//            traversePreOrder(startingWith: node.leftChild, action: action)
+//            traversePreOrder(startingWith: node.rightChild, action: action)
+//        }
+//    }
+//    private func traversePostOrder(startingWith node: Node?, action: (T) -> ()) {
+//        if let node = node {
+//            traversePostOrder(startingWith: node.leftChild, action: action)
+//            traversePostOrder(startingWith: node.rightChild, action: action)
+//            action(node.value)
+//        }
+//    }
+//}
 
 // MARK: - Miscellaneous
 extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringConvertible {
@@ -397,7 +397,7 @@ extension BinarySearchTreeNode: CustomStringConvertible where T: CustomStringCon
     }
     private func constructString(_ str: inout [[Character]], _ indentDepth: Int, _ indent: String = "") { // O(nlogn)
         rightChild?.constructString(&str, indentDepth+1, ((indentDepth != 0) ? String(repeating: "│    ", count: indentDepth) : "") + "┌─── ")
-        str += [Array<Character>(indent + self.key.description)] // O(log n)
+        str += [Array<Character>(indent + self.value.description)] // O(log n)
         leftChild?.constructString(&str,  indentDepth+1, ((indentDepth != 0) ? String(repeating: "│    ", count: indentDepth) : "") + "└─── ")
     }
 
