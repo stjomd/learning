@@ -3,15 +3,7 @@
 ## Usage
 For visualising a binary tree, pass the tree object to the `print` function. The complexity should be O(*n*^2), I might be mistaken though. 
 ```swift
-var tree = BinarySearchTree<Character>()
-tree.add("p")
-tree.add("h")
-tree.add("g")
-tree.add("j")
-tree.add("r")
-tree.add("v")
-tree.add("q")
-tree.add("k")
+let tree = BinarySearchTree<Character>("p", "h", "g", "j", "r", "v", "q", "k")
 ```
 `print(tree)` would print the following to the console:
 ```
