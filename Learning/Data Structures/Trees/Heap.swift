@@ -34,6 +34,19 @@ class Heap<T> {
         return BinaryTree<T>(root)
     }
     
+    var root: T {
+        assert(!isEmpty, "The heap is empty")
+        return heap[0]
+    }
+    
+    var count: Int {
+        heap.count
+    }
+    
+    var isEmpty: Bool {
+        heap.count == 0
+    }
+    
     init(_ comparator: @escaping (T, T) -> Bool) {
         self.areInIncreasingOrder = comparator
     }
