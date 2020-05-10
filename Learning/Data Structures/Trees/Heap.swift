@@ -53,9 +53,8 @@ class Heap<T> {
     }
     
     /// The root of the heap. In a min heap, this is the smallest, and in a max heap, the largest element.
-    var root: T {
-        assert(!isEmpty, "The heap is empty")
-        return heap[0]
+    var root: T? {
+        return heap.first
     }
     
     /// The amount of elements in the heap.
