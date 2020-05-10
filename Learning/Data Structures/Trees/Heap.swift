@@ -13,7 +13,7 @@
 ///     let minHeap = Heap<Int>(<)
 ///     let maxHeap = Heap<Int>(with: [3, 0, 2, 8, 5, 1], >)
 ///
-/// This class implements a heap using an array and therefore does not conform to protocol `AnyBinaryTree`, but you can access the `tree` property of a heap.
+/// This class implements a heap using an array and therefore does not conform to protocol `AnyBinaryTree`, but you can access the `tree` property of a heap that returns a `BinaryTree` object.
 ///
 ///     let heapTree: BinaryTree<Int> = maxHeap.tree
 ///
@@ -119,7 +119,7 @@ class Heap<T> {
         if count == 1 {
             return heap.removeLast()
         } else {
-            let value = root
+            let value = root!
             heap[0] = heap.removeLast()
             heapifyDown(0)
             return value
