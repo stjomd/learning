@@ -76,6 +76,16 @@ class Heap<T> {
         }
     }
     
+    @discardableResult func remove(at index: Int) -> T {
+        assert(index < heap.count, "Index out of bounds")
+        if index != heap.count - 1 {
+            heap.swapAt(index, heap.count - 1)
+            heapifyDown(index)
+            heapifyUp(index)
+        }
+        return heap.removeLast()
+    }
+    
     private func heapifyUp(_ index: Int) {
         if index > 0 {
             let j = (index - 1)/2
@@ -108,5 +118,19 @@ class Heap<T> {
 extension Heap: CustomStringConvertible where T: CustomStringConvertible {
     var description: String {
         return tree.description
+    }
+}
+
+extension Heap where T: Equatable {
+    func firstIndex(of item: T) -> Int? {
+        return heap.firstIndex { $0 == item }
+    }
+    func lastIndex(of item: T) -> Int? {
+        return heap.lastIndex { $0 == item }
+    }
+    @discardableResult func remove(item: T) -> T {
+        let index = firstIndex(of: item)
+        assert(index != nil, "Item is not present in the heap")
+        return remove(at: index!)
     }
 }
