@@ -6,6 +6,10 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+/// Heapsort is an algorithm that sorts an array by converting its unsorted section into a heap, removing the root (the smallest element) from the heap and appending it to the sorted section, repairing the heap, and doing the same thing all over again with the now shorter unsorted section.
+///
+/// This sorting algorithm is **not** stable.
+/// - Complexity: O(*n* log *n*)
 struct HeapSort: SortingAlgorithm {
     func sort<T>(_ array: inout Array<T>, by areInIncreasingOrder: @escaping (T, T) -> Bool) {
         buildHeap(&array, areInIncreasingOrder) // O(n)
