@@ -11,6 +11,29 @@ class Heap<T> {
     private let areInIncreasingOrder: (T, T) -> Bool
     private var heap: [T] = []
     
+    var tree: BinaryTree<T> {
+        let root = BinaryTreeNode<T>(heap[0])
+        var count = 0
+        var queue = Queue<BinaryTreeNode<T>>()
+        queue.enqueue(root)
+        var currentNode: BinaryTreeNode<T>? = nil
+        for i in 1..<heap.count {
+            let node = BinaryTreeNode<T>(heap[i])
+            if count == 0 {
+                currentNode = queue.dequeue()
+            }
+            if count == 0 {
+                count += 1
+                currentNode?.leftChild = node
+            } else {
+                count = 0
+                currentNode?.rightChild = node
+            }
+            queue.enqueue(node)
+        }
+        return BinaryTree<T>(root)
+    }
+    
     init(_ comparator: @escaping (T, T) -> Bool) {
         self.areInIncreasingOrder = comparator
     }
@@ -50,4 +73,10 @@ class Heap<T> {
         }
     }
     
+}
+
+extension Heap: CustomStringConvertible where T: CustomStringConvertible {
+    var description: String {
+        return tree.description
+    }
 }
