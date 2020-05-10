@@ -46,3 +46,4 @@ Algorithm | Average performance | Worst-case performance
 [Selection Sort](SelectionSort.swift) | O(*n*^2) | O(*n*^2)
 [Merge Sort](MergeSort.swift) | O(*n* log *n*) | O(*n* log *n*)
 [Quicksort](QuickSort.swift) | O(*n* log *n*) | O(*n*^2)
+[Heapsort](HeapSort.swift) | O(*n* log *n*) |  O(*n* log *n*)
