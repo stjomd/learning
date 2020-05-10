@@ -18,25 +18,25 @@
 ///     let heapTree: BinaryTree<Int> = maxHeap.tree
 ///
 /// The `tree` property is calculated, i.e. a new binary tree is built every time you access this property.
-class Heap<T> {
+class Heap<Element> {
     
     // MARK: Properties
     
-    private let areInIncreasingOrder: (T, T) -> Bool
-    private var heap: [T] = []
+    private let areInIncreasingOrder: (Element, Element) -> Bool
+    private var heap: [Element] = []
     
     /// The binary tree object that represents this heap.
     ///
     /// Accessing this property will build a respective binary tree.
     /// - Complexity: O(*n*)
-    var tree: BinaryTree<T> {
-        let root = BinaryTreeNode<T>(heap[0])
+    var tree: BinaryTree<Element> {
+        let root = BinaryTreeNode<Element>(heap[0])
         var count = 0
-        var queue = Queue<BinaryTreeNode<T>>()
+        var queue = Queue<BinaryTreeNode<Element>>()
         queue.enqueue(root)
-        var currentNode: BinaryTreeNode<T>? = nil
+        var currentNode: BinaryTreeNode<Element>? = nil
         for i in 1..<heap.count {
-            let node = BinaryTreeNode<T>(heap[i])
+            let node = BinaryTreeNode<Element>(heap[i])
             if count == 0 {
                 currentNode = queue.dequeue()
             }
@@ -49,11 +49,11 @@ class Heap<T> {
             }
             queue.enqueue(node)
         }
-        return BinaryTree<T>(root)
+        return BinaryTree<Element>(root)
     }
     
     /// The root of the heap. In a min heap, this is the smallest, and in a max heap, the largest element.
-    var root: T? {
+    var root: Element? {
         return heap.first
     }
     
@@ -77,7 +77,7 @@ class Heap<T> {
     ///
     /// - Complexity: O(1)
     /// - Parameter comparator: A closure that accepts two elements and returns a Boolean value indicating whether the first element is smaller than the second.
-    init(_ comparator: @escaping (T, T) -> Bool) {
+    init(_ comparator: @escaping (Element, Element) -> Bool) {
         self.areInIncreasingOrder = comparator
     }
     
@@ -91,7 +91,7 @@ class Heap<T> {
     /// - Complexity: O(*n*), provided a comparison is done in O(1).
     /// - Parameter array: The array of elements that should be present in the heap.
     /// - Parameter comparator: A closure that accepts two elements and returns a Boolean value indicating whether the first element is smaller than the second.
-    init(with array: [T], _ comparator: @escaping (T, T) -> Bool) {
+    init(with array: [Element], _ comparator: @escaping (Element, Element) -> Bool) {
         self.heap = array
         self.areInIncreasingOrder = comparator
         for i in stride(from: (array.count - 1)/2, through: 0, by: -1) {
@@ -104,7 +104,7 @@ class Heap<T> {
     /// Inserts a new element into the heap.
     /// - Complexity: O(log *n*), provided the comparison is done in O(1).
     /// - Parameter item: The item to be inserted into the heap.
-    func insert(_ item: T) {
+    func insert(_ item: Element) {
         heap.append(item)
         heapifyUp(heap.count - 1)
     }
@@ -114,7 +114,7 @@ class Heap<T> {
     /// In a min heap, this is the smallest, and in a max heap, the largest element.
     /// - Complexity: O(log *n*), provided the comparison is done in O(1).
     /// - Returns: The element that has been removed.
-    @discardableResult func removeRoot() -> T {
+    @discardableResult func removeRoot() -> Element {
         assert(!isEmpty, "The heap is empty")
         if count == 1 {
             return heap.removeLast()
@@ -131,7 +131,7 @@ class Heap<T> {
     /// - Complexity: O(log *n*), provided the comparison is done in O(1).
     /// - Parameter index: The index of the element to be removed.
     /// - Returns: The element that has been removed.
-    @discardableResult func remove(at index: Int) -> T {
+    @discardableResult func remove(at index: Int) -> Element {
         assert(index < heap.count, "Index out of bounds")
         if index != heap.count - 1 {
             heap.swapAt(index, heap.count - 1)
@@ -173,19 +173,19 @@ class Heap<T> {
 }
 
 // MARK: Search
-extension Heap where T: Equatable {
+extension Heap where Element: Equatable {
     /// Returns the first index of the specified element in the array that represents the heap.
     ///
     /// - Complexity: O(*n*)
     /// - Parameter item: The item to be found in the heap array.
-    func firstIndex(of item: T) -> Int? {
+    func firstIndex(of item: Element) -> Int? {
         return heap.firstIndex { $0 == item }
     }
     /// Returns the last index of the specified element in the array that represents the heap.
     ///
     /// - Complexity: O(*n*)
     /// - Parameter item: The item to be found in the heap array.
-    func lastIndex(of item: T) -> Int? {
+    func lastIndex(of item: Element) -> Int? {
         return heap.lastIndex { $0 == item }
     }
     /// Removes the first occurance of an element in the array that represents the heap.
@@ -193,7 +193,7 @@ extension Heap where T: Equatable {
     /// - Complexity: O(log *n*), provided the comparison is done in O(1).
     /// - Parameter item: The item to be removed.
     /// - Returns: The item that has been removed.
-    @discardableResult func remove(item: T) -> T {
+    @discardableResult func remove(item: Element) -> Element {
         let index = firstIndex(of: item)
         assert(index != nil, "Item is not present in the heap")
         return remove(at: index!)
@@ -202,7 +202,7 @@ extension Heap where T: Equatable {
 
 
 // MARK: - CustomStringConvertible
-extension Heap: CustomStringConvertible where T: CustomStringConvertible {
+extension Heap: CustomStringConvertible where Element: CustomStringConvertible {
     var description: String {
         return tree.description
     }
