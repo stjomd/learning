@@ -47,4 +47,5 @@ Case | Space | Search | Insertion | Deletion
 Best | O(*n*) | O(1) | O(1) | O(1)
 Average | O(*n*) | O(log *n*) | O(log *n*) | O(log *n*)
 Worst | O(*n*) | O(log *n*) | O(log *n*) | O(log *n*)
+
 Does not conform to `AnyBinaryTree`, but has a `tree` property that returns a `BinaryTree` object.
