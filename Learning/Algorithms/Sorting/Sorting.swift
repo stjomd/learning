@@ -24,7 +24,7 @@
 ///
 /// `sort(_:by:)` sorts `array` in-place, without copying.
 protocol SortingAlgorithm {
-    func sort<T>(_ array: inout Array<T>, by areInIncreasingOrder: (T, T) -> Bool)
+    func sort<T>(_ array: inout Array<T>, by areInIncreasingOrder: @escaping (T, T) -> Bool)
 }
 
 //  MARK: - Extension for all types
@@ -49,7 +49,7 @@ extension Array {
     /// - Complexity: See the documentation for the respective type of `algorithm`.
     /// - Parameter algorithm: The sorting algorithm object to be used for sorting.
     /// - Parameter comparator: A closure that returns a Boolean value. It should return `true` if the first element should be ordered before the second in the array.
-    mutating func customSort<SomeSort: SortingAlgorithm>(_ algorithm: SomeSort, by comparator: Comparator) {
+    mutating func customSort<SomeSort: SortingAlgorithm>(_ algorithm: SomeSort, by comparator: @escaping Comparator) {
         algorithm.sort(&self, by: comparator)
     }
     
@@ -72,7 +72,7 @@ extension Array {
     /// - Parameter algorithm: The sorting algorithm object to be used for sorting.
     /// - Parameter comparator: A closure that returns a Boolean value. It should return `true` if the first element should be ordered before the second in the sorted array.
     /// - Returns: The sorted array.
-    func customSorted<SomeSort: SortingAlgorithm>(_ algorithm: SomeSort, by comparator: Comparator) -> Self {
+    func customSorted<SomeSort: SortingAlgorithm>(_ algorithm: SomeSort, by comparator: @escaping Comparator) -> Self {
         var copy = self
         copy.customSort(algorithm, by: comparator)
         return copy
