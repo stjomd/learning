@@ -59,6 +59,23 @@ class Heap<T> {
         }
     }
     
+    func insert(_ item: T) {
+        heap.append(item)
+        heapifyUp(heap.count - 1)
+    }
+    
+    @discardableResult func removeRoot() -> T {
+        assert(!isEmpty, "The heap is empty")
+        if count == 1 {
+            return heap.removeLast()
+        } else {
+            let value = root
+            heap[0] = heap.removeLast()
+            heapifyDown(0)
+            return value
+        }
+    }
+    
     private func heapifyUp(_ index: Int) {
         if index > 0 {
             let j = (index - 1)/2
