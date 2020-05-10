@@ -31,9 +31,10 @@ The right child is always above, and the left always below, its parent in this d
 ### [**Binary Tree**](https://github.com/stjomd/learning/blob/master/Learning/Data%20Structures/Trees/BinaryTree.swift)
 Case | Space | Search | Insertion | Deletion
 :---- | :------: | :-------: | :--------: | :--------:
-Average | O(*n*) | – | O(1)* | O(1)*
-Worst | O(*n*) | – | O(1)* | O(1)*
+Average | O(*n*) | O(*n*) | O(1)* | O(1)*
+Worst | O(*n*) | O(*n*) | O(1)* | O(1)*
 
+* Insertion and deletion on the wrapper (`BinaryTree` class) is not supported – children have to be explicitly assigned to nodes.
 
 ### [**Binary Search Tree**](https://github.com/stjomd/learning/blob/master/Learning/Data%20Structures/Trees/BinarySearchTree.swift)
 Case | Space | Search | Insertion | Deletion
@@ -45,7 +46,7 @@ Worst | O(*n*) | O(*n*) | O(*n*) | O(*n*)
 Case | Space | Search | Insertion | Deletion
 :---- | :------: | :-------: | :--------: | :--------:
 Best | O(*n*) | O(1) | O(1) | O(1)
-Average | O(*n*) | O(log *n*) | O(log *n*) | O(log *n*)
-Worst | O(*n*) | O(log *n*) | O(log *n*) | O(log *n*)
+Average | O(*n*) | O(*n*) | O(log *n*) | O(log *n*)
+Worst | O(*n*) | O(*n*) | O(log *n*) | O(log *n*)
 
 Does not conform to `AnyBinaryTree`, but has a `tree` property that returns a `BinaryTree` object.
