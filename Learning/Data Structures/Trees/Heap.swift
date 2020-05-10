@@ -6,11 +6,29 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+/// A binary tree that satisfies a heap property: in a min heap, children of a node are less than or equal to that node; in a max heap, children of a node are greater than or equal to that node.
+///
+/// A heap can be useful when you need to repeatedly remove the largest (or smallest) item. To create a min heap, pass `<` operator to the initializer, and `>` to create a max heap.
+///
+///     let minHeap = Heap<Int>(<)
+///     let maxHeap = Heap<Int>(with: [3, 0, 2, 8, 5, 1], >)
+///
+/// This class implements a heap using an array and therefore does not conform to protocol `AnyBinaryTree`, but you can access the `tree` property of a heap.
+///
+///     let heapTree: BinaryTree<Int> = maxHeap.tree
+///
+/// The `tree` property is calculated, i.e. a new binary tree is built every time you access this property.
 class Heap<T> {
+    
+    // MARK: Properties
     
     private let areInIncreasingOrder: (T, T) -> Bool
     private var heap: [T] = []
     
+    /// The binary tree object that represents this heap.
+    ///
+    /// Accessing this property will build a respective binary tree.
+    /// - Complexity: O(*n*)
     var tree: BinaryTree<T> {
         let root = BinaryTreeNode<T>(heap[0])
         var count = 0
@@ -34,24 +52,47 @@ class Heap<T> {
         return BinaryTree<T>(root)
     }
     
+    /// The root of the heap. In a min heap, this is the smallest, and in a max heap, the largest element.
     var root: T {
         assert(!isEmpty, "The heap is empty")
         return heap[0]
     }
     
+    /// The amount of elements in the heap.
     var count: Int {
         heap.count
     }
     
+    /// A Boolean value indicating whether the heap is empty.
     var isEmpty: Bool {
-        heap.count == 0
+        heap.isEmpty
     }
     
+    // MARK: Initializers
+    
+    /// Creates a new, empty heap.
+    ///
+    /// To create a min heap, pass `<` operator to the initializer, and `>` to create a max heap.
+    ///
+    ///     let minHeap = Heap<Int>(<)
+    ///
+    /// - Complexity: O(1)
+    /// - Parameter comparator: A closure that accepts two elements and returns a Boolean value indicating whether the first element is smaller than the second.
     init(_ comparator: @escaping (T, T) -> Bool) {
         self.areInIncreasingOrder = comparator
     }
     
-    init(_ comparator: @escaping (T, T) -> Bool, contentsOf array: [T]) {
+    /// Creates a new heap with the elements of an array.
+    ///
+    /// To create a min heap, pass `<` operator to the initializer, and `>` to create a max heap.
+    ///
+    ///     let maxHeap = Heap<Int>(with: [3, 0, 2, 8, 5, 1], >)
+    ///     let myHeap  = Heap<Double>(with: [0.5, 1.5, 0.33, 2, 0.98]) { $0*$0 < $1 }
+    ///
+    /// - Complexity: O(*n*), provided a comparison is done in O(1).
+    /// - Parameter array: The array of elements that should be present in the heap.
+    /// - Parameter comparator: A closure that accepts two elements and returns a Boolean value indicating whether the first element is smaller than the second.
+    init(with array: [T], _ comparator: @escaping (T, T) -> Bool) {
         self.heap = array
         self.areInIncreasingOrder = comparator
         for i in stride(from: (array.count - 1)/2, through: 0, by: -1) {
@@ -59,11 +100,21 @@ class Heap<T> {
         }
     }
     
+    // MARK: Methods
+    
+    /// Inserts a new element into the heap.
+    /// - Complexity: O(log *n*), provided the comparison is done in O(1).
+    /// - Parameter item: The item to be inserted into the heap.
     func insert(_ item: T) {
         heap.append(item)
         heapifyUp(heap.count - 1)
     }
     
+    /// Removes and returns the root element.
+    ///
+    /// In a min heap, this is the smallest, and in a max heap, the largest element.
+    /// - Complexity: O(log *n*), provided the comparison is done in O(1).
+    /// - Returns: The element that has been removed.
     @discardableResult func removeRoot() -> T {
         assert(!isEmpty, "The heap is empty")
         if count == 1 {
@@ -76,6 +127,11 @@ class Heap<T> {
         }
     }
     
+    /// Removes the element with the specific index in the array that represents the heap.
+    ///
+    /// - Complexity: O(log *n*), provided the comparison is done in O(1).
+    /// - Parameter index: The index of the element to be removed.
+    /// - Returns: The element that has been removed.
     @discardableResult func remove(at index: Int) -> T {
         assert(index < heap.count, "Index out of bounds")
         if index != heap.count - 1 {
@@ -85,6 +141,8 @@ class Heap<T> {
         }
         return heap.removeLast()
     }
+    
+    // MARK: Heapify
     
     private func heapifyUp(_ index: Int) {
         if index > 0 {
@@ -115,22 +173,38 @@ class Heap<T> {
     
 }
 
-extension Heap: CustomStringConvertible where T: CustomStringConvertible {
-    var description: String {
-        return tree.description
-    }
-}
-
+// MARK: Search
 extension Heap where T: Equatable {
+    /// Returns the first index of the specified element in the array that represents the heap.
+    ///
+    /// - Complexity: O(*n*)
+    /// - Parameter item: The item to be found in the heap array.
     func firstIndex(of item: T) -> Int? {
         return heap.firstIndex { $0 == item }
     }
+    /// Returns the last index of the specified element in the array that represents the heap.
+    ///
+    /// - Complexity: O(*n*)
+    /// - Parameter item: The item to be found in the heap array.
     func lastIndex(of item: T) -> Int? {
         return heap.lastIndex { $0 == item }
     }
+    /// Removes the first occurance of an element in the array that represents the heap.
+    ///
+    /// - Complexity: O(log *n*), provided the comparison is done in O(1).
+    /// - Parameter item: The item to be removed.
+    /// - Returns: The item that has been removed.
     @discardableResult func remove(item: T) -> T {
         let index = firstIndex(of: item)
         assert(index != nil, "Item is not present in the heap")
         return remove(at: index!)
+    }
+}
+
+
+// MARK: - CustomStringConvertible
+extension Heap: CustomStringConvertible where T: CustomStringConvertible {
+    var description: String {
+        return tree.description
     }
 }
