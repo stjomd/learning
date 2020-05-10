@@ -8,9 +8,7 @@
 
 struct HeapSort: SortingAlgorithm {
     func sort<T>(_ array: inout Array<T>, by areInIncreasingOrder: @escaping (T, T) -> Bool) {
-        //var heap = Heap<T>(areInIncreasingOrder)
         buildHeap(&array, areInIncreasingOrder) // O(n)
-        print(array)
         for i in 0..<array.count {
             array.swapAt(0, array.count - i - 1)
             heapifyDown(&array, 0, array.count - i - 1, areInIncreasingOrder)
@@ -28,11 +26,11 @@ struct HeapSort: SortingAlgorithm {
             return
         } else if 2*index + 1 < n {
             let left = 2*index + 1, right = 2*index + 2
-            j = (areInIncreasingOrder(heap[left], heap[right])) ? left : right
+            j = (!areInIncreasingOrder(heap[left], heap[right])) ? left : right
         } else {
             j = 2*index + 1
         }
-        if areInIncreasingOrder(heap[j], heap[index]) {
+        if !areInIncreasingOrder(heap[j], heap[index]) {
             heap.swapAt(j, index)
             heapifyDown(&heap, j, bound, areInIncreasingOrder)
         }
