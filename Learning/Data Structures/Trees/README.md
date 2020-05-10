@@ -28,8 +28,23 @@ The right child is always above, and the left always below, its parent in this d
 
 ## Implemented binary trees
 
-### [**Binary search tree**](https://github.com/stjomd/learning/blob/master/Learning/Data%20Structures/Trees/BinarySearchTree.swift)
+### [**Binary Tree**](https://github.com/stjomd/learning/blob/master/Learning/Data%20Structures/Trees/BinaryTree.swift)
+Case | Space | Search | Insertion | Deletion
+:---- | :------: | :-------: | :--------: | :--------:
+Average | O(*n*) | – | O(1)* | O(1)*
+Worst | O(*n*) | – | O(1)* | O(1)*
+
+
+### [**Binary Search Tree**](https://github.com/stjomd/learning/blob/master/Learning/Data%20Structures/Trees/BinarySearchTree.swift)
 Case | Space | Search | Insertion | Deletion
 :---- | :------: | :-------: | :--------: | :--------:
 Average | O(*n*) | O(log *n*) | O(log *n*) | O(log *n*)
 Worst | O(*n*) | O(*n*) | O(*n*) | O(*n*)
+
+### [**Binary Heap**](https://github.com/stjomd/learning/blob/master/Learning/Data%20Structures/Trees/Heap.swift)
+Case | Space | Search | Insertion | Deletion
+:---- | :------: | :-------: | :--------: | :--------:
+Best | O(*n*) | O(1) | O(1) | O(1)
+Average | O(*n*) | O(log *n*) | O(log *n*) | O(log *n*)
+Worst | O(*n*) | O(log *n*) | O(log *n*) | O(log *n*)
+Does not conform to `AnyBinaryTree`, but has a `tree` property that returns a `BinaryTree` object.
