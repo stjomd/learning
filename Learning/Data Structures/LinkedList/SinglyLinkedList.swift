@@ -27,9 +27,9 @@ class SinglyLinkedList<T>: AnyLinkedList, ExpressibleByArrayLiteral {
     
     /// Returns true if the linked list is empty.
     /// - Complexity: O(1)
-    public var isEmpty: Bool {
-        return head == nil
-    }
+//    public var isEmpty: Bool {
+//        return head == nil
+//    }
     
     /// Returns the amount of nodes in the linked list.
     /// - Complexity: O(1)
@@ -70,7 +70,7 @@ class SinglyLinkedList<T>: AnyLinkedList, ExpressibleByArrayLiteral {
     public subscript(index: Int) -> T {
         get {
             assert(index >= 0 && index < count, "Index out of bounds")
-            assert(!isEmpty, "The list is empty")
+            assert(!self.isEmpty, "The list is empty")
             return node(at: index)!.value
         }
         set {
