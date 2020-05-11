@@ -17,9 +17,9 @@ protocol AnyLinkedListNode {
 protocol AnyLinkedList {
     associatedtype Element
     associatedtype Node: AnyLinkedListNode
-    var head: Node? { get set }
-    var toe: Node? { get set }
-    var count: Int { get set }
+    var head: Node? { get }
+    var toe: Node? { get }
+    var count: Int { get }
     var isEmpty: Bool { get }
     func node(at index: Int) -> Node?
     func append(_ node: Node)
@@ -54,10 +54,5 @@ extension AnyLinkedList {
     func insert(_ item: Element, at index: Int) {
         let node = Node(item as! Node.Element)
         insert(node, at: index)
-    }
-    mutating func removeAll() {
-        head = nil
-        toe = nil
-        count = 0
     }
 }

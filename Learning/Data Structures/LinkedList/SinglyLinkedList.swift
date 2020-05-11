@@ -6,7 +6,7 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
-class SinglyLinkedList<T>: ExpressibleByArrayLiteral {
+class SinglyLinkedList<T>: AnyLinkedList, ExpressibleByArrayLiteral {
     
     typealias Node = LinkedListNode<T>
     class LinkedListNode<T>: AnyLinkedListNode {
