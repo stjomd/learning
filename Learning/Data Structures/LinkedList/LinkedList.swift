@@ -6,7 +6,7 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
-protocol LinkedListNode {
+protocol AnyLinkedListNode {
     associatedtype Element
     associatedtype Node = Self
     var value: Element { get set }
@@ -14,9 +14,9 @@ protocol LinkedListNode {
     init(_ value: Element)
 }
 
-protocol LinkedList {
+protocol AnyLinkedList {
     associatedtype Element
-    associatedtype Node: LinkedListNode
+    associatedtype Node: AnyLinkedListNode
     var head: Node? { get set }
     var toe: Node? { get set }
     var count: Int { get set }
@@ -32,7 +32,7 @@ protocol LinkedList {
     func removeAll()
 }
 
-extension LinkedList {
+extension AnyLinkedList {
     var isEmpty: Bool {
         return count == 0
     }

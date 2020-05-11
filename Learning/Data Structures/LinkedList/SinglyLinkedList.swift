@@ -9,10 +9,10 @@
 class SinglyLinkedList<T>: ExpressibleByArrayLiteral {
     
     typealias Node = LinkedListNode<T>
-    class LinkedListNode<T> {
+    class LinkedListNode<T>: AnyLinkedListNode {
         var value: T
         var next: Node?
-        init(_ value: T) {
+        required init(_ value: T) {
             self.value = value
         }
     }

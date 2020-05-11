@@ -227,8 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				662377E52469A99B00EF35C0 /* LinkedList.swift */,
-				66EAB848245320AB00593625 /* DoublyLinkedList.swift */,
 				66EAB84F2453313B00593625 /* SinglyLinkedList.swift */,
+				66EAB848245320AB00593625 /* DoublyLinkedList.swift */,
 				66EAB84A245320B400593625 /* README.md */,
 			);
 			path = LinkedList;
