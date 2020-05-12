@@ -7,9 +7,31 @@
 //
 
 class AVLTreeNode<T>: BinarySearchTreeNode<T> where T: Comparable {
-    
+    var balance: Int {
+        var leftHeight = 0, rightHeight = 0
+        var currentNode = leftChild
+        while let _ = currentNode?.leftChild {
+            leftHeight += 1
+            currentNode = currentNode?.leftChild
+        }
+        currentNode = rightChild
+        while let _ = currentNode?.rightChild {
+            rightHeight += 1
+            currentNode = currentNode?.rightChild
+        }
+        return rightHeight - leftHeight
+    }
 }
 
-class AVLTree<T>: BinarySearchTree<T> where T: Comparable {
+class AVLTree<Element: Comparable>: AnyBinaryTree {
+    
+    typealias Node = AVLTreeNode<Element>
+    
+    private(set) var root: Node?
+    private(set) var count: Int = 0
+    
+    func add(_ item: Element) {
+        //
+    }
     
 }
