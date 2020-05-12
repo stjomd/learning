@@ -18,6 +18,11 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     
     var parent: Node?
     
+    var height: Int {
+        return 0
+        // TODO: stored property
+    }
+    
     var balance: Int {
         var leftHeight = 0, rightHeight = 0
         var currentNode = leftChild
@@ -49,6 +54,7 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
     func add(_ item: Element) {
         let node = Node(item)
         add(node)
+        //balance(child) TODO: rebalancing
     }
     private func add(_ node: Node) {
         var r: Node? = nil, p = root
