@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		661A563F246B097D00FFDF7B /* AVLTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A563E246B097D00FFDF7B /* AVLTree.swift */; };
 		662377DB2464829100EF35C0 /* SubsetSum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662377DA2464829100EF35C0 /* SubsetSum.swift */; };
 		662377DE2465FA0100EF35C0 /* Heap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662377DD2465FA0100EF35C0 /* Heap.swift */; };
 		662377E02465FBCF00EF35C0 /* BinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662377DF2465FBCF00EF35C0 /* BinaryTree.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		661A563E246B097D00FFDF7B /* AVLTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLTree.swift; sourceTree = "<group>"; };
 		662377DA2464829100EF35C0 /* SubsetSum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsetSum.swift; sourceTree = "<group>"; };
 		662377DC2464965300EF35C0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		662377DD2465FA0100EF35C0 /* Heap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heap.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				662377DF2465FBCF00EF35C0 /* BinaryTree.swift */,
 				66EAB8682459A85E00593625 /* BinarySearchTree.swift */,
 				662377DD2465FA0100EF35C0 /* Heap.swift */,
+				661A563E246B097D00FFDF7B /* AVLTree.swift */,
 				668C35BF245F8248008E2D2C /* README.md */,
 			);
 			path = Trees;
@@ -333,6 +336,7 @@
 				662377DE2465FA0100EF35C0 /* Heap.swift in Sources */,
 				66EAB85424538FD900593625 /* MergeSort.swift in Sources */,
 				668C35B5245DE44F008E2D2C /* BinarySearch.swift in Sources */,
+				661A563F246B097D00FFDF7B /* AVLTree.swift in Sources */,
 				669E0C212451C5FF003DD940 /* main.swift in Sources */,
 				66EAB8672456706000593625 /* CountSort.swift in Sources */,
 				66EAB843245220D400593625 /* InsertionSort.swift in Sources */,
