@@ -108,6 +108,13 @@
 			path = SubsetSum;
 			sourceTree = "<group>";
 		};
+		664BAA43246B29D700BBA6E2 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
 		668C35B3245DE43C008E2D2C /* BinarySearch */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +164,7 @@
 		669E0C1F2451C5FF003DD940 /* Learning */ = {
 			isa = PBXGroup;
 			children = (
+				664BAA43246B29D700BBA6E2 /* Libraries */,
 				669E0C202451C5FF003DD940 /* main.swift */,
 				669E0C272451C609003DD940 /* Algorithms */,
 				669E0C282451C611003DD940 /* Data Structures */,
