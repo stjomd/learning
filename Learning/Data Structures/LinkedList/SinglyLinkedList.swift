@@ -27,9 +27,9 @@ class SinglyLinkedList<T>: AnyLinkedList, ExpressibleByArrayLiteral {
     
     /// Returns true if the linked list is empty.
     /// - Complexity: O(1)
-//    public var isEmpty: Bool {
-//        return head == nil
-//    }
+    public var isEmpty: Bool {
+        return head == nil
+    }
     
     /// Returns the amount of nodes in the linked list.
     /// - Complexity: O(1)
