@@ -24,6 +24,63 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
         return height(rightChild) - height(leftChild)
     }
     
+    /// The node with the smallest key in the subtree for which this node is the root.
+    ///
+    /// In other words, this is the leftmost node in the binary search subtree.
+    /// - Complexity: O(log *n*)
+    var minimum: Node? {
+        var currentNode: Node? = self
+        while let _ = currentNode?.leftChild {
+            currentNode = currentNode?.leftChild
+        }
+        return currentNode
+    }
+    /// The node with the largest key in the subtree for which this node is the root.
+    ///
+    /// In other words, this is the rightmost node in the binary search subtree.
+    /// - Complexity: O(log *n*)
+    var maximum: Node? {
+        var currentNode: Node? = self
+        while let _ = currentNode?.rightChild {
+            currentNode = currentNode?.rightChild
+        }
+        return currentNode
+    }
+    /// The node with the largest key that is smaller than the key of this node.
+    ///
+    /// In other words, this is the maximum of the left subtree.
+    /// - Complexity: O(log *n*)
+    var predecessor: Node? {
+        if let subtree = self.leftChild {
+            return subtree.maximum
+        } else {
+            var p = self
+            var q: Node? = p.parent
+            while let current = q, p === current.leftChild {
+                p = current
+                q = q?.parent
+            }
+            return q
+        }
+    }
+    /// The node with the smallest key that is larger than the key of this node.
+    ///
+    /// In other words, this is the minimum of the right subtree.
+    /// - Complexity: O(log *n*)
+    var successor: Node? {
+        if let subtree = self.rightChild {
+            return subtree.minimum
+        } else {
+            var p = self
+            var q: Node? = p.parent
+            while let current = q, p === current.rightChild {
+                p = current
+                q = q?.parent
+            }
+            return q
+        }
+    }
+    
     init(_ value: Element) {
         self.value = value
     }
