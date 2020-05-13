@@ -28,7 +28,19 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
         self.value = value
     }
     
-    fileprivate func rotateRight(/*_ node: Node*/) -> Node {
+    func search(for value: Element) -> Node? {
+        var currentNode: Node? = self
+        while let current = currentNode, current.value != value {
+            if current.value > value {
+                currentNode = currentNode?.leftChild
+            } else {
+                currentNode = currentNode?.rightChild
+            }
+        }
+        return currentNode
+    }
+    
+    fileprivate func rotateRight() -> Node {
         let v = self.leftChild!
         self.leftChild = v.rightChild
         v.rightChild = self
@@ -95,6 +107,10 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
         }
         startingNode!.height = max(height(startingNode!.leftChild), height(startingNode!.rightChild)) + 1
         count += 1
+    }
+    
+    func search(for value: Element) -> Node? {
+        root?.search(for: value)
     }
     
     private func height(_ node: Node?) -> Int {
