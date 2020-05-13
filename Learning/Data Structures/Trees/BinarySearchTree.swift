@@ -95,10 +95,10 @@ class BinarySearchTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     /// - Parameter key: The key to be found.
     /// - Returns: The node with the specified key or `nil` if it's not present.
     /// - Complexity: O(log *n*) on average, O(*n*) in worst case.
-    func search(for value: Element) -> Node? {
+    func search(for item: Element) -> Node? {
         var currentNode: Node? = self
-        while let current = currentNode, current.value != value {
-            if current.value > value {
+        while let current = currentNode, current.value != item {
+            if current.value > item {
                 currentNode = currentNode?.leftChild
             } else {
                 currentNode = currentNode?.rightChild
@@ -194,19 +194,19 @@ class BinarySearchTree<Element: Comparable>: AnyBinaryTree {
     }
     /// Inserts an element to the tree in the appropriate location.
     ///
-    /// - Parameter key: The element to be inserted.
+    /// - Parameter item: The element to be inserted.
     /// - Complexity: O(log *n*) on average, O(*n*) in worst case.
-    func add(_ key: Element) {
-        let node = Node(key)
+    func add(_ item: Element) {
+        let node = Node(item)
         add(node)
     }
     
     /// Looks up and returns the node with the given key in the subtree for which this node is the root.
-    /// - Parameter key: The key to be found.
+    /// - Parameter item: The key to be found.
     /// - Returns: The node with the specified key or `nil` if it's not present.
     /// - Complexity: O(log *n*) on average, O(*n*) in worst case.
-    func search(_ key: Element) -> Node? {
-        root?.search(for: key)
+    func search(for item: Element) -> Node? {
+        root?.search(for: item)
     }
     
     /// Removes a node from the tree.
@@ -241,10 +241,10 @@ class BinarySearchTree<Element: Comparable>: AnyBinaryTree {
         count -= 1
     }
     /// Removes an element from the tree.
-    /// - Parameter node: The element to be removed from the tree.
+    /// - Parameter item: The element to be removed from the tree.
     /// - Complexity: O(log *n*) on average, O(*n*) in worst case.
-    func remove(_ key: Element) {
-        let node = search(key)
+    func remove(_ item: Element) {
+        let node = search(for: item)
         assert(node != nil, "The key to be removed is not present in the tree")
         remove(node!)
     }

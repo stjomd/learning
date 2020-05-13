@@ -28,10 +28,10 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
         self.value = value
     }
     
-    func search(for value: Element) -> Node? {
+    func search(for item: Element) -> Node? {
         var currentNode: Node? = self
-        while let current = currentNode, current.value != value {
-            if current.value > value {
+        while let current = currentNode, current.value != item {
+            if current.value > item {
                 currentNode = currentNode?.leftChild
             } else {
                 currentNode = currentNode?.rightChild
@@ -109,8 +109,8 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
         count += 1
     }
     
-    func search(for value: Element) -> Node? {
-        root?.search(for: value)
+    func search(for item: Element) -> Node? {
+        root?.search(for: item)
     }
     
     private func height(_ node: Node?) -> Int {
