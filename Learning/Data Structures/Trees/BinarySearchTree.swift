@@ -95,7 +95,7 @@ class BinarySearchTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     /// - Parameter key: The key to be found.
     /// - Returns: The node with the specified key or `nil` if it's not present.
     /// - Complexity: O(log *n*) on average, O(*n*) in worst case.
-    func search(for key: Element) -> Node? {
+    func search(for value: Element) -> Node? {
         var currentNode: Node? = self
         while let current = currentNode, current.value != value {
             if current.value > value {
