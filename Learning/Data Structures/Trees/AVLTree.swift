@@ -21,7 +21,7 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     var height: Int = 0
     
     var balance: Int {
-        return (rightChild?.height ?? -1) - (leftChild?.height ?? -1)
+        return height(rightChild) - height(leftChild)
     }
     
     init(_ value: Element) {
@@ -32,8 +32,8 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
         let v = self.leftChild!
         self.leftChild = v.rightChild
         v.rightChild = self
-        self.height = max(self.leftChild?.height ?? -1, self.rightChild?.height ?? -1) + 1
-        v.height = max(v.leftChild?.height ?? -1, v.rightChild?.height ?? -1) + 1
+        self.height = max(height(self.leftChild), height(self.rightChild)) + 1
+        v.height = max(height(v.leftChild), height(v.rightChild)) + 1
         return v
     }
     
@@ -41,9 +41,17 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
         let v = self.rightChild!
         self.rightChild = v.leftChild
         v.leftChild = self
-        self.height = max(self.leftChild?.height ?? -1, self.rightChild?.height ?? -1) + 1
-        v.height = max(v.leftChild?.height ?? -1, v.rightChild?.height ?? -1) + 1
+        self.height = max(height(self.leftChild), height(self.rightChild)) + 1
+        v.height = max(height(v.leftChild), height(v.rightChild)) + 1
         return v
+    }
+    
+    private func height(_ node: Node?) -> Int {
+        if let node = node {
+            return node.height
+        } else {
+            return -1
+        }
     }
     
 }
@@ -64,7 +72,7 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
             if node.value < startingNode!.value {
                 add(node, at: &startingNode!.leftChild)
                 if startingNode!.balance == -2 {
-                    if (startingNode?.leftChild?.leftChild?.height ?? -1) >= (startingNode?.leftChild?.rightChild?.height ?? -1) {
+                    if height(startingNode?.leftChild?.leftChild) >= height(startingNode?.leftChild?.rightChild) {
                         startingNode = startingNode!.rotateRight()
                     } else {
                         startingNode!.leftChild = startingNode!.leftChild?.rotateLeft()
@@ -74,7 +82,7 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
             } else if node.value >= startingNode!.value {
                 add(node, at: &startingNode!.rightChild)
                 if startingNode!.balance == 2 {
-                    if (startingNode?.rightChild?.rightChild?.height ?? -1) >= (startingNode?.rightChild?.leftChild?.height ?? -1) {
+                    if height(startingNode?.rightChild?.rightChild) >= height(startingNode?.rightChild?.leftChild) {
                         startingNode = startingNode!.rotateLeft()
                     } else {
                         startingNode!.rightChild = startingNode!.rightChild?.rotateRight()
@@ -85,11 +93,11 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
         } else {
             startingNode = node
         }
-        startingNode!.height = max(startingNode!.leftChild?.height ?? -1, startingNode!.rightChild?.height ?? -1) + 1
+        startingNode!.height = max(height(startingNode!.leftChild), height(startingNode!.rightChild)) + 1
         count += 1
     }
     
-    fileprivate func height(_ node: Node?) -> Int {
+    private func height(_ node: Node?) -> Int {
         if let node = node {
             return node.height
         } else {
