@@ -20,6 +20,6 @@ b.enqueue("sup", priority: 3)
 print(b.dequeue())
 // Prints "sup"
 ```
-This priority queue is based on a heap.
+This priority queue is a wrapper for a heap. The same behaviour can be achieved on a heap data structure, however this class hides unnecessary methods that are not relevant for situations when a priority queue is.
 
-To change priority of an element, call `
+To change priority of an element, call `changePriority(at:to:)`. You need to know the index of the element in the heap. If the element type conforms to `Equatable`, another method becomes available: `changePriority(of:to:)`, which finds the element in the heap and changes the priority.
