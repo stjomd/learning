@@ -204,6 +204,9 @@ extension Heap where Element: Equatable {
 // MARK: - CustomStringConvertible
 extension Heap: CustomStringConvertible where Element: CustomStringConvertible {
     var description: String {
+        if isEmpty {
+            return "──── nil"
+        }
         return tree.description
     }
 }
