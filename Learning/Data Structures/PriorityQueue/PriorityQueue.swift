@@ -10,7 +10,7 @@ class PriorityQueue<Element, Priority> {
     
     private typealias Comparator = (ElementWrapper, ElementWrapper) -> Bool
     
-    fileprivate class ElementWrapper {
+    fileprivate struct ElementWrapper {
         var value: Element
         var priority: Priority
         init(_ value: Element, _ priority: Priority) {
@@ -52,6 +52,26 @@ class PriorityQueue<Element, Priority> {
         heap.removeRoot().value
     }
     
+    func changePriority(at index: Int, to priority: Priority) {
+        var item = heap.remove(at: index)
+        item.priority = priority
+        heap.insert(item)
+    }
+    
+}
+
+extension PriorityQueue.ElementWrapper: Equatable where Element: Equatable {
+    static func == (lhs: PriorityQueue<Element, Priority>.ElementWrapper, rhs: PriorityQueue<Element, Priority>.ElementWrapper) -> Bool {
+        lhs.value == rhs.value
+    }
+}
+extension PriorityQueue where Element: Equatable {
+    func changePriority(of item: Element, to priority: Priority) {
+        let node = ElementWrapper(item, priority)
+        let index = heap.firstIndex(of: node)
+        assert(index != nil, "The element is not present in the priority queue")
+        changePriority(at: index!, to: priority)
+    }
 }
 
 extension PriorityQueue.ElementWrapper: CustomStringConvertible where Element: CustomStringConvertible {
