@@ -13,6 +13,14 @@ class BloomFilter<Element> {
     private var mask: [Bool]
     private var hashFunctions: [HashFunction]
     
+    var length: Int {
+        return mask.count
+    }
+    
+    var functionsCount: Int {
+        return hashFunctions.count
+    }
+    
     init(length: Int, hashFunctions: [HashFunction]) {
         self.mask = Array(repeating: false, count: length)
         self.hashFunctions = hashFunctions
@@ -44,4 +52,26 @@ class BloomFilter<Element> {
         return positions
     }
     
+}
+
+extension BloomFilter where Element == Int {
+    convenience init(length: Int, highestHashPrime: Int) {
+        self.init(length: length, hashFunctions: [])
+        self.hashFunctions = generatePrimeExponentials(highestExponent: highestHashPrime)
+    }
+    private func generatePrimeExponentials(highestExponent: Int) -> [HashFunction] {
+        var fs = [HashFunction]()
+        let primes = SieveOfEratosthenes.primes(through: highestExponent)
+        for e in primes {
+            let f: (Element) -> Int = { x in
+                var hash = 1
+                for _ in 0..<x {
+                    hash = (e * hash) % self.mask.count
+                }
+                return hash
+            }
+            fs.append(f)
+        }
+        return fs
+    }
 }
