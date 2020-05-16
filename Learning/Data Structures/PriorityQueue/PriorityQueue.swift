@@ -10,7 +10,7 @@ class PriorityQueue<Element, Priority> {
     
     private typealias Comparator = (ElementWrapper, ElementWrapper) -> Bool
     
-    private class ElementWrapper {
+    fileprivate class ElementWrapper {
         var value: Element
         var priority: Priority
         init(_ value: Element, _ priority: Priority) {
@@ -52,4 +52,15 @@ class PriorityQueue<Element, Priority> {
         heap.removeRoot().value
     }
     
+}
+
+extension PriorityQueue.ElementWrapper: CustomStringConvertible where Element: CustomStringConvertible {
+    var description: String {
+        value.description
+    }
+}
+extension PriorityQueue: CustomStringConvertible where Element: CustomStringConvertible {
+    var description: String {
+        heap.description
+    }
 }
