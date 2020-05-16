@@ -135,10 +135,16 @@ class Heap<Element> {
         assert(index < heap.count, "Index out of bounds")
         if index != heap.count - 1 {
             heap.swapAt(index, heap.count - 1)
-            heapifyDown(index)
-            heapifyUp(index)
+            let item = heap.removeLast()
+            if areInIncreasingOrder(heap[index], heap[(index - 1)/2]) {
+                heapifyUp(index)
+            } else {
+                heapifyDown(index)
+            }
+            return item
+        } else {
+            return heap.removeLast()
         }
-        return heap.removeLast()
     }
     
     // MARK: Heapify
