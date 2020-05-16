@@ -33,7 +33,7 @@ class BloomFilter<Element> {
         }
     }
     
-    func notContains(_ item: Element) -> Bool {
+    func definitelyNotContains(_ item: Element) -> Bool {
         let positions = bits(item)
         for i in positions {
             if !mask[i] {
