@@ -6,9 +6,12 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+// MARK: - Node
 class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     
     typealias Node = AVLTreeNode<Element>
+    
+    // MARK: Properties
     
     var value: Element
     
@@ -81,6 +84,8 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
         }
     }
     
+    // MARK: Methods
+    
     init(_ value: Element) {
         self.value = value
     }
@@ -125,6 +130,7 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     
 }
 
+// MARK: - Tree
 class AVLTree<Element: Comparable>: AnyBinaryTree {
     
     typealias Node = AVLTreeNode<Element>
@@ -137,27 +143,13 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
         add(node, at: &root)
     }
     private func add(_ node: Node, at startingNode: inout Node?) {
-        if startingNode != nil {
+        if var _ = startingNode {
             if node.value < startingNode!.value {
                 add(node, at: &startingNode!.leftChild)
-                if startingNode!.balance == -2 {
-                    if height(startingNode?.leftChild?.leftChild) >= height(startingNode?.leftChild?.rightChild) {
-                        startingNode = startingNode!.rotateRight()
-                    } else {
-                        startingNode!.leftChild = startingNode!.leftChild?.rotateLeft()
-                        startingNode = startingNode!.rotateRight()
-                    }
-                }
+                rebalance(&startingNode!)
             } else if node.value >= startingNode!.value {
                 add(node, at: &startingNode!.rightChild)
-                if startingNode!.balance == 2 {
-                    if height(startingNode?.rightChild?.rightChild) >= height(startingNode?.rightChild?.leftChild) {
-                        startingNode = startingNode!.rotateLeft()
-                    } else {
-                        startingNode!.rightChild = startingNode!.rightChild?.rotateRight()
-                        startingNode = startingNode!.rotateLeft()
-                    }
-                }
+                rebalance(&startingNode!)
             }
         } else {
             startingNode = node
@@ -170,6 +162,42 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
         root?.search(for: item)
     }
     
+    func remove(_ item: Element) {
+        guard let node = search(for: item) else {
+            assertionFailure("The item is not present in the tree")
+            return
+        }
+        remove(node, at: &root)
+        count -= 1
+    }
+    private func remove(_ node: Node, at startingNode: inout Node?) {
+        if var _ = node.leftChild, var _ = node.rightChild {
+            
+        } else if node.leftChild == nil && node.rightChild == nil {
+            
+        } else {
+            
+        }
+    }
+    
+    private func rebalance(_ node: inout Node) {
+        if node.balance == -2 {
+            if height(node.leftChild?.leftChild) >= height(node.leftChild?.rightChild) {
+                node = node.rotateRight()
+            } else {
+                node.leftChild = node.leftChild?.rotateLeft()
+                node = node.rotateRight()
+            }
+        } else if node.balance == 2 {
+            if height(node.rightChild?.rightChild) >= height(node.rightChild?.leftChild) {
+                node = node.rotateLeft()
+            } else {
+                node.rightChild = node.rightChild?.rotateRight()
+                node = node.rotateLeft()
+            }
+        }
+    }
+    
     private func height(_ node: Node?) -> Int {
         if let node = node {
             return node.height
@@ -180,6 +208,8 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
     
 }
 
+
+// MARK: - CustomStringConvertible
 extension AVLTreeNode: StringConvertibleBinarySubtree where Element: CustomStringConvertible {}
 extension AVLTreeNode: CustomStringConvertible where Element: CustomStringConvertible {}
 
