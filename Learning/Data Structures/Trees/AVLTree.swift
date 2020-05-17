@@ -6,6 +6,16 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+//var avl = AVLTree<Int>()
+//for i in 1...25 {
+//    avl.add(i)
+//}
+//print(avl)
+//for i in 1...25 {
+//    let g = avl.search(for: i)!.parent?.value
+//    print("\(i)'s parent: \(g ?? -99999)")
+//}
+
 // MARK: - Node
 class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     
@@ -104,8 +114,11 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     
     fileprivate func rotateRight() -> Node {
         let v = self.leftChild!
+        v.rightChild?.parent = self
         self.leftChild = v.rightChild
+        v.parent = self.parent
         v.rightChild = self
+        self.parent = v
         self.height = max(height(self.leftChild), height(self.rightChild)) + 1
         v.height = max(height(v.leftChild), height(v.rightChild)) + 1
         return v
@@ -113,8 +126,11 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     
     fileprivate func rotateLeft() -> Node {
         let v = self.rightChild!
+        v.leftChild?.parent = self
         self.rightChild = v.leftChild
+        v.parent = self.parent
         v.leftChild = self
+        self.parent = v
         self.height = max(height(self.leftChild), height(self.rightChild)) + 1
         v.height = max(height(v.leftChild), height(v.rightChild)) + 1
         return v
@@ -151,6 +167,7 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
                 add(node, at: &startingNode!.rightChild)
                 rebalance(&startingNode!)
             }
+            node.parent = startingNode
         } else {
             startingNode = node
         }
@@ -163,8 +180,9 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
     }
     
     func remove(_ item: Element) {
+        assert(!isEmpty, "The AVL tree is empty")
         guard let node = search(for: item) else {
-            assertionFailure("The item is not present in the tree")
+            assertionFailure("The item is not present in the AVL tree")
             return
         }
         remove(node, at: &root)
