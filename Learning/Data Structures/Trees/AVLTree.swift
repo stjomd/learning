@@ -6,14 +6,31 @@
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
+// TODO: Investigate this. Bug occurs on deletion only, all properties are set correctly before deleting.
+//let l = 15
 //var avl = AVLTree<Int>()
-//for i in 1...25 {
+//
+//var fff = [5, 13, 2, 6, 14, 3, 12, 7, 10, 4, 11, 8, 9, 15, 1]
+//
+//for i in fff {
 //    avl.add(i)
 //}
 //print(avl)
-//for i in 1...25 {
-//    let g = avl.search(for: i)!
-//    print("\(i)'s parent: \(g.parent?.value ?? -1)\t\t(correct: \(avl.correctParent(of: g)?.value ?? -1))")
+//print("@@@@@@@@@@@@@\n\n\n")
+//
+//for i in stride(from: avl.count, to: avl.count/2, by: -1) {
+//    print("Deleting \(i)")
+//    avl.remove(i)
+//    print(avl)
+//    print("///////\n\n")
+//}
+//
+//for j in 1...avl.count {
+//    let g = avl.search(for: j)!
+//    let p1 = g.parent?.value ?? -1
+//    let pOK = avl.correctParent(of: g)?.value ?? -1
+//    assert(p1 == pOK, "nnn")
+//    print("\(j)'s parent: \(p1)\t\t(\((pOK == p1) ? "GOOD" : "WRONG, parent = \(pOK)"))")
 //}
 
 // MARK: - Node
@@ -25,9 +42,17 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     
     var value: Element
     
-    var leftChild: Node?
+    var leftChild: Node? {
+        willSet {
+            newValue?.parent = self
+        }
+    }
     
-    var rightChild: Node?
+    var rightChild: Node? {
+        willSet {
+            newValue?.parent = self
+        }
+    }
     
     var parent: Node?
     
@@ -114,11 +139,8 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     
     fileprivate func rotateRight() -> Node {
         let v = self.leftChild!
-        v.rightChild?.parent = self
         self.leftChild = v.rightChild
-        v.parent = self.parent
         v.rightChild = self
-        self.parent = v
         self.height = max(height(self.leftChild), height(self.rightChild)) + 1
         v.height = max(height(v.leftChild), height(v.rightChild)) + 1
         return v
@@ -126,11 +148,8 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     
     fileprivate func rotateLeft() -> Node {
         let v = self.rightChild!
-        v.leftChild?.parent = self
         self.rightChild = v.leftChild
-        v.parent = self.parent
         v.leftChild = self
-        self.parent = v
         self.height = max(height(self.leftChild), height(self.rightChild)) + 1
         v.height = max(height(v.leftChild), height(v.rightChild)) + 1
         return v
@@ -157,6 +176,8 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
     func add(_ item: Element) {
         let node = Node(item)
         add(node, at: &root)
+        root?.parent = nil
+        count += 1
     }
     private func add(_ node: Node, at startingNode: inout Node?) {
         if var _ = startingNode {
@@ -167,12 +188,10 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
                 add(node, at: &startingNode!.rightChild)
                 rebalance(&startingNode!)
             }
-            node.parent = startingNode
         } else {
             startingNode = node
         }
         startingNode!.height = max(height(startingNode!.leftChild), height(startingNode!.rightChild)) + 1
-        count += 1
     }
     
     func search(for item: Element) -> Node? {
@@ -196,7 +215,7 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
                 } else if parent.rightChild === node {
                     node.parent?.rightChild = nil
                 } else {
-                    assertionFailure("error")
+                    assertionFailure("Invalid tree")
                 }
                 rebalance(&node.parent!)
             } else {
