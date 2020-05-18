@@ -12,8 +12,8 @@
 //}
 //print(avl)
 //for i in 1...25 {
-//    let g = avl.search(for: i)!.parent?.value
-//    print("\(i)'s parent: \(g ?? -99999)")
+//    let g = avl.search(for: i)!
+//    print("\(i)'s parent: \(g.parent?.value ?? -1)\t\t(correct: \(avl.correctParent(of: g)?.value ?? -1))")
 //}
 
 // MARK: - Node
@@ -185,16 +185,31 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
             assertionFailure("The item is not present in the AVL tree")
             return
         }
-        remove(node, at: &root)
+        remove(node)
         count -= 1
     }
-    private func remove(_ node: Node, at startingNode: inout Node?) {
-        if var _ = node.leftChild, var _ = node.rightChild {
-            
-        } else if node.leftChild == nil && node.rightChild == nil {
-            
+    private func remove(_ node: Node) {
+        if node.leftChild == nil && node.rightChild == nil {
+            if let parent = node.parent {
+                if parent.leftChild === node {
+                    node.parent?.leftChild = nil
+                } else if parent.rightChild === node {
+                    node.parent?.rightChild = nil
+                } else {
+                    assertionFailure("error")
+                }
+                rebalance(&node.parent!)
+            } else {
+                root = nil
+            }
         } else {
-            
+            if let predecessor = node.predecessor {
+                node.value = predecessor.value
+                remove(predecessor)
+            } else if let successor = node.successor {
+                node.value = successor.value
+                remove(successor)
+            }
         }
     }
     
@@ -222,6 +237,20 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
         } else {
             return -1
         }
+    }
+    
+    func correctParent(of node: Node) -> Node? {
+        var prev: Node? = nil
+        var currentNode: Node? = root
+        while let current = currentNode, current.value != node.value {
+            prev = currentNode
+            if current.value > node.value {
+                currentNode = currentNode?.leftChild
+            } else {
+                currentNode = currentNode?.rightChild
+            }
+        }
+        return prev
     }
     
 }
