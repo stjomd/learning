@@ -21,9 +21,18 @@ class BinarySearchTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     /// If your type groups several attributes, make it conform to `Comparable` and implement the `<` operator by comparing against the appropriate attribute. This `key` will then contain your entire object, but sorting will be performed by the attribute of your choice.
     var value: Element
     /// The left child of this node.
-    var leftChild: Node?
+    var leftChild: Node? {
+        willSet {
+            // TODO: Modify add() to not set parent manually
+            newValue?.parent = self
+        }
+    }
     /// The right child of this node.
-    var rightChild: Node?
+    var rightChild: Node? {
+        willSet {
+            newValue?.parent = self
+        }
+    }
     /// The parent node of this node.
     weak var parent: Node?
     
