@@ -13,7 +13,7 @@ protocol AnyBinaryTreeNode {
     var value: Element { get set }
     var leftChild: Node? { get set }
     var rightChild: Node? { get set }
-    var parent: Node? { get set }
+    var parent: Node? { get }
 }
 
 // MARK: - Tree

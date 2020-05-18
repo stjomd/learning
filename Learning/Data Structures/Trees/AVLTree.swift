@@ -54,7 +54,7 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
         }
     }
     
-    var parent: Node?
+    fileprivate(set) var parent: Node?
     
     var height: Int = 0
     
