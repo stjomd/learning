@@ -14,9 +14,17 @@ class BinaryTreeNode<Element>: AnyBinaryTreeNode {
     /// The value of the node.
     var value: Element
     /// The left child of the node.
-    var leftChild: Node?
+    var leftChild: Node? {
+        willSet {
+            newValue?.parent = self
+        }
+    }
     /// The right child of the node.
-    var rightChild: Node?
+    var rightChild: Node? {
+        willSet {
+            newValue?.parent = self
+        }
+    }
     /// The parent node of the node.
     weak var parent: Node?
     
