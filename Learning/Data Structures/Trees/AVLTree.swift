@@ -59,6 +59,9 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
     var height: Int = 0
     
     var balance: Int {
+        if abs(height(rightChild) - height(leftChild)) >= 3 {
+            assertionFailure("3bal")
+        }
         return height(rightChild) - height(leftChild)
     }
     
@@ -137,6 +140,8 @@ class AVLTreeNode<Element: Comparable>: AnyBinaryTreeNode {
         return currentNode
     }
     
+    // MARK: Rotations
+    
     fileprivate func rotateRight() -> Node {
         let v = self.leftChild!
         self.leftChild = v.rightChild
@@ -170,8 +175,12 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
     
     typealias Node = AVLTreeNode<Element>
     
+    // MARK: Properties
+    
     private(set) var root: Node?
     private(set) var count: Int = 0
+    
+    // MARK: Methods
     
     func add(_ item: Element) {
         let node = Node(item)
@@ -217,6 +226,11 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
                 } else {
                     assertionFailure("Invalid tree")
                 }
+//                var current: Node? = parent
+//                while let _ = current {
+//                    rebalance(&current!)
+//                    current = current?.parent
+//                }
                 rebalance(&node.parent!)
             } else {
                 root = nil
@@ -231,6 +245,8 @@ class AVLTree<Element: Comparable>: AnyBinaryTree {
             }
         }
     }
+    
+    // MARK: Rebalancing
     
     private func rebalance(_ node: inout Node) {
         if node.balance == -2 {
