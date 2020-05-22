@@ -102,7 +102,7 @@ extension DirectedGraph: CustomStringConvertible where Element: CustomStringConv
     var description: String {
         var str = "<< Graph:"
         for v in adjacencyList {
-            var vstr = "\n\(v.key.description) → ["
+            var vstr = "\n  \(v.key.description) → ["
             for u in adjacencyList[v.key]! {
                 vstr.append("\(u.key.description), ")
             }
