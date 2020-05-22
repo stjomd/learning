@@ -20,7 +20,7 @@ class Graph<Element: Hashable> {
     }
     
     // aL[i] returns a list of vertices that vertex i is adjacent to
-    var adjacencyList: [Element: [Element: Double?]] = [:]
+    private var adjacencyList: [Element: [Element: Double?]] = [:]
     
     private(set) var vertexCount = 0
     private(set) var edgeCount = 0
@@ -29,15 +29,29 @@ class Graph<Element: Hashable> {
         return vertexCount == 0
     }
     
+    func neighbors(of vertex: Element) -> [Element] {
+        var array = [Element]()
+        for neighbor in adjacencyList[vertex]! {
+            array.append(neighbor.key)
+        }
+        return array
+    }
+    
+    func add(_ item: Element) {
+        if !hasVertex(item) {
+            adjacencyList[item] = [:]
+            vertexCount += 1
+        }
+    }
     func add(_ item: Element, adjacentWith: Element...) {
         add(item, adjacentWith: adjacentWith)
     }
-    func add(_ item: Element, adjacentWith: [Element] = []) {
+    func add(_ item: Element, adjacentWith: [Element]) {
         add(item)
         for vertex in adjacentWith {
             if adjacencyList[item]![vertex] == nil {
                 adjacencyList[item]![vertex] = 1
-                if adjacencyList[vertex] == nil {
+                if !hasVertex(vertex) {
                     adjacencyList[vertex] = [:]
                     vertexCount += 1
                 }
@@ -46,24 +60,32 @@ class Graph<Element: Hashable> {
             }
         }
     }
-    func add(_ item: Element) {
-        if adjacencyList[item] == nil {
-            adjacencyList[item] = [:]
-            vertexCount += 1
-        }
+    
+    func removeEdge(_ from: Element, _ to: Element) {
+        precondition(hasVertex(from), "The vertex is not present in the graph")
+        precondition(hasVertex(to), "The vertex is not present in the graph")
+        adjacencyList[from]![to] = nil
+        adjacencyList[to]![from] = nil
+        edgeCount -= 1
     }
     
-    func remove(edge vertices: (Element, Element)) {
-        precondition(adjacencyList[vertices.0] != nil, "The vertex is not present in the graph")
-        precondition(adjacencyList[vertices.1] != nil, "The vertex is not present in the graph")
-        adjacencyList[vertices.0]![vertices.1] = nil
-        adjacencyList[vertices.1]![vertices.0] = nil
+    func removeVertex(_ vertex: Element) {
+        let neighbs = neighbors(of: vertex)
+        for neigbor in neighbs {
+            removeEdge(vertex, neigbor)
+        }
+        adjacencyList[vertex] = nil
+        vertexCount -= 1
     }
     
     func hasEdge(_ from: Element, _ to: Element) -> Bool {
-        precondition(adjacencyList[from] != nil, "The vertex is not present in the graph")
-        precondition(adjacencyList[to] != nil, "The vertex is not present in the graph")
+        precondition(hasVertex(from), "The vertex is not present in the graph")
+        precondition(hasVertex(to), "The vertex is not present in the graph")
         return adjacencyList[from]![to] != nil && adjacencyList[to]![from] != nil
+    }
+    
+    func hasVertex(_ vertex: Element) -> Bool {
+        return adjacencyList[vertex] != nil
     }
     
 }
