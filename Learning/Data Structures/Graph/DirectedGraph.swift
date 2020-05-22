@@ -51,10 +51,7 @@ class DirectedGraph<Element: Hashable> {
             if !hasVertex(vertex) {
                 add(vertex)
             }
-            if !hasEdge(item, vertex) {
-                adjacencyList[item]![vertex] = 1
-                edgeCount += 1
-            }
+            addEdge(item, vertex)
         }
     }
     func add(_ item: Element, adjacentWith: Element...) {
@@ -64,7 +61,10 @@ class DirectedGraph<Element: Hashable> {
     func addEdge(_ from: Element, _ to: Element) {
         precondition(hasVertex(from), "The vertex is not present in the graph")
         precondition(hasVertex(to), "The vertex is not present in the graph")
-        add(from, adjacentWith: to)
+        if from != to {
+            adjacencyList[from]![to] = 1
+            edgeCount += 1
+        }
     }
     
     func removeEdge(_ from: Element, _ to: Element) {
@@ -100,9 +100,9 @@ class DirectedGraph<Element: Hashable> {
 
 extension DirectedGraph: CustomStringConvertible where Element: CustomStringConvertible {
     var description: String {
-        var str = "<<Directed, unweighted graph"
+        var str = "<< Graph:"
         for v in adjacencyList {
-            var vstr = "\n\t\(v.key.description) → ["
+            var vstr = "\n\(v.key.description) → ["
             for u in adjacencyList[v.key]! {
                 vstr.append("\(u.key.description), ")
             }
