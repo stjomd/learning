@@ -1,25 +1,13 @@
 //
-//  Graph.swift
+//  DirectedGraph.swift
 //  Learning
 //
 //  Created by Artem Zhukov on 22.05.20.
 //  Copyright © 2020 Artem Zhukov. All rights reserved.
 //
 
-class Graph<Element: Hashable> {
+class DirectedGraph<Element: Hashable> {
     
-    private typealias VertexID = Int
-    
-    private class Vertex {
-        var id: Int
-        var value: Element
-        init(id: Int, value: Element) {
-            self.id = id
-            self.value = value
-        }
-    }
-    
-    // aL[i] returns a list of vertices that vertex i is adjacent to
     private var adjacencyList: [Element: [Element: Double?]] = [:]
     
     private(set) var vertexCount = 0
@@ -30,6 +18,7 @@ class Graph<Element: Hashable> {
     }
     
     func neighbors(of vertex: Element) -> [Element] {
+        precondition(hasVertex(vertex), "The vertex is not present in the graph")
         var array = [Element]()
         for neighbor in adjacencyList[vertex]! {
             array.append(neighbor.key)
@@ -51,7 +40,6 @@ class Graph<Element: Hashable> {
             }
             if !hasEdge(item, vertex) {
                 adjacencyList[item]![vertex] = 1
-                adjacencyList[vertex]![item] = 1
                 edgeCount += 1
             }
         }
@@ -70,7 +58,6 @@ class Graph<Element: Hashable> {
         precondition(hasVertex(from), "The vertex is not present in the graph")
         precondition(hasVertex(to), "The vertex is not present in the graph")
         adjacencyList[from]![to] = nil
-        adjacencyList[to]![from] = nil
         edgeCount -= 1
     }
     
@@ -87,7 +74,7 @@ class Graph<Element: Hashable> {
     func hasEdge(_ from: Element, _ to: Element) -> Bool {
         precondition(hasVertex(from), "The vertex is not present in the graph")
         precondition(hasVertex(to), "The vertex is not present in the graph")
-        return adjacencyList[from]![to] != nil && adjacencyList[to]![from] != nil
+        return adjacencyList[from]![to] != nil
     }
     
     func hasVertex(_ vertex: Element) -> Bool {
@@ -96,9 +83,9 @@ class Graph<Element: Hashable> {
     
 }
 
-extension Graph: CustomStringConvertible where Element: CustomStringConvertible {
+extension DirectedGraph: CustomStringConvertible where Element: CustomStringConvertible {
     var description: String {
-        var str = "<<Undirected, unweighted graph; |V| = \(vertexCount); |E| = \(edgeCount);"
+        var str = "<<Directed, unweighted graph"
         for v in adjacencyList {
             var vstr = "\n\t\(v.key.description) → ["
             for u in adjacencyList[v.key]! {
