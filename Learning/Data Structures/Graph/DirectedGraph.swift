@@ -17,11 +17,24 @@ class DirectedGraph<Element: Hashable> {
         return vertexCount == 0
     }
     
-    func neighbors(of vertex: Element) -> [Element] {
+    func predecessors(of vertex: Element) -> [Element] {
         precondition(hasVertex(vertex), "The vertex is not present in the graph")
         var array = [Element]()
-        for neighbor in adjacencyList[vertex]! {
-            array.append(neighbor.key)
+        for (item, _) in adjacencyList {
+            if let links = adjacencyList[item] {
+                for (link, _) in links where link == vertex {
+                    array.append(item)
+                }
+            }
+        }
+        return array
+    }
+    
+    func successors(of vertex: Element) -> [Element] {
+        precondition(hasVertex(vertex), "The vertex is not present in the graph")
+        var array = [Element]()
+        for successor in adjacencyList[vertex]! {
+            array.append(successor.key)
         }
         return array
     }
@@ -63,9 +76,11 @@ class DirectedGraph<Element: Hashable> {
     
     func removeVertex(_ vertex: Element) {
         precondition(hasVertex(vertex), "The vertex is not present in the graph")
-        let neighbs = neighbors(of: vertex)
-        for neigbor in neighbs {
-            removeEdge(vertex, neigbor)
+        for item in predecessors(of: vertex) {
+            removeEdge(item, vertex)
+        }
+        for item in successors(of: vertex) {
+            removeEdge(vertex, item)
         }
         adjacencyList[vertex] = nil
         vertexCount -= 1
