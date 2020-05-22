@@ -43,22 +43,27 @@ class Graph<Element: Hashable> {
             vertexCount += 1
         }
     }
-    func add(_ item: Element, adjacentWith: Element...) {
-        add(item, adjacentWith: adjacentWith)
-    }
     func add(_ item: Element, adjacentWith: [Element]) {
         add(item)
-        for vertex in adjacentWith {
-            if adjacencyList[item]![vertex] == nil {
+        for vertex in adjacentWith where vertex != item {
+            if !hasVertex(vertex) {
+                add(vertex)
+            }
+            if !hasEdge(item, vertex) {
                 adjacencyList[item]![vertex] = 1
-                if !hasVertex(vertex) {
-                    adjacencyList[vertex] = [:]
-                    vertexCount += 1
-                }
                 adjacencyList[vertex]![item] = 1
                 edgeCount += 1
             }
         }
+    }
+    func add(_ item: Element, adjacentWith: Element...) {
+        add(item, adjacentWith: adjacentWith)
+    }
+    
+    func addEdge(_ from: Element, _ to: Element) {
+        precondition(hasVertex(from), "The vertex is not present in the graph")
+        precondition(hasVertex(to), "The vertex is not present in the graph")
+        add(from, adjacentWith: to)
     }
     
     func removeEdge(_ from: Element, _ to: Element) {
@@ -70,6 +75,7 @@ class Graph<Element: Hashable> {
     }
     
     func removeVertex(_ vertex: Element) {
+        precondition(hasVertex(vertex), "The vertex is not present in the graph")
         let neighbs = neighbors(of: vertex)
         for neigbor in neighbs {
             removeEdge(vertex, neigbor)
@@ -92,7 +98,7 @@ class Graph<Element: Hashable> {
 
 extension Graph: CustomStringConvertible where Element: CustomStringConvertible {
     var description: String {
-        var str = "<<Undirected, unweighted graph"
+        var str = "<<Undirected, unweighted graph; |V| = \(vertexCount); |E| = \(edgeCount);"
         for v in adjacencyList {
             var vstr = "\n\t\(v.key.description) → ["
             for u in adjacencyList[v.key]! {
