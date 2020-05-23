@@ -27,7 +27,7 @@ class UndirectedGraph<Element: Hashable>: DirectedGraph<Element> {
         super.add(vertex: vertex)
         for i in vertices.indices {
             super.add(vertex: vertices[i])
-            addEdge(vertex, vertices[i], weight: weights?[i] ?? 1.0)
+            connect(vertex, to: vertices[i], weight: weights?[i] ?? 1.0)
         }
     }
     
@@ -35,9 +35,9 @@ class UndirectedGraph<Element: Hashable>: DirectedGraph<Element> {
         super.add(vertex: vertex, adjacentWith: vertices, weights: nil)
     }
     
-    override func addEdge(_ from: Element, _ to: Element, weight: Weight = 1.0) {
-        super.addEdge(from, to, weight: weight)
-        super.addEdge(to, from, weight: weight)
+    override func connect(_ startVertex: Element, to endVertex: Element, weight: Weight = 1.0) {
+        super.connect(startVertex, to: endVertex, weight: weight)
+        super.connect(endVertex, to: startVertex, weight: weight)
     }    
     
     override func removeEdge(_ from: Element, _ to: Element) {

@@ -67,18 +67,18 @@ class DirectedGraph<Element: Hashable> {
             if !hasVertex(vertices[i]) {
                 add(vertex: vertices[i])
             }
-            addEdge(vertex, vertices[i], weight: weights?[i] ?? 1.0)
+            connect(vertex, to: vertices[i], weight: weights?[i] ?? 1.0)
         }
     }
     func add(vertex: Element, adjacentWith vertices: Element...) {
         add(vertex: vertex, adjacentWith: vertices, weights: nil)
     }
     
-    func addEdge(_ from: Element, _ to: Element, weight: Weight = 1.0) {
-        precondition(hasVertex(from), "The vertex is not present in the graph")
-        precondition(hasVertex(to), "The vertex is not present in the graph")
-        if from != to {
-            adjacencyList[from]![to] = weight
+    func connect(_ startVertex: Element, to endVertex: Element, weight: Weight = 1.0) {
+        precondition(hasVertex(startVertex), "The vertex is not present in the graph")
+        precondition(hasVertex(endVertex), "The vertex is not present in the graph")
+        if startVertex != endVertex {
+            adjacencyList[startVertex]![endVertex] = weight
             edgeCount += 1
         }
     }
