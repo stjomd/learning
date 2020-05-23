@@ -8,8 +8,10 @@
 
 class DirectedGraph<Element: Hashable> {
     
+    typealias Weight = Double
+    
     // MARK: - Properties
-    private var adjacencyList: [Element: [Element: Double]] = [:]
+    private var adjacencyList: [Element: [Element: Weight]] = [:]
     
     private(set) var vertexCount = 0
     private(set) var edgeCount = 0
@@ -50,30 +52,33 @@ class DirectedGraph<Element: Hashable> {
     }
     
     // MARK: Addition
-    func add(_ item: Element) {
-        if !hasVertex(item) {
-            adjacencyList[item] = [:]
+    func add(vertex: Element) {
+        if !hasVertex(vertex) {
+            adjacencyList[vertex] = [:]
             vertexCount += 1
         }
     }
-    func add(_ item: Element, adjacentWith: [Element]) {
-        add(item)
-        for vertex in adjacentWith where vertex != item {
-            if !hasVertex(vertex) {
-                add(vertex)
+    func add(vertex: Element, adjacentWith vertices: [Element], weights: [Weight]? = nil) {
+        if let _ = weights {
+            precondition(weights!.count == vertices.count, "The array of weights must be equal in length to the array of vertices")
+        }
+        add(vertex: vertex)
+        for i in vertices.indices where vertices[i] != vertex {
+            if !hasVertex(vertices[i]) {
+                add(vertex: vertices[i])
             }
-            addEdge(item, vertex)
+            addEdge(vertex, vertices[i], weight: weights?[i] ?? 1.0)
         }
     }
-    func add(_ item: Element, adjacentWith: Element...) {
-        add(item, adjacentWith: adjacentWith)
+    func add(vertex: Element, adjacentWith vertices: Element...) {
+        add(vertex: vertex, adjacentWith: vertices, weights: nil)
     }
     
-    func addEdge(_ from: Element, _ to: Element) {
+    func addEdge(_ from: Element, _ to: Element, weight: Weight = 1.0) {
         precondition(hasVertex(from), "The vertex is not present in the graph")
         precondition(hasVertex(to), "The vertex is not present in the graph")
         if from != to {
-            adjacencyList[from]![to] = 1
+            adjacencyList[from]![to] = weight
             edgeCount += 1
         }
     }
@@ -99,7 +104,7 @@ class DirectedGraph<Element: Hashable> {
     }
     
     // MARK: Miscellaneous
-    func weight(_ from: Element, _ to: Element) -> Double {
+    func weight(_ from: Element, _ to: Element) -> Weight {
         return adjacencyList[from]![to]!
     }
     
