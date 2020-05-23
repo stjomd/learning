@@ -8,13 +8,21 @@
 
 class DirectedGraph<Element: Hashable> {
     
-    private var adjacencyList: [Element: [Element: Double?]] = [:]
+    private var adjacencyList: [Element: [Element: Double]] = [:]
     
     private(set) var vertexCount = 0
     private(set) var edgeCount = 0
     
     var isEmpty: Bool {
         return vertexCount == 0
+    }
+    
+    var vertices: [Element] {
+        var ans = [Element]()
+        for (vertex, _) in adjacencyList {
+            ans.append(vertex)
+        }
+        return ans
     }
     
     func predecessors(of vertex: Element) -> [Element] {
@@ -84,6 +92,10 @@ class DirectedGraph<Element: Hashable> {
         }
         adjacencyList[vertex] = nil
         vertexCount -= 1
+    }
+    
+    func weight(_ from: Element, _ to: Element) -> Double {
+        return adjacencyList[from]![to]!
     }
     
     func hasEdge(_ from: Element, _ to: Element) -> Bool {
