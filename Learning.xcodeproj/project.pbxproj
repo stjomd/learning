@@ -113,12 +113,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		66150F482478A1820049731A /* Dijkstra */ = {
+		66150F482478A1820049731A /* Graphs */ = {
 			isa = PBXGroup;
 			children = (
 				66150F492478A19F0049731A /* Dijkstra.swift */,
 			);
-			path = Dijkstra;
+			path = Graphs;
 			sourceTree = "<group>";
 		};
 		662377D924647EDB00EF35C0 /* SubsetSum */ = {
@@ -224,7 +224,7 @@
 		669E0C272451C609003DD940 /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
-				66150F482478A1820049731A /* Dijkstra */,
+				66150F482478A1820049731A /* Graphs */,
 				662377D924647EDB00EF35C0 /* SubsetSum */,
 				668C35C024606A1E008E2D2C /* BinarySearchTreeReconstruction */,
 				668C35B6245DF04C008E2D2C /* MaximumSubarray */,
