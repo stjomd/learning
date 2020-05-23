@@ -8,11 +8,13 @@
 
 extension DirectedGraph {
     
+    // MARK: DijkstraSolution
+    
     struct DijkstraSolution {
         
-        fileprivate(set) var startVertex: Element
-        fileprivate(set) var distances: [Element: Double]
-        fileprivate var predecessors: [Element: Element?]
+        private(set) var startVertex: Element
+        private var distances: [Element: Double]
+        private var predecessors: [Element: Element?]
         
         fileprivate init(startVertex: Element, distances: [Element: Double], predecessors: [Element: Element?]) {
             self.startVertex = startVertex; self.distances = distances; self.predecessors = predecessors
@@ -37,6 +39,8 @@ extension DirectedGraph {
         }
         
     }
+    
+    // MARK: - Methods
         
     func dijkstra(from startVertex: Element) -> DijkstraSolution {
         var distance: [Element: Double] = [startVertex: 0]
@@ -80,6 +84,9 @@ extension DirectedGraph {
         
         while !queue.isEmpty {
             let u = queue.dequeue()
+            if u == endVertex {
+                break
+            }
             for v in successors(of: u) {
                 let alt = distance[u]! + weight(u, v)
                 if alt < distance[v]! {
