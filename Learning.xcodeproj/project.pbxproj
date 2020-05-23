@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		66150F4724787BCC0049731A /* UndirectedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66150F4624787BCC0049731A /* UndirectedGraph.swift */; };
+		66150F4A2478A19F0049731A /* Dijkstra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66150F492478A19F0049731A /* Dijkstra.swift */; };
 		661A563F246B097D00FFDF7B /* AVLTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A563E246B097D00FFDF7B /* AVLTree.swift */; };
 		662377DB2464829100EF35C0 /* SubsetSum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662377DA2464829100EF35C0 /* SubsetSum.swift */; };
 		662377DE2465FA0100EF35C0 /* Heap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662377DD2465FA0100EF35C0 /* Heap.swift */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		66150F4624787BCC0049731A /* UndirectedGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndirectedGraph.swift; sourceTree = "<group>"; };
+		66150F492478A19F0049731A /* Dijkstra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dijkstra.swift; sourceTree = "<group>"; };
 		661A563E246B097D00FFDF7B /* AVLTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLTree.swift; sourceTree = "<group>"; };
 		662377DA2464829100EF35C0 /* SubsetSum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsetSum.swift; sourceTree = "<group>"; };
 		662377DC2464965300EF35C0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66150F482478A1820049731A /* Dijkstra */ = {
+			isa = PBXGroup;
+			children = (
+				66150F492478A19F0049731A /* Dijkstra.swift */,
+			);
+			path = Dijkstra;
+			sourceTree = "<group>";
+		};
 		662377D924647EDB00EF35C0 /* SubsetSum */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +224,7 @@
 		669E0C272451C609003DD940 /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
+				66150F482478A1820049731A /* Dijkstra */,
 				662377D924647EDB00EF35C0 /* SubsetSum */,
 				668C35C024606A1E008E2D2C /* BinarySearchTreeReconstruction */,
 				668C35B6245DF04C008E2D2C /* MaximumSubarray */,
@@ -396,6 +407,7 @@
 				664BAA4D24708D0300BBA6E2 /* BloomFilter.swift in Sources */,
 				66150F4724787BCC0049731A /* UndirectedGraph.swift in Sources */,
 				669E0C352451DCF6003DD940 /* SieveOfEratosthenes.swift in Sources */,
+				66150F4A2478A19F0049731A /* Dijkstra.swift in Sources */,
 				662377E22467296600EF35C0 /* AnyBinaryTree.swift in Sources */,
 				662377DE2465FA0100EF35C0 /* Heap.swift in Sources */,
 				66EAB85424538FD900593625 /* MergeSort.swift in Sources */,
