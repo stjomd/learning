@@ -1,5 +1,5 @@
 //
-//  LinkedList.swift
+//  DoublyLinkedList.swift
 //  Learning
 //
 //  Created by Artem Zhukov on 24.04.20.

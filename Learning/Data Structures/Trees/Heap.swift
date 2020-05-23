@@ -1,5 +1,5 @@
 //
-//  MaxHeap.swift
+//  Heap.swift
 //  Learning
 //
 //  Created by Artem Zhukov on 08.05.20.

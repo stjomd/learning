@@ -1,5 +1,5 @@
 //
-//  MaximumSubarray.swift
+//  MaximumSubarrayDivideAndConquer.swift
 //  Learning
 //
 //  Created by Artem Zhukov on 02.05.20.
