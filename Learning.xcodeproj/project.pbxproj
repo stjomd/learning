@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		66150F4724787BCC0049731A /* UndirectedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66150F4624787BCC0049731A /* UndirectedGraph.swift */; };
 		66150F4A2478A19F0049731A /* Dijkstra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66150F492478A19F0049731A /* Dijkstra.swift */; };
+		66150F4C2478B7C90049731A /* BogoSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66150F4B2478B7C90049731A /* BogoSort.swift */; };
 		661A563F246B097D00FFDF7B /* AVLTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661A563E246B097D00FFDF7B /* AVLTree.swift */; };
 		662377DB2464829100EF35C0 /* SubsetSum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662377DA2464829100EF35C0 /* SubsetSum.swift */; };
 		662377DE2465FA0100EF35C0 /* Heap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662377DD2465FA0100EF35C0 /* Heap.swift */; };
@@ -55,6 +56,7 @@
 /* Begin PBXFileReference section */
 		66150F4624787BCC0049731A /* UndirectedGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndirectedGraph.swift; sourceTree = "<group>"; };
 		66150F492478A19F0049731A /* Dijkstra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dijkstra.swift; sourceTree = "<group>"; };
+		66150F4B2478B7C90049731A /* BogoSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BogoSort.swift; sourceTree = "<group>"; };
 		661A563E246B097D00FFDF7B /* AVLTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLTree.swift; sourceTree = "<group>"; };
 		662377DA2464829100EF35C0 /* SubsetSum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsetSum.swift; sourceTree = "<group>"; };
 		662377DC2464965300EF35C0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				669E0C3A2452049F003DD940 /* Sorting.swift */,
+				66150F4B2478B7C90049731A /* BogoSort.swift */,
 				66EAB840245220B900593625 /* BubbleSort.swift */,
 				66EAB842245220D400593625 /* InsertionSort.swift */,
 				66EAB845245263E700593625 /* SelectionSort.swift */,
@@ -416,6 +419,7 @@
 				669E0C212451C5FF003DD940 /* main.swift in Sources */,
 				66EAB8672456706000593625 /* CountSort.swift in Sources */,
 				66EAB843245220D400593625 /* InsertionSort.swift in Sources */,
+				66150F4C2478B7C90049731A /* BogoSort.swift in Sources */,
 				66EAB846245263E700593625 /* SelectionSort.swift in Sources */,
 				669E0C312451DAEE003DD940 /* Stack.swift in Sources */,
 				668C35BB245E066C008E2D2C /* MaximumSubarrayKadane.swift in Sources */,
