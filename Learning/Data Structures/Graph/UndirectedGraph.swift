@@ -40,9 +40,9 @@ class UndirectedGraph<Element: Hashable>: DirectedGraph<Element> {
         super.connect(endVertex, to: startVertex, weight: weight)
     }    
     
-    override func removeEdge(_ from: Element, _ to: Element) {
-        super.removeEdge(from, to)
-        super.removeEdge(to, from)
+    override func disconnect(_ from: Element, _ to: Element) {
+        super.disconnect(from, to)
+        super.disconnect(to, from)
     }
     
 }

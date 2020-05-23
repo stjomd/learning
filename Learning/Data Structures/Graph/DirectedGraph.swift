@@ -32,7 +32,7 @@ class DirectedGraph<Element: Hashable> {
     
     // MARK: - Methods
     func predecessors(of vertex: Element) -> [Element] {
-        precondition(hasVertex(vertex), "The vertex is not present in the graph")
+        precondition(has(vertex: vertex), "The vertex is not present in the graph")
         var array = [Element]()
         for (item, _) in adjacencyList {
             if let links = adjacencyList[item] {
@@ -45,7 +45,7 @@ class DirectedGraph<Element: Hashable> {
     }
     
     func successors(of vertex: Element) -> [Element] {
-        precondition(hasVertex(vertex), "The vertex is not present in the graph")
+        precondition(has(vertex: vertex), "The vertex is not present in the graph")
         var array = [Element]()
         for successor in adjacencyList[vertex]! {
             array.append(successor.key)
@@ -55,7 +55,7 @@ class DirectedGraph<Element: Hashable> {
     
     // MARK: Addition
     func add(vertex: Element) {
-        if !hasVertex(vertex) {
+        if !has(vertex: vertex) {
             adjacencyList[vertex] = [:]
             vertexCount += 1
         }
@@ -66,7 +66,7 @@ class DirectedGraph<Element: Hashable> {
         }
         add(vertex: vertex)
         for i in vertices.indices where vertices[i] != vertex {
-            if !hasVertex(vertices[i]) {
+            if !has(vertex: vertices[i]) {
                 add(vertex: vertices[i])
             }
             connect(vertex, to: vertices[i], weight: weights?[i] ?? 1.0)
@@ -77,8 +77,8 @@ class DirectedGraph<Element: Hashable> {
     }
     
     func connect(_ startVertex: Element, to endVertex: Element, weight: Weight = 1.0) {
-        precondition(hasVertex(startVertex), "The vertex is not present in the graph")
-        precondition(hasVertex(endVertex), "The vertex is not present in the graph")
+        precondition(has(vertex: startVertex), "The vertex is not present in the graph")
+        precondition(has(vertex: endVertex), "The vertex is not present in the graph")
         if startVertex != endVertex {
             adjacencyList[startVertex]![endVertex] = weight
             edgeCount += 1
@@ -86,20 +86,20 @@ class DirectedGraph<Element: Hashable> {
     }
     
     // MARK: Removal
-    func removeEdge(_ from: Element, _ to: Element) {
-        precondition(hasVertex(from), "The vertex is not present in the graph")
-        precondition(hasVertex(to), "The vertex is not present in the graph")
-        adjacencyList[from]![to] = nil
+    func disconnect(_ startVertex: Element, _ endVertex: Element) {
+        precondition(has(vertex: startVertex), "The vertex is not present in the graph")
+        precondition(has(vertex: endVertex), "The vertex is not present in the graph")
+        adjacencyList[startVertex]![endVertex] = nil
         edgeCount -= 1
     }
     
-    func removeVertex(_ vertex: Element) {
-        precondition(hasVertex(vertex), "The vertex is not present in the graph")
+    func remove(vertex: Element) {
+        precondition(has(vertex: vertex), "The vertex is not present in the graph")
         for item in predecessors(of: vertex) {
-            removeEdge(item, vertex)
+            disconnect(item, vertex)
         }
         for item in successors(of: vertex) {
-            removeEdge(vertex, item)
+            disconnect(vertex, item)
         }
         adjacencyList[vertex] = nil
         vertexCount -= 1
@@ -110,13 +110,13 @@ class DirectedGraph<Element: Hashable> {
         return adjacencyList[from]![to]!
     }
     
-    func hasEdge(_ from: Element, _ to: Element) -> Bool {
-        precondition(hasVertex(from), "The vertex is not present in the graph")
-        precondition(hasVertex(to), "The vertex is not present in the graph")
-        return adjacencyList[from]![to] != nil
+    func has(edgeFrom startVertex: Element, to endVertex: Element) -> Bool {
+        precondition(has(vertex: startVertex), "The vertex is not present in the graph")
+        precondition(has(vertex: endVertex), "The vertex is not present in the graph")
+        return adjacencyList[startVertex]![endVertex] != nil
     }
     
-    func hasVertex(_ vertex: Element) -> Bool {
+    func has(vertex: Element) -> Bool {
         return adjacencyList[vertex] != nil
     }
     
