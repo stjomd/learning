@@ -28,6 +28,8 @@ class DirectedGraph<Element: Hashable> {
         return ans
     }
     
+    var showWeightsInDescription = false
+    
     // MARK: - Methods
     func predecessors(of vertex: Element) -> [Element] {
         precondition(hasVertex(vertex), "The vertex is not present in the graph")
@@ -123,11 +125,15 @@ class DirectedGraph<Element: Hashable> {
 // MARK: - CustomStringConvertible
 extension DirectedGraph: CustomStringConvertible where Element: CustomStringConvertible {
     var description: String {
-        var str = "<< Graph:"
+        var directed = true
+        if let _ = self as? UndirectedGraph {
+            directed = false
+        }
+        var str = "<< \(directed ? "Directed" : "Undirected") graph:"
         for v in adjacencyList {
             var vstr = "\n  \(v.key.description) → ["
             for u in adjacencyList[v.key]! {
-                vstr.append("\(u.key.description), ")
+                vstr.append("\(u.key.description)\(showWeightsInDescription ? " {\(u.value)}" : ""), ")
             }
             let offset = (adjacencyList[v.key]!.count == 0) ? 0 : -2
             let endIndex = vstr.index(vstr.endIndex, offsetBy: offset)
