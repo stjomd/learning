@@ -65,7 +65,7 @@ extension DirectedGraph {
     ///
     /// Note that any changes to the graph might invalidate the solution. Call this method if you need the shortest distance or path to several vertices. If you only need a path to a vertex once, call `shortestPath(from:to:)` instead.
     /// - Precondition: All edges in the graph have positive weights. The method does not check if this is the case.
-    /// - Complexity: O(*n* + *m* log *n*), where *n* is the number of vertices, and *m* is the number of edges in the graph. The returned object requires O(*n*) space.
+    /// - Complexity: O(*n* + *m* log *n*), where *n* is the number of vertices, and *m* the number of edges in the graph. The returned object requires O(*n*) space.
     /// - Parameter startVertex: The vertex from which the shortest distances are calculated.
     /// - Returns: A `DijkstraSolution` object, which can be used to calculate the shortest paths or access the shortest distances.
     func dijkstra(from startVertex: Element) -> DijkstraSolution {
@@ -98,7 +98,7 @@ extension DirectedGraph {
     ///
     /// If you only need one path or your graph is expected to be mutated before you need another path, calling this method is more efficient as it stops as soon as the target vertex is reached.
     /// - Precondition: All edges in the graph have positive weights. The method does not check if this is the case.
-    /// - Complexity: O(*n* + *m* log *n*), where *n* is the number of vertices, and *m* is the number of edges in the graph.
+    /// - Complexity: O(*n* + *m* log *n*), where *n* is the number of vertices, and *m* the number of edges in the graph.
     /// - Parameter startVertex: The vertex from which the shortest path is calculated.
     /// - Parameter endVertex: The target vertex, the path to which is to be calculated.
     /// - Returns: An array of vertices that describe a path from `startVertex` to `endVertex`.

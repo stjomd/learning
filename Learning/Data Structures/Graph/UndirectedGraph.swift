@@ -8,10 +8,19 @@
 
 class UndirectedGraph<Element: Hashable>: DirectedGraph<Element> {
     
+    /// The amount of unique edges in the graph.
+    ///
+    /// In undirected graphs, an undirected edge is considered to be two directed ones. Therefore, for undirected graphs, the value of `edgeCount` is actually double what one might expect. This property returns the amount of unique edges (two edges that connect the same two vertices are counted as one).
+    /// - Complexity: O(1)
     var uniqueEdgeCount: Int {
         return super.edgeCount / 2
     }
     
+    /// The vertices that are reachable from a given vertex.
+    /// - Precondition: The graph contains `vertex`.
+    /// - Complexity: O(deg *v*), where *v* is the `vertex`, and deg *v* is the degree of *v*.
+    /// - Parameter vertex: The vertex the neighbors of which are to be returned.
+    /// - Returns: An array of vertices that are reachable from `vertex`.
     func neighbors(of vertex: Element) -> [Element] {
         return super.successors(of: vertex)
     }
