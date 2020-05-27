@@ -162,6 +162,55 @@ class DirectedGraph<Element: Hashable> {
         vertexCount -= 1
     }
     
+    // MARK: Traversals
+    /// Traverse the graph in breadth first order.
+    ///
+    /// You can pass a closure to the method which performs an action on a vertex. This action will be performed on vertices in the same order as they are being discovered.
+    /// - Precondition: The graph contains `startVertex`.
+    /// - Complexity: O(*n*+*m*), where *n* is the amount of vertices, and *m* the amount of edges in the graph.
+    /// - Parameter startVertex: The vertex from which the traversal begins.
+    /// - Parameter action: A closure that accepts a vertex and returns nothing.
+    func breadthFirstSearch(from startVertex: Element, action: (Element) -> Void) {
+        precondition(has(vertex: startVertex), "The vertex is not present in the graph")
+        var discovered = [Element: Bool]()
+        for vertex in vertices {
+            discovered[vertex] = false
+        }
+        discovered[startVertex] = true
+        var queue = Queue<Element>()
+        queue.enqueue(startVertex)
+        while !queue.isEmpty {
+            let u = queue.dequeue()
+            action(u)
+            for v in successors(of: u) where !discovered[v]! {
+                discovered[v] = true
+                queue.enqueue(v)
+            }
+        }
+    }
+    
+    /// Traverse the graph in depth first order.
+    ///
+    /// You can pass a closure to the method which performs an action on a vertex. This action will be performed on vertices in the same order as they are being discovered.
+    /// - Precondition: The graph contains `startVertex`.
+    /// - Complexity: O(*n*+*m*), where *n* is the amount of vertices, and *m* the amount of edges in the graph.
+    /// - Parameter startVertex: The vertex from which the traversal begins.
+    /// - Parameter action: A closure that accepts a vertex and returns nothing.
+    func depthFirstSearch(from startVertex: Element, action: (Element) -> Void) {
+        var discovered = [Element: Bool]()
+        for vertex in vertices {
+            discovered[vertex] = false
+        }
+        dfs(from: startVertex, discovery: &discovered, action: action)
+    }
+    private func dfs(from vertex: Element, discovery discovered: inout [Element: Bool], action: (Element) -> Void) {
+        discovered[vertex] = true
+        action(vertex)
+        for v in successors(of: vertex) where !discovered[v]! {
+            dfs(from: v, discovery: &discovered, action: action)
+        }
+    }
+    
     // MARK: Miscellaneous
     /// The weight of the edge between two given vertices.
     /// - Complexity: O(1)
@@ -171,7 +220,7 @@ class DirectedGraph<Element: Hashable> {
     func weight(from startVertex: Element, to endVertex: Element) -> Weight {
         return adjacencyList[startVertex]![endVertex]!
     }
-    /// A Boolean value indicated if there is an edge between two given vertices.
+    /// A Boolean value that indicates if there is an edge between two given vertices.
     /// - Precondition: Both vertices are present in the graph.
     /// - Complexity: O(1)
     /// - Parameter startVertex: The vertex from which the edge starts.
@@ -182,7 +231,7 @@ class DirectedGraph<Element: Hashable> {
         precondition(has(vertex: endVertex), "The vertex is not present in the graph")
         return adjacencyList[startVertex]![endVertex] != nil
     }
-    /// A Boolean value indicated if the graph contains a given vertex.
+    /// A Boolean value that indicates if the graph contains a given vertex.
     /// - Complexity: O(1)
     /// - Parameter vertex: The vertex from which the edge starts.
     /// - Returns: `true`, if the graph contains `vertex`, and `false` otherwise.
