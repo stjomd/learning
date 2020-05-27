@@ -40,6 +40,22 @@ class DirectedGraph<Element: Hashable> {
         }
         return ans
     }
+    /// An array of all edges in the graph.
+    ///
+    /// Since vertices are hashed, this property might return an array with the same edges but in different order between different runs of the program.
+    /// - Complexity: O(*n*+*m*), where *n* is the amount of vertices in the graph, and *m* the amount of edges.
+    var edges: [(from: Element, to: Element, weight: Weight)] {
+        var ans = [(Element, Element, Weight)]()
+        for (startVertex, _) in adjacencyList {
+            if let _ = adjacencyList[startVertex] {
+                for (endVertex, weight) in adjacencyList[startVertex]! {
+                    ans.append((startVertex, endVertex, weight))
+                }
+            }
+        }
+        return ans
+    }
+    
     /// A Boolean value that indicates whether the weights should appear in the graph's `description` (for example, when printing to console).
     var showWeightsInDescription = false
     
