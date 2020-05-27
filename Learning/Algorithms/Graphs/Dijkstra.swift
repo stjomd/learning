@@ -82,7 +82,7 @@ extension DirectedGraph {
         while !queue.isEmpty {
             let u = queue.dequeue()
             for v in successors(of: u) {
-                let alt = distance[u]! + weight(u, v)
+                let alt = distance[u]! + weight(from: u, to: v)
                 if alt < distance[v]! {
                     distance[v] = alt
                     predecessor[v] = u
@@ -122,7 +122,7 @@ extension DirectedGraph {
                 break
             }
             for v in successors(of: u) {
-                let alt = distance[u]! + weight(u, v)
+                let alt = distance[u]! + weight(from: u, to: v)
                 if alt < distance[v]! {
                     distance[v] = alt
                     predecessor[v] = u
